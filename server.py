@@ -15,7 +15,8 @@ app.jinja_env.undefined = StrictUndefined
 #      View Homepage       #
 @app.route("/")
 def homepage():
-    return render_template("game.html")
+    base_plants = crud.get_base_plants()
+    return render_template("game.html", base_plants=base_plants)
 
 
 #      Get Plant Data      #

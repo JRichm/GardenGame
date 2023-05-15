@@ -13,6 +13,11 @@ def create_user(username, password, email):
     return user
 
 
+def get_base_plants():
+    plants = Plant.query.all()
+    return plants
+
+
 """ #      Server Methods       # """
 if __name__ == "__main__":
     from server import app

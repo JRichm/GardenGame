@@ -12,11 +12,25 @@
 </head>
 <body>
     <header>
+        <span>
+            <p>Level:</p>
+            <p>Leaves:</p>
+            <p>Leaves Per Second:</p>
+        </span>
+        <span>
+            <p>Selected:</p>
+        </span>
     </header>
     <main>
-        
-    </main>
-    <aside>
+        <div id="shop">
+            {% for each in base_plants %}        
+                <span class="shop-item">
+                    <p style="width:200px;">{{each.name}}</p>
+                    <p style="width:50px;">{{each.price}}</p>
+                    <p style="width:50px;">{{each.base_return}}</p>
+                </span>
+            {% endfor %}   
+        </div>    
         <div id=game>
             {% for row in range(0,9) %}
             <span class="game-row">
@@ -27,7 +41,8 @@
                 {% endfor %}
             </span>
             {% endfor %}
-        </div>
-    </aside>
+        </div> 
+    </main>
+    <script src="static/js/game.js"></script>
 </body>
 </html>

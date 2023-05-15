@@ -1,3 +1,19 @@
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 00px 300px 300px 300px;
+}
+
+header {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header span {
+    text-align: center;
+}
+
 #game {
     width: 500px;
     height: 500px;
@@ -10,13 +26,13 @@
 }
 
 .game-square {
-    width: 50px;
-    height: 50px;
     background-color: #202129;
     display: flex;
     justify-content: center;
     align-items: center;
     border: solid #212230 1px;
+    min-width: 65px;
+    min-height: 65px;
 }
 
 .game-square:hover {
@@ -27,4 +43,24 @@
 .game-char {
     color: white;
     font-family: 'Courier Prime', monospace;
+}
+
+#shop {
+    width: 500px;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.shop-item p {
+    font-family: 'Courier Prime', monospace;
+    margin: 12px;
+}
+
+.shop-item:hover {
+    background-color: #dddddd;
+    cursor: pointer;
 }
