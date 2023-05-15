@@ -16,19 +16,59 @@ app.jinja_env.undefined = StrictUndefined
 #      View Homepage       #
 @app.route("/")
 def homepage():
-    logged_in = session.get("user_id") is not None
-    return render_template("login.html", form=forms.LoginForm(), username=check_login())
+    return render_template("login.html", form=forms.LoginForm(), user=check_login())
+
+
+##      """   New User   """     ##
+@app.route("/users", methods=["POST"])
+def register_user():
+    form = forms.CreateAccoutForm(request.form)
+    return form.create_user()
+
+
+##      """  User Login  """     ##
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = forms.LoginForm(request.form)
+    return form.login_user()
+
+
+##      """  User Logout """     ##
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("homepage"))
+
+
+#         New Game         #
+@app.route("/newgame/<user_id>")
+def new_game(user_id):
+    if check_login():
+        user_id = check_login()
+        print("\n\n\n\n\n\n\n this is my user_id:")
+        print(user_id)
+        user = crud.get_user_save(user_id)
+        users_game = crud.get_user_save(user_id)
+        return render_template("game.html", myGame=users_game, user=user)
+    else:
+        flash('Please log in to create a new game!')
+        return redirect(url_for("homepage"))
 
 
 #        Open Game         #
 @app.route("/mygame")
 def open_game():
-    user = crud.get_user_by_id(session["user_id"]) is not None
-    if user:
-        users_game = crud.get_user_save(user)
-        return render_template("game.html", myGame=users_game, user=user)
+    if check_login():
+        users_game = crud.get_user_save(session.get("gg_user_id"))
+        if users_game is not None:
+            user = crud.get_user_by_id(session.get("gg_user_id"))
+            plants = crud.get_base_plants()
+            return render_template("game.html", myGame=users_game, user=user, base_plants=plants)
+        else:
+            return redirect(f"/newgame/{user_id}")
     else:
-        return redirect(url_for("/"))
+        flash(f'Please log in to view your garden!')
+        return redirect(url_for("homepage"))
 
 
 #      Get Plant Data      #
@@ -41,12 +81,12 @@ def get_plant_info(plant_id):
 
 
 def check_login():
-    session["user_id"] = session.get("user_id") or None
-    return (
-        crud.get_user_by_id(session["user_id"]).user_name
-        if session["user_id"]
-        else None
-    )
+    session["gg_user_id"] = session.get("gg_user_id") or None
+    user = crud.get_user_by_id(session["gg_user_id"])
+    if user:
+        return user
+    else:
+        return None
 
 
 if __name__ == "__main__":

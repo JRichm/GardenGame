@@ -31,9 +31,9 @@ class Save(db.Model):
     map_level = db.Column(db.Integer(), nullable=False, autoincrement=True)
     current_currency = db.Column(db.Integer(), nullable=False)
     leaves_per_second = db.Column(db.Integer(), nullable=False)
-    map_data = db.Column(db.String(), nullable=False)
-    upgrades = db.Column(db.String(), nullable=False)
-    last_login = db.Column(db.DateTime(), nullable=False)
+    map_data = db.Column(db.String())
+    upgrades = db.Column(db.String())
+    last_login = db.Column(db.DateTime())
 
     user = db.relationship("User", backref="saves")
 

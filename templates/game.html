@@ -1,45 +1,45 @@
 {% extends "base.html" %}
-{% block title %}{{ user.name }}'s garden{% endblock %}
+{% block title %}{{ user.username }}'s garden{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="static/css/game.css">
+<link rel="stylesheet" href="static/css/game.css">
 {% endblock %}
 {% block body %}
-    <header>
-        <span>
-            <p>Level:</p>
-            <p>Leaves:</p>
-            <p>Leaves Per Second:</p>
+<header>
+    <span>
+        <p>Level:</p>
+        <p>Leaves:</p>
+        <p>Leaves Per Second:</p>
+    </span>
+    <span>
+        <p>Selected:</p>
+    </span>
+    <span>
+        <p>{{ user.username }}</p>
+        <a href="/mygame">load user level</a>
+    </span>
+</header>
+<main>
+    <div id="shop">
+        {% for each in base_plants %}
+        <span class="shop-item">
+            <p style="width:200px;">{{each.name}}</p>
+            <p style="width:50px;">{{each.price}}</p>
+            <p style="width:50px;">{{each.base_return}}</p>
         </span>
-        <span>
-            <p>Selected:</p>
-        </span>
-        <span>
-            <p>{{ user.name }}</p>
-            <a href="/mygame">load user level</a>
-        </span>
-    </header>
-    <main>
-        <div id="shop">
-            {% for each in base_plants %}        
-                <span class="shop-item">
-                    <p style="width:200px;">{{each.name}}</p>
-                    <p style="width:50px;">{{each.price}}</p>
-                    <p style="width:50px;">{{each.base_return}}</p>
-                </span>
-            {% endfor %}   
-        </div>    
-        <div id=game>
-            {% for row in range(0,9) %}
-            <span class="game-row">
-                {% for char in range(0,9) %}
-                <div class="game-square">
-                    <p class="game-char">.</p>
-                </div>
-                {% endfor %}
-            </span>
+        {% endfor %}
+    </div>
+    <div id=game>
+        {% for row in range(0,9) %}
+        <span class="game-row">
+            {% for char in range(0,9) %}
+            <div class="game-square">
+                <p class="game-char">.</p>
+            </div>
             {% endfor %}
-        </div> 
-    </main>
-    <script src="static/js/game.mjs" type="module"></script>
-    <script src="static/js/initGame.mjs" type="module"></script>
+        </span>
+        {% endfor %}
+    </div>
+</main>
+<script src="static/js/game.mjs" type="module"></script>
+<script src="static/js/initGame.mjs" type="module"></script>
 {% endblock %}

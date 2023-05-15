@@ -33,9 +33,9 @@
         {% endwith %}
       </div>
       <article>
-        {% if username %}
+        {% if user %}
           <!-- Content for logged-in user -->
-          <a href="" id="user-name"><p>{{ username }}</p></a>
+          <a href="" id="user-name"><p>{{ user.username }}</p></a>
           <span>
             <a href=""><p>settings</p></a>
             <p>|</p>
