@@ -11,3 +11,10 @@ def new_game_plant(name, price, base_return):
 def create_user(username, password, email):
     user = User(user_name=username, user_password=password, user_email=email, gems=0)
     return user
+
+
+""" #      Server Methods       # """
+if __name__ == "__main__":
+    from server import app
+
+    connect_to_db(app)
