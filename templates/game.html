@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/game.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <p>header</p>
     </header>
     <main>
-        <p>main</p>
+        
     </main>
+    <aside>
+        <div id=game>
+            {% for row in range(0,9) %}
+            <span class="game-row">
+                {% for char in range(0,9) %}
+                <div class="game-square">
+                    <p class="game-char">.</p>
+                </div>
+                {% endfor %}
+            </span>
+            {% endfor %}
+        </div>
+    </aside>
 </body>
 </html>

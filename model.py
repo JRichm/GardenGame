@@ -41,44 +41,14 @@ class Save(db.Model):
         return f"<Map Data:\n\tUser: {self.user_id} - Map: {self.map_id}\n\t${self.current_currency}  @  ${self.leaves_per_second} per second\n\tLast login: {self.last_login}>"
 
 
-##          Sprite Model
-class Sprite(db.Model):
-    __tablename__ = "sprites"
+##          Plant Game Object
+class Plant(db.Model):
+    __tablename__ = "base_plants"
 
-    sprite_id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    plant_id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     name = db.Column(db.String(), unique=True, nullable=False)
-    img_url = db.Column(db.String(), unique=True, nullable=False)
-
-    def __repr__(self):
-        return f"<Sprite Data:\n\t{self.name} ({self.sprite_id})\n\t{self.img_url}>"
-
-
-##          Entity Type Model
-class EntityType(db.Model):
-    __tablename__ = "entity_types"
-
-    type_id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
-    name = db.Column(db.String(), unique=True, nullable=False)
-    base_value = db.Column(db.Integer(), nullable=False)
-    multiplier = db.Column(db.DECIMAL(), nullable=False)
-
-    def __repr__(self):
-        return f"<Type Data:\n\t{self.name}\t({self.base_value}, {self.multiplier})"
-
-
-##          Entity Model
-class Entity(db.Model):
-    __tablename__ = "entities"
-
-    entity_id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
-    name = db.Column(db.String(), unique=True, nullable=False)
-    level = db.Column(db.Integer(), nullable=False)
-    entity_type_id = db.Column(
-        db.Integer(), db.ForeignKey("entity_types.type_id"), nullable=False
-    )
-    img_url_id = db.Column(
-        db.Integer(), db.ForeignKey("sprites.sprite_id"), nullable=False
-    )
+    price = db.Column(db.Integer(), nullable=False)
+    base_return = db.column(db.Integer(), nullable=False)
 
 
 """  ####     DB Config     ####  """

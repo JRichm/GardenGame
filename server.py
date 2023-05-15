@@ -18,6 +18,12 @@ def homepage():
     return render_template("game.html")
 
 
+#      Get Plant Data      #
+@app.route("/gameplantinfo/<plant_id>")
+def get_plant_info(plant_id):
+    return crud.game_plant_info(plant_id)
+
+
 """ ####   Server Methods   #### """
 if __name__ == "__main__":
     connect_to_db(app)
