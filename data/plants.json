@@ -1,117 +1,117 @@
 [
     {
         "name": "Asparagus",
-        "price": "",
-        "base_return": ""
+        "price": "100",
+        "base_return": "1"
     },
     {
         "name": "Brocooli",
-        "price": "",
-        "base_return": ""
+        "price": "200",
+        "base_return": "2"
     },
     {
         "name": "Carrot",
-        "price": "",
-        "base_return": ""
+        "price": "300",
+        "base_return": "4"
     },
     {
         "name": "Dill",
-        "price": "",
-        "base_return": ""
+        "price": "400",
+        "base_return": "8"
     },
     {
         "name": "Eggplant",
-        "price": "",
-        "base_return": ""
+        "price": "500",
+        "base_return": "16"
     },
     {
         "name": "Fennel",
-        "price": "",
-        "base_return": ""
+        "price": "600",
+        "base_return": "32"
     },
     {
         "name": "Green Beans",
-        "price": "",
-        "base_return": ""
+        "price": "700",
+        "base_return": "64"
     },
     {
         "name": "Horseradish",
-        "price": "",
-        "base_return": ""
+        "price": "800",
+        "base_return": "128"
     },
     {
         "name": "Iceberg Lettuce",
-        "price": "",
-        "base_return": ""
+        "price": "900",
+        "base_return": "256"
     },
     {
         "name": "Jalapeno Peppers",
-        "price": "",
-        "base_return": ""
+        "price": "1000",
+        "base_return": "512"
     },
     {
         "name": "Kale",
-        "price": "",
-        "base_return": ""
+        "price": "1100",
+        "base_return": "1024"
     },
     {
         "name": "Leeks",
-        "price": "",
-        "base_return": ""
+        "price": "1200",
+        "base_return": "2048"
     },
     {
         "name": "Mushrooms",
-        "price": "",
-        "base_return": ""
+        "price": "1300",
+        "base_return": "4096"
     },
     {
         "name": "Napa Cabbage",
-        "price": "",
-        "base_return": ""
+        "price": "1400",
+        "base_return": "4097"
     },
     {
         "name": "Okra",
-        "price": "",
-        "base_return": ""
+        "price": "1500",
+        "base_return": "4098"
     },
     {
         "name": "Pumpkin",
-        "price": "",
-        "base_return": ""
+        "price": "1600",
+        "base_return": "4099"
     },
     {
         "name": "Quinoa",
-        "price": "",
-        "base_return": ""
+        "price": "1700",
+        "base_return": "4100"
     },
     {
         "name": "Radishes",
-        "price": "",
-        "base_return": ""
+        "price": "1800",
+        "base_return": "4101"
     },
     {
         "name": "Spinach",
-        "price": "",
-        "base_return": ""
+        "price": "1900",
+        "base_return": "4102"
     },
     {
         "name": "Tomatoes",
-        "price": "",
-        "base_return": ""
+        "price": "2000",
+        "base_return": "4103"
     },
     {
         "name": "Watermelon",
-        "price": "",
-        "base_return": ""
+        "price": "2300",
+        "base_return": "4104"
     },
     {
         "name": "Yam",
-        "price": "",
-        "base_return": ""
+        "price": "2500",
+        "base_return": "4105"
     },
     {
         "name": "Zucchini",
-        "price": "",
-        "base_return": ""
+        "price": "2600",
+        "base_return": "4106"
     }
 ]
