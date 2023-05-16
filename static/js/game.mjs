@@ -2,22 +2,50 @@ class GameSquare {
     constructor(x, y) {
         this.char = '.';
         this.color = '#ffffff';
-        this.plant_id = undefined;
-        this.square_id = '' + x + y
-        this.squareIndex = [x, y]
-        this.element = document.getElementById(this.square_id)
+        this.plant = undefined;
+        this.square_id = '' + x + y;
+        this.squareIndex = [x, y];
+        this.element = document.getElementById('gs-' + this.square_id);
+        this.plantable = true;
     }
 
-    userClick() {
-        this.element.style = 'background-color:white;'
+    userClick(selection) {
+        if (this.plantable) {
+            if (selection.store) {
+                fetch(`/gameplantinfo/${selection.store}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        var responseData = data
+                        console.log(responseData)
+
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            }
+        }
     }
 
     userHover() {
-        this.element.style = 'background-color:#202129;'
+
+        this.element.style = 'background-color:#202129;';
     }
 
     returnSaveData() {
-        console.log('this does nothing')
+        // this function will be called whenever the 'map_data' string gets updated
+        // let's call this whenever the player places a new plant or deletes one
+        // and maybe when the user hovers over the header as if to close the game
+
+        // the data that this function returns needs to hold all of the data that 
+        // needs to be saved to the server so the user can close the window and come back
+
+        // the data that we will need to save is:
+        //      
+        //      square_id
+        //      plant_id
+        if (this.plant_id) {
+            console.log(`saved ${this.plant_id} at location ${this.squareIndex}`)
+            return `${this.squareIndex}w${this.plant_id}`
+        }
     }
 }
 
@@ -40,52 +68,56 @@ export class Game {
         this.last_login = last_login;
 
         this.map_size = 9
-        this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex)))
+        this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex)));
         this.selection = {
-            store: null,
-            inventory: null
+            store: undefined,
+            inventory: undefined
         };
     }
-    
+
     updateUserSelection(event) {
         switch (true) {
 
             // click shop item box
             case event.target.className === 'shop-item':
-                this.selection.store = event.target.firstElementChild.innerHTML
-                console.log(this.selection)
+                this.selection.store = event.target.id;
+                console.log(this.selection);
                 break;
-            
+
             // click shop item name
             case event.target.parentElement.className === 'shop-item':
-                this.selection.store = event.target.parentElement.firstElementChild.innerHTML
-                console.log(this.selection)
+                this.selection.store = event.target.parentElement.id;
+                console.log(this.selection);
                 break;
         }
     }
 
     userClickGameSquare(event) {
+        let index
         switch (true) {
 
-            // double check that user clicked game-square
+            // only do stuff when click event is game-square
             case event.target.className === 'game-square':
 
                 // get index from html elements id
-                let index = event.target.id.split('').map(Number)
-                this.game_board[index[0]][index[1]].userClick()
+                let number = event.target.id.split('-')[1]; // Extract the number after 'gs-'
+                let digits = number.split('').map(Number);
+
+                this.game_board[digits[0]][digits[1]].userClick(this.selection);
         }
     }
 
     userHoverGameSquare(event) {
         switch (true) {
 
-            // only do stuff when event is game-square
+            // only do stuff when hover event is game-square
             case event.target.className === 'game-square':
 
-            // get index from html elements id
-            let index = event.target.id.split('').map(Number)
-            this.game_board[index[0]][index[1]].userHover()
+                // get index from html elements id
+                let number = event.target.id.split('-')[1]; // Extract the number after 'gs-'
+                let digits = number.split('').map(Number);
 
+                this.game_board[digits[0]][digits[1]].userHover();
         }
     }
 }

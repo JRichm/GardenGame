@@ -2,6 +2,7 @@
 from flask import Flask, render_template, flash, session, request, redirect, url_for
 from model import connect_to_db, db
 from jinja2 import StrictUndefined
+import json
 import crud
 import forms
 
@@ -44,13 +45,13 @@ def logout():
 @app.route("/newgame")
 def new_game():
     if check_login():
-        user_id = session.get('gg_user_id')
+        user_id = session.get("gg_user_id")
         users_game = crud.get_user_save(user_id)
         if not users_game:
             users_game = crud.create_save(user_id)
-        return redirect('/mygame')
+        return redirect("/mygame")
     else:
-        flash('Please log in to create a new game!')
+        flash("Please log in to create a new game!")
         return redirect(url_for("homepage"))
 
 
@@ -62,18 +63,21 @@ def open_game():
         if users_game is not None:
             user = crud.get_user_by_id(session.get("gg_user_id"))
             plants = crud.get_base_plants()
-            return render_template("game.html", myGame=users_game, user=user, base_plants=plants)
+            return render_template(
+                "game.html", myGame=users_game, user=user, base_plants=plants
+            )
         else:
-            return redirect('/newgame')
+            return redirect("/newgame")
     else:
-        flash(f'Please log in to view your garden!')
+        flash(f"Please log in to view your garden!")
         return redirect(url_for("homepage"))
 
 
 #      Get Plant Data      #
 @app.route("/gameplantinfo/<plant_id>")
 def get_plant_info(plant_id):
-    return crud.game_plant_info(plant_id)
+    plant = crud.get_base_plant(plant_id)
+    return plant
 
 
 """ ####   Server Methods   #### """

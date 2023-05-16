@@ -10,13 +10,13 @@ let shopItems = document.getElementsByClassName('shop-item');
 
 // get map data from db and feed into newgame Game() constructor
 fetch('/mygame').then(response => response.json())
-                .then(data => {
-                    //process the response data
-                    console.log(data)
-                }).catch(err => {
-                    // handle any errors
-                    console.error('Error:', err)
-                });
+    .then(data => {
+        //process the response data
+        console.log(data)
+    }).catch(err => {
+        // handle any errors
+        console.error('Error:', err)
+    });
 
 const newGame = new Game();
 

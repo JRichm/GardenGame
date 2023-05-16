@@ -14,12 +14,12 @@
         <p>Selected:</p>
     </span>
 </header>
-<script src="static/js/game.mjs" type="module"></script>
-<script src="static/js/initGame.mjs" type="module"></script>
 <main>
+    <script src="static/js/game.mjs" type="module"></script>
+    <script src="static/js/initGame.mjs" type="module"></script>
     <div id="shop">
         {% for each in base_plants %}
-        <span class="shop-item">
+        <span class="shop-item" id="{{each.plant_id}}">
             <p style="width:200px;">{{each.name}}</p>
             <p style="width:50px;">{{each.price}}</p>
             <p style="width:50px;">{{each.base_return}}</p>
@@ -30,7 +30,7 @@
         {% for row in range(0,9) %}
         <span class="game-row">
             {% for char in range(0,9) %}
-            <div class="game-square" id="{{ row }}{{ char }}">
+            <div class="game-square" id="gs-{{ row }}{{ char }}">
                 <p class="game-char">.</p>
             </div>
             {% endfor %}
