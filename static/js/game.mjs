@@ -7,13 +7,15 @@ class GameSquare {
         this.squareIndex = [x, y];
         this.element = document.getElementById('gs-' + this.square_id);
         this.plantable = true;
-        this.base_plants = base_plants
+        this.base_plants = base_plants;
     }
+
 
     userClick(selection) {
         if (this.plantable) {
             if (selection.store) {
-                this.plant_id = selection.store
+                this.plant_id = selection.store;
+                this.plantSeed();
             }
         }
     }
@@ -21,6 +23,12 @@ class GameSquare {
     userHover() {
 
         this.element.style = 'background-color:#202129;';
+    }
+
+    plantSeed() {
+        this.char = this.base_plants[parseInt(this.plant_id) - 1].name.charAt(0)
+        this.element.innerHTML = this.char;
+        this.element.style = `color:${this.color}`
     }
 
     returnSaveData() {
@@ -61,7 +69,6 @@ export class Game {
         this.last_login = last_login;
 
         this.map_size = 9
-        this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
         this.selection = {
             store: undefined,
             inventory: undefined
@@ -83,6 +90,8 @@ export class Game {
                     console.log(err);
                 })
         }
+
+        this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
     }
 
     updateUserSelection(event) {

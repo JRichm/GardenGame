@@ -18,9 +18,9 @@ fetch('/mygame').then(response => response.json())
         console.error('Error:', err)
     });
 
+// instantiate new game
 const newGame = new Game();
-console.log('\n\n\n\n\n\n\n\nthese are my base plants:')
-console.log(base_plants)
+
 // shop buttons event listeners
 for (let j = 0; j < shopItems.length; j++) {
     shopItems[j].addEventListener('click', e => newGame.updateUserSelection(e))
@@ -29,5 +29,5 @@ for (let j = 0; j < shopItems.length; j++) {
 // game square event listeners
 for (let sq = 0; sq < gameSquares.length; sq++) {
     gameSquares[sq].addEventListener('click', e => newGame.userClickGameSquare(e))
-    gameSquares[sq].addEventListener('mouseenter', e => newGame.userHoverGameSquare(e))
+    //gameSquares[sq].addEventListener('mouseenter', e => newGame.userHoverGameSquare(e))
 }
