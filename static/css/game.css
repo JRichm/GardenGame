@@ -1,3 +1,7 @@
+.content-container {
+    background-color: white;
+}
+
 main {
     display: flex;
     flex-direction: row;
@@ -50,7 +54,7 @@ header span {
 }
 
 .shop-item {
-    background-color: #303030;
+    background-color: #eeeeee;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

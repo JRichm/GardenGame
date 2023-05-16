@@ -25,3 +25,8 @@ for (let j = 0; j < shopItems.length; j++) {
     shopItems[j].addEventListener('click', e => newGame.updateUserSelection(e))
 }
 
+// game square event listeners
+for (let sq = 0; sq < gameSquares.length; sq++) {
+    gameSquares[sq].addEventListener('click', e => newGame.userClickGameSquare(e))
+    gameSquares[sq].addEventListener('mouseenter', e => newGame.userHoverGameSquare(e))
+}
