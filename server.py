@@ -41,15 +41,14 @@ def logout():
 
 
 #         New Game         #
-@app.route("/newgame/<user_id>")
-def new_game(user_id):
+@app.route("/newgame")
+def new_game():
     if check_login():
-        user_id = check_login()
-        print("\n\n\n\n\n\n\n this is my user_id:")
-        print(user_id)
-        user = crud.get_user_save(user_id)
-        users_game = crud.get_user_save(user_id)
-        return render_template("game.html", myGame=users_game, user=user)
+        user_id = session.get('gg_user_id')
+        users_game = crud.get_user_save(user_id) or None
+        if not users_game:
+            users_game = crud.create_save(user_id)
+        return redirect('/mygame')
     else:
         flash('Please log in to create a new game!')
         return redirect(url_for("homepage"))
@@ -65,7 +64,7 @@ def open_game():
             plants = crud.get_base_plants()
             return render_template("game.html", myGame=users_game, user=user, base_plants=plants)
         else:
-            return redirect(f"/newgame/{user_id}")
+            return redirect('/newgame')
     else:
         flash(f'Please log in to view your garden!')
         return redirect(url_for("homepage"))
