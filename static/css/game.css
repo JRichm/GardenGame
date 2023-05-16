@@ -45,8 +45,10 @@ header span {
 }
 
 .game-char {
-    color: white;
     font-family: 'Courier Prime', monospace;
+    font-size: 40px;
+    width: 20px;
+    height: 30px;
 }
 
 #shop {

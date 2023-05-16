@@ -1,26 +1,19 @@
 class GameSquare {
-    constructor(x, y) {
+    constructor(x, y, base_plants) {
         this.char = '.';
         this.color = '#ffffff';
-        this.plant = undefined;
+        this.plant_id = undefined;
         this.square_id = '' + x + y;
         this.squareIndex = [x, y];
         this.element = document.getElementById('gs-' + this.square_id);
         this.plantable = true;
+        this.base_plants = base_plants
     }
 
     userClick(selection) {
         if (this.plantable) {
             if (selection.store) {
-                fetch(`/gameplantinfo/${selection.store}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        var responseData = data
-                        console.log(responseData)
-
-                    }).catch(err => {
-                        console.log(err)
-                    })
+                this.plant_id = selection.store
             }
         }
     }
@@ -68,11 +61,28 @@ export class Game {
         this.last_login = last_login;
 
         this.map_size = 9
-        this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex)));
+        this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
         this.selection = {
             store: undefined,
             inventory: undefined
         };
+
+        this.base_plants = []
+        for (let i = 1; i < 24; i++) {
+            fetch(`/gameplantinfo/${i}`)
+                .then(response => response.json())
+                .then(data => {
+                    let base_plant = {
+                        'plant_id': data.plant_id,
+                        'name': data.name,
+                        'price': data.price,
+                        'base_return': data.base_return
+                    }
+                    this.base_plants.push(base_plant)
+                }).catch(err => {
+                    console.log(err);
+                })
+        }
     }
 
     updateUserSelection(event) {

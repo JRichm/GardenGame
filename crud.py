@@ -3,6 +3,7 @@
 from model import db, User, Save, Plant, connect_to_db
 from flask import redirect, url_for
 from datetime import datetime
+import json
 
 
 def create_save(user_id):
@@ -44,10 +45,23 @@ def get_user_by_username(username):
     return User.query.filter(User.username == username).first()
 
 
-def get_user_save(user_id):
+def get_user_save_JSON(user_id):
     user_save = Save.query.filter(Save.user_id == user_id).first()
     if user_save:
-        return user_save
+        user_save_dict = {
+            "map_id": user_save.map_id,
+            "user_id": user_save.user_id,
+            "map_level": user_save.map_level,
+            "current_currency": user_save.current_currency,
+            "leaves_per_second": user_save.leaves_per_second,
+            "map_data": user_save.map_data,
+            "upgrades": user_save.upgrades,
+            "last_login": str(user_save.last_login),
+        }
+
+        user_save_JSON = json.dumps([user_save_dict])
+        return user_save_JSON
+
     else:
         return None
 
@@ -58,9 +72,21 @@ def new_game_plant(name, price, base_return):
     return plant
 
 
-def get_base_plants():
+def get_base_plants_JSON():
     plants = Plant.query.all()
-    return plants
+    json_result = json.dumps(
+        [
+            {
+                "plant_id": row.plant_id,
+                "name": row.name,
+                "price": row.price,
+                "base_return": row.base_return,
+            }
+            for row in plants
+        ],
+        default=str,
+    )
+    return json_result
 
 
 def get_base_plant(plant_id):

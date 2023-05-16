@@ -59,10 +59,10 @@ def new_game():
 @app.route("/mygame")
 def open_game():
     if check_login():
-        users_game = crud.get_user_save(session.get("gg_user_id"))
+        users_game = crud.get_user_save_JSON(session.get("gg_user_id"))
         if users_game is not None:
             user = crud.get_user_by_id(session.get("gg_user_id"))
-            plants = crud.get_base_plants()
+            plants = json.loads(crud.get_base_plants_JSON())
             return render_template(
                 "game.html", myGame=users_game, user=user, base_plants=plants
             )

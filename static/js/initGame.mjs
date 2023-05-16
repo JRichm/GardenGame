@@ -19,7 +19,8 @@ fetch('/mygame').then(response => response.json())
     });
 
 const newGame = new Game();
-
+console.log('\n\n\n\n\n\n\n\nthese are my base plants:')
+console.log(base_plants)
 // shop buttons event listeners
 for (let j = 0; j < shopItems.length; j++) {
     shopItems[j].addEventListener('click', e => newGame.updateUserSelection(e))
