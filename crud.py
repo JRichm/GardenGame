@@ -22,6 +22,10 @@ def create_save(user_id):
                 map_data=None,
                 upgrades=None,
                 last_login=datetime.now())
+    print('\n\n\n\n\n\n\n\nthis is my save')
+    print(save)
+    db.session.add(save)
+    db.session.commit()
     return save;
 
 def get_base_plants():
@@ -51,7 +55,7 @@ def get_user_save(user_id):
     if user_save:
         return user_save
     else:
-        return redirect(f"/newgame/{user_id}")
+        return None
 
 
 """ #      Server Methods       # """

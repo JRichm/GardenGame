@@ -29,7 +29,7 @@ export class Game {
         this.selection = {
             store: null,
             inventory: null,
-            game_board: null
+            game_board: Array(9).fill().map(() => Array(9).fill(new GameSquare()))
         };
     }
     

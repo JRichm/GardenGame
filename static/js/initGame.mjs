@@ -17,11 +17,11 @@ fetch('/mygame').then(response => response.json())
                     // handle any errors
                     console.error('Error:', err)
                 });
- 
 
 const newGame = new Game();
+
+// shop buttons event listeners
 for (let j = 0; j < shopItems.length; j++) {
     shopItems[j].addEventListener('click', e => newGame.updateUserSelection(e))
-    console.log(shopItems[j])
 }
 

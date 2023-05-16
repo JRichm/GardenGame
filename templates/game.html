@@ -28,7 +28,7 @@
         {% for row in range(0,9) %}
         <span class="game-row">
             {% for char in range(0,9) %}
-            <div class="game-square">
+            <div class="game-square" id="{{ row }}{{ char }}">
                 <p class="game-char">.</p>
             </div>
             {% endfor %}

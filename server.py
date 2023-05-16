@@ -45,7 +45,7 @@ def logout():
 def new_game():
     if check_login():
         user_id = session.get('gg_user_id')
-        users_game = crud.get_user_save(user_id) or None
+        users_game = crud.get_user_save(user_id)
         if not users_game:
             users_game = crud.create_save(user_id)
         return redirect('/mygame')
