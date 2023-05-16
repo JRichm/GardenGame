@@ -15,6 +15,10 @@ class GameSquare {
     userHover() {
         this.element.style = 'background-color:#202129;'
     }
+
+    returnSaveData() {
+        console.log('this does nothing')
+    }
 }
 
 class Plant {
