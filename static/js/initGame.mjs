@@ -5,7 +5,7 @@ let x = 0;
 let y = 0;
 
 let gameSquares = document.getElementsByClassName('game-square');
-let shopItems = document.getElementsByClassName('shop-item');
+let shopItems = document.getElementsByClassName('shop-item-info');
 
 
 // get map data from db and feed into newgame Game() constructor

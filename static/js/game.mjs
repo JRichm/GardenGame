@@ -1,7 +1,7 @@
 class GameSquare {
     constructor(x, y, base_plants) {
         this.char = '.';
-        this.color = '#ffffff';
+        this.color = 'ffffff';
         this.plant_id = undefined;
         this.square_id = '' + x + y;
         this.squareIndex = [x, y];
@@ -28,8 +28,9 @@ class GameSquare {
 
     plantSeed() {
         this.char = this.base_plants[parseInt(this.plant_id) - 1].name.charAt(0)
+        this.color = this.base_plants[parseInt(this.plant_id) - 1].color
         this.element.firstElementChild.innerHTML = this.char;
-        this.element.style = `color:${this.color}`
+        this.element.firstElementChild.style = `color: #${this.color};`
     }
 
     returnSaveData() {
@@ -84,7 +85,8 @@ export class Game {
                         'plant_id': data.plant_id,
                         'name': data.name,
                         'price': data.price,
-                        'base_return': data.base_return
+                        'base_return': data.base_return,
+                        'color': data.color
                     }
                     this.base_plants.push(base_plant)
                 }).catch(err => {
@@ -99,13 +101,13 @@ export class Game {
         switch (true) {
 
             // click shop item box
-            case event.target.className === 'shop-item':
+            case event.target.className === 'shop-item-info':
                 this.selection.store = event.target.id;
                 console.log(this.selection);
                 break;
 
             // click shop item name
-            case event.target.parentElement.className === 'shop-item':
+            case event.target.parentElement.className === 'shop-item-info':
                 this.selection.store = event.target.parentElement.id;
                 console.log(this.selection);
                 break;
@@ -138,6 +140,14 @@ export class Game {
                 let digits = number.split('').map(Number);
 
                 this.game_board[digits[0]][digits[1]].userHover();
+        }
+    }
+
+    saveGame() {
+        for (let sqx = 0; sqx < 9; sqx++) {
+            for (let sqy = 0; sqy < 9; sqy++) {
+                this.game_board[sqx][sqy].getSaveData
+            }
         }
     }
 }

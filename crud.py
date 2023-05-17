@@ -81,6 +81,7 @@ def get_base_plants_JSON():
                 "name": row.name,
                 "price": row.price,
                 "base_return": row.base_return,
+                "color": row.color,
             }
             for row in plants
         ],
@@ -96,6 +97,7 @@ def get_base_plant(plant_id):
         "name": plant.name,
         "price": plant.price,
         "base_return": plant.base_return,
+        "color": plant.color,
     }
     return base_plant
 

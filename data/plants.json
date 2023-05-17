@@ -3,138 +3,138 @@
         "name": "Asparagus",
         "price": "100",
         "base_return": "1",
-        "color": "#ffffff"
+        "color": "ffffff"
     },
     {
         "name": "Brocooli",
         "price": "200",
         "base_return": "2",
-        "color": "#2a8c2a"
+        "color": "2a8c2a"
     },
     {
         "name": "Carrot",
         "price": "300",
         "base_return": "4",
-        "color": "#ff8400"
+        "color": "ff8400"
     },
     {
         "name": "Dill",
         "price": "400",
         "base_return": "8",
-        "color": "#4a930e"
+        "color": "4a930e"
     },
     {
         "name": "Eggplant",
         "price": "500",
         "base_return": "16",
-        "color": "#4f3884"
+        "color": "4f3884"
     },
     {
         "name": "Fennel",
         "price": "600",
         "base_return": "32",
-        "color": "#ffffff"
+        "color": "ffffff"
     },
     {
         "name": "Grapes",
         "price": "700",
         "base_return": "64",
-        "color": "#8a00c5"
+        "color": "8a00c5"
     },
     {
         "name": "Horseradish",
         "price": "800",
         "base_return": "128",
-        "color": ""
+        "color": "ffffff"
     },
     {
         "name": "Iceberg Lettuce",
         "price": "900",
         "base_return": "256",
-        "color": ""
+        "color": "ffffff"
     },
     {
         "name": "Jalapeno Peppers",
         "price": "1000",
         "base_return": "512",
-        "color": "#e4d1a3"
+        "color": "e4d1a3"
     },
     {
         "name": "Kale",
         "price": "1100",
         "base_return": "1024",
-        "color": "#ffffff"
+        "color": "ffffff"
     },
     {
         "name": "Lettuce",
         "price": "1200",
         "base_return": "2048",
-        "color": "#e4d1a3"
+        "color": "e4d1a3"
     },
     {
         "name": "Mushrooms",
         "price": "1300",
         "base_return": "4096",
-        "color": "#e4d1a3"
+        "color": "e4d1a3"
     },
     {
         "name": "Napa Cabbage",
         "price": "1400",
         "base_return": "4097",
-        "color": "#ffffff"
+        "color": "ffffff"
     },
     {
         "name": "Onions",
         "price": "1500",
         "base_return": "4098",
-        "color": "#ffffff"
+        "color": "ffffff"
     },
     {
         "name": "Pumpkin",
         "price": "1600",
         "base_return": "4099",
-        "color": "#f07000"
+        "color": "f07000"
     },
     {
         "name": "Quinoa",
         "price": "1700",
         "base_return": "4100",
-        "color": "#ffffff"
+        "color": "ffffff"
     },
     {
         "name": "Radishes",
         "price": "1800",
         "base_return": "4101",
-        "color": "#ff002a"
+        "color": "ff002a"
     },
     {
         "name": "Strawberries",
         "price": "1900",
         "base_return": "4102",
-        "color": "#ff002a"
+        "color": "ff002a"
     },
     {
         "name": "Tomatoes",
         "price": "2000",
         "base_return": "4103",
-        "color": "#a20d0d"
+        "color": "a20d0d"
     },
     {
         "name": "Watermelon",
         "price": "2300",
         "base_return": "4104",
-        "color": "#ff0000"
+        "color": "ff0000"
     },
     {
         "name": "Yam",
         "price": "2500",
         "base_return": "4105",
-        "color": "#cc8942"
+        "color": "cc8942"
     },
     {
         "name": "Zucchini",
         "price": "2600",
         "base_return": "4106",
-        "color": "#003d0b"
+        "color": "003d0b"
     }
 ]

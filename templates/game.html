@@ -21,9 +21,12 @@
     <div id="shop">
         {% for each in base_plants %}
         <span class="shop-item" id="{{ each.plant_id }}">
-            <p style="width:200px;">{{ each.name }}</p>
-            <p style="width:50px;">{{ each.price }}</p>
-            <p style="width:50px;">{{ each.base_return }}</p>
+            <div class="shop-item-info" id="{{ each.plant_id }}">
+                <p style="width:200px;">{{ each.name }}</p>
+                <p style="width:50px;">{{ each.price }}</p>
+                <p style="width:50px;">{{ each.base_return }}</p>
+            </div>
+            <p class="plant-qty">0x</p>
         </span>
         {% endfor %}
     </div>

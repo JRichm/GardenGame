@@ -6,7 +6,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 00px 300px 300px 300px;
+    margin: 0px 500px 0px 500px;
 }
 
 header {
@@ -34,7 +34,6 @@ header span {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid #212230 1px;
     min-width: 65px;
     min-height: 65px;
 }
@@ -45,6 +44,7 @@ header span {
 }
 
 .game-char {
+    color: #555555;
     font-family: 'Courier Prime', monospace;
     font-size: 40px;
     width: 20px;
@@ -56,18 +56,33 @@ header span {
 }
 
 .shop-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.shop-item-info {
     background-color: #eeeeee;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    height: 50%;
+    padding: 10px;
 }
 
-.shop-item:hover {
+.shop-item-info p {
+    margin: 0px;
+}
+
+.shop-item-info:hover {
     background-color: #dddddd;
     cursor: pointer;
 }
 
+.plant-qty {
+    background-color: #cccccc;
+    padding: 10px;
+}
+
 .shop-item p {
     font-family: 'Courier Prime', monospace;
-    margin: 12px;
 }
