@@ -5,8 +5,10 @@ body::-webkit-scrollbar {
 
 body {
     background-color: #202124;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 #main-header {
@@ -70,7 +72,7 @@ body {
 }
 
 #message-area {
-    display:flex;
+    display: flex;
     flex-direction: column;
     min-width: 500px;
     width: fit-content;
@@ -82,5 +84,5 @@ body {
 }
 
 .content-container {
-    padding-top: 150px;
+    padding-top: 100px;
 }

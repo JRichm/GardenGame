@@ -68,14 +68,6 @@ class GameSquare {
     }
 }
 
-class Plant {
-    constructor(name, char, color) {
-        this.name = name;
-        this.char = char;
-        this.color = color;
-    }
-}
-
 export class Game {
     constructor(save_id, user_id, current_currency, leaves_per_second, map_data, upgrades, last_login) {
         this.id = save_id;

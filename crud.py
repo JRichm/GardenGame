@@ -1,7 +1,7 @@
 """  ####   CRUD Funcitons   ####"""
 
 from model import db, User, Save, Plant, connect_to_db
-from flask import redirect, url_for
+from flask import redirect, url_for, flash
 from datetime import datetime
 import json
 
@@ -48,6 +48,8 @@ def get_user_by_username(username):
 def get_user_save_JSON(user_id):
     user_save = Save.query.filter(Save.user_id == user_id).first()
     if user_save:
+        flash(f"\n\n\n\n\n\n\n\n\n\nuser save found for {user_id}")
+
         user_save_dict = {
             "map_id": user_save.map_id,
             "user_id": user_save.user_id,
@@ -63,6 +65,7 @@ def get_user_save_JSON(user_id):
         return user_save_JSON
 
     else:
+        flash("\n\n\n\n\n\n\n\n\n\nno user save found!")
         return None
 
 

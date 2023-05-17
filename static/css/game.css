@@ -5,22 +5,62 @@
 main {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin: 0px 200px 0px 200px;
+    justify-content: center;
 }
 
-header {
+main>* {
+    margin: 15px;
+}
+
+#nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Courier Prime', monospace;
+}
+
+#nav-bar article {
+    background-color: #cccccc;
+    width: 600px;
+    margin: 15px;
+}
+
+#store-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nav-buttons {
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
 }
 
-header span {
-    text-align: center;
+#game-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game-stats span {
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#game-stats div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #game {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
 }
 
 .game-row {
@@ -52,12 +92,15 @@ header span {
 }
 
 #shop {
-    width: 650px;
+    width: 600px;
 }
 
 .shop-item {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 22px 22px 22px;
 }
 
 .shop-item-info {
@@ -82,7 +125,8 @@ header span {
     display: flex;
     flex-direction: row;
     width: 100px;
-    justify-content: end;
+    margin: 0px 25px 0px 25px;
+    justify-content: center;
 }
 
 .item-return {
@@ -98,20 +142,34 @@ header span {
 
 .plant-level {
     background-color: #cccccc;
-    padding: 5px;
+    padding: 22px 5px 22px 5px;
+    margin: 0px;
 }
 
 .plant-qty {
     background-color: #cccccc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
 }
 
 .plant-lps {
     background-color: #cccccc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
 }
 
+.plant-qty p {
+    margin: 0px;
+}
+
+.plant-lps p {
+    margin: 0px;
+}
 
 #user-stats {
-    width: 500px;
+    width: 600px;
 }

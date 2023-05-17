@@ -63,8 +63,9 @@ def open_game():
         if users_game is not None:
             user = crud.get_user_by_id(session.get("gg_user_id"))
             plants = json.loads(crud.get_base_plants_JSON())
+            users_save = json.loads(users_game)
             return render_template(
-                "game.html", myGame=users_game, user=user, base_plants=plants
+                "game.html", user_save=users_save, user=user, base_plants=plants
             )
         else:
             return redirect("/newgame")

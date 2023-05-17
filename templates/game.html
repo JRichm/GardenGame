@@ -4,16 +4,38 @@
 <link rel="stylesheet" href="static/css/game.css">
 {% endblock %}
 {% block body %}
-<header>
-    <span>
-        <p>Level:</p>
-        <p>Leaves:</p>
-        <p>Leaves Per Second:</p>
-    </span>
-    <span>
-        <p>Selected:</p>
-    </span>
-</header>
+<nav id="nav-bar">
+    <article id="store-nav">
+        <h5>Plant Shop</h5>
+        <span class="nav-buttons">
+            <button>Upgrades</button>
+            <div>
+                <button>◄</button>
+                <button>►</button>
+            </div>
+        </span>
+    </article>
+    <article id="game-stats">
+        <span>
+            <p>Current Leaves:</p>
+            <div>
+                <p style="margin-right:-5px;">{{ user_save[0].current_currency }}</p>
+                <p style="width:0px; margin-left:10px; margin-right:-5px"> Leaves</p>
+            </div>
+        </span>
+        <span>
+            <p>Leaves Per Second:</p>
+            <div>
+                <p style="margin-right:-5px;">{{ user_save[0].leaves_per_second }}</p>
+                <p style="width:0px; margin-left:10px; margin-right:-5px"> /lps</p>
+            </div>
+        </span>
+        <span>
+            <p>Level</p>
+            <p>{{ user_save[0].map_level }}</p>
+        </span>
+    </article>
+</nav>
 <main>
     <script> var base_plants = {{ base_plants | tojson }} </script>
     <script src="static/js/game.mjs" type="module"></script>
@@ -23,19 +45,26 @@
         <span class="shop-item" id="{{ each.plant_id }}">
             <p class="plant-level"></p>
             <div class="shop-item-info" id="{{ each.plant_id }}">
-                <p style="width:200px;">{{ each.name }}</p>
+                <p style="width:211px;">{{ each.name }}</p>
                 <div class="item-return">
                     <p>+</p>
-                    <p>{{ each.base_return }}</p>
+                    <p style="font-weight:bold;">{{ each.base_return }}</p>
                     <p>lps</p>
                 </div>
                 <div class="item-price">
                     <p>$</p>
-                    <p>{{ each.price }}</p>
+                    <p style="font-weight:bold;">{{ each.price }}</p>
                 </div>
             </div>
-            <p class="plant-qty">0x</p>
-            <p class="plant-lps">+0lps</p>
+            <div class="plant-qty">
+                <p style="font-weight:bold;">0</p>
+                <p>x</p>
+            </div>
+            <div class="plant-lps">
+                <p>+</p>
+                <p style="font-weight:bold;">0</p>
+                <p>lps</p>
+            </div>
         </span>
         {% endfor %}
     </div>
@@ -49,9 +78,6 @@
             {% endfor %}
         </span>
         {% endfor %}
-    </div>
-    <div id="user-stats">
-
     </div>
 </main>
 {% endblock %}
