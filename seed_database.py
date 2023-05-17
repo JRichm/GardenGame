@@ -22,15 +22,16 @@ with open("data/plants.json") as f:
     plant_data = json.loads(f.read())
 
 plants_in_db = []
-for each in plant_data:
-    name, price, base_return, color = (
-        each["name"],
-        each["price"],
-        each["base_return"],
-        each["color"],
-    )
-    db_plant = crud.new_game_plant(name, price, base_return, color)
-    plants_in_db.append(db_plant)
+for page in plant_data:
+    for plant in page:
+        name, price, base_return, color = (
+            plant["name"],
+            plant["price"],
+            plant["base_return"],
+            plant["color"],
+        )
+        db_plant = crud.new_game_plant(name, price, base_return, color)
+        plants_in_db.append(db_plant)
 
 with app.app_context():
     model.db.session.add_all(plants_in_db)
