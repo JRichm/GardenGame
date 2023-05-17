@@ -41,7 +41,9 @@ main>* {
 #game-stats {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 25px;
 }
 
 #game-stats span {
@@ -56,6 +58,10 @@ main>* {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+#game-stats p {
+    margin: 0px;
 }
 
 #game {
