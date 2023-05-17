@@ -15,18 +15,27 @@
     </span>
 </header>
 <main>
-    <script> var base_plants = {{ base_plants | tojson }}</script>
+    <script> var base_plants = {{ base_plants | tojson }} </script>
     <script src="static/js/game.mjs" type="module"></script>
     <script src="static/js/initGame.mjs" type="module"></script>
     <div id="shop">
         {% for each in base_plants %}
         <span class="shop-item" id="{{ each.plant_id }}">
+            <p class="plant-level"></p>
             <div class="shop-item-info" id="{{ each.plant_id }}">
                 <p style="width:200px;">{{ each.name }}</p>
-                <p style="width:50px;">{{ each.price }}</p>
-                <p style="width:50px;">{{ each.base_return }}</p>
+                <div class="item-return">
+                    <p>+</p>
+                    <p>{{ each.base_return }}</p>
+                    <p>lps</p>
+                </div>
+                <div class="item-price">
+                    <p>$</p>
+                    <p>{{ each.price }}</p>
+                </div>
             </div>
             <p class="plant-qty">0x</p>
+            <p class="plant-lps">+0lps</p>
         </span>
         {% endfor %}
     </div>
@@ -40,6 +49,9 @@
             {% endfor %}
         </span>
         {% endfor %}
+    </div>
+    <div id="user-stats">
+
     </div>
 </main>
 {% endblock %}

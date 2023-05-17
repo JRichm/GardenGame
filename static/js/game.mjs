@@ -16,9 +16,17 @@ class GameSquare {
             if (selection.store) {
                 this.plant_id = selection.store;
                 this.plantSeed();
-                this.plantable = false
+                this.plantable = false;
             }
         }
+    }
+
+    userRightClick(selection) {
+        if (this.plant_id) {
+            this.removePlant();
+            this.plantable = true;
+        }
+        return false;
     }
 
     userHover() {
@@ -31,6 +39,14 @@ class GameSquare {
         this.color = this.base_plants[parseInt(this.plant_id) - 1].color
         this.element.firstElementChild.innerHTML = this.char;
         this.element.firstElementChild.style = `color: #${this.color};`
+    }
+
+    removePlant() {
+        this.char = '.'
+        this.color = '#555555'
+        this.element.firstElementChild.innerHTML = this.char;
+        this.element.firstElementChild.style = `color: #${this.color}`
+        return false;
     }
 
     returnSaveData() {
@@ -77,7 +93,7 @@ export class Game {
         };
 
         this.base_plants = []
-        for (let i = 1; i < 24; i++) {
+        for (let i = 1; i < 17; i++) {
             fetch(`/gameplantinfo/${i}`)
                 .then(response => response.json())
                 .then(data => {
@@ -115,7 +131,6 @@ export class Game {
     }
 
     userClickGameSquare(event) {
-        let index
         switch (true) {
 
             // only do stuff when click event is game-square
@@ -126,6 +141,21 @@ export class Game {
                 let digits = number.split('').map(Number);
 
                 this.game_board[digits[0]][digits[1]].userClick(this.selection);
+        }
+    }
+
+    userRightClickGameSquare(event) {
+        switch (true) {
+
+            // only do stuff when click event is game-square
+            case event.target.className === 'game-square':
+
+                // get index from html elements id
+                let number = event.target.id.split('-')[1]; // Extract the number after 'gs-'
+                let digits = number.split('').map(Number);
+
+                this.game_board[digits[0]][digits[1]].userRightClick(this.selection);
+                return false;
         }
     }
 

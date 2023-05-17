@@ -6,7 +6,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0px 500px 0px 500px;
+    margin: 0px 200px 0px 200px;
 }
 
 header {
@@ -52,7 +52,7 @@ header span {
 }
 
 #shop {
-    width: 500px;
+    width: 650px;
 }
 
 .shop-item {
@@ -78,11 +78,40 @@ header span {
     cursor: pointer;
 }
 
+.item-price {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    justify-content: end;
+}
+
+.item-return {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100px;
+}
+
+.shop-item p {
+    font-family: 'Courier Prime', monospace;
+}
+
+.plant-level {
+    background-color: #cccccc;
+    padding: 5px;
+}
+
 .plant-qty {
     background-color: #cccccc;
     padding: 10px;
 }
 
-.shop-item p {
-    font-family: 'Courier Prime', monospace;
+.plant-lps {
+    background-color: #cccccc;
+    padding: 10px;
+}
+
+
+#user-stats {
+    width: 500px;
 }

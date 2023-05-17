@@ -76,8 +76,12 @@ def open_game():
 #      Get Plant Data      #
 @app.route("/gameplantinfo/<plant_id>")
 def get_plant_info(plant_id):
+    print(f"searching for plant @ {plant_id}")
     plant = crud.get_base_plant(plant_id)
-    return plant
+    if plant:
+        return plant
+    else:
+        return
 
 
 """ ####   Server Methods   #### """
