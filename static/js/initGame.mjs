@@ -22,6 +22,7 @@ fetch('/mygame').then(response => response.json())
 // instantiate new game
 const newGame = new Game();
 
+
 // shop buttons event listeners
 for (let j = 0; j < shopItems.length; j++) {
     shopItems[j].addEventListener('click', e => newGame.updateUserSelection(e))

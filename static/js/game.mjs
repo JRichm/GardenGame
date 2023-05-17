@@ -7,9 +7,8 @@ class GameSquare {
         this.squareIndex = [x, y];
         this.element = document.getElementById('gs-' + this.square_id);
         this.plantable = true;
-        this.base_plants = base_plants;
+        this.base_plants = base_plants
     }
-
 
     userClick(selection) {
         if (this.plantable) {
@@ -75,25 +74,13 @@ export class Game {
             inventory: undefined
         };
 
-        this.base_plants = []
-        for (let i = 1; i < 17; i++) {
-            fetch(`/gameplantinfo/${i}`)
-                .then(response => response.json())
-                .then(data => {
-                    let base_plant = {
-                        'plant_id': data.plant_id,
-                        'name': data.name,
-                        'price': data.price,
-                        'base_return': data.base_return,
-                        'color': data.color
-                    }
-                    this.base_plants.push(base_plant)
-                }).catch(err => {
-                    console.log(err);
-                })
-        }
+        this.base_plants = this.getBasePlants()
+        this.game_board
 
-        this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
+        setTimeout(() => {
+            this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
+        }, 500)
+
         this.loadGame(this.id)
     }
 
@@ -181,7 +168,41 @@ export class Game {
     }
 
     loadGame(map_id) {
-        this.id = userSave.map_id
-        console.log(this.id)
+        setTimeout(() => {
+            this.id = userSave.map_id
+            this.map_data = userSave.map_data
+
+            if (this.map_data === null) return
+
+            let mapData = this.map_data.split(',')
+            for (let sq = 0; sq < mapData.length; sq++) {
+                if (mapData[0]) {
+
+                    let squarePos = mapData[sq].split('w')[0].split('')
+                    let plant_id = mapData[sq].split('w')[1]
+
+                    let gameSquare = this.game_board[squarePos[0]][squarePos[1]]
+                    if (gameSquare) {
+                        gameSquare.plantSeed(plant_id)
+                    }
+
+                }
+            }
+        }, 500)
+
+    }
+
+    getBasePlants() {
+        return fetch('/getbaseplants')
+            .then(response => response.json())
+            .then(data => {
+                this.base_plants = data;
+                return data
+            })
+            .catch(err => {
+                console.log('Error', err);
+                return ['err'];
+            })
     }
 }
+

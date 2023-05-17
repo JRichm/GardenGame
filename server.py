@@ -98,6 +98,13 @@ def get_plant_info(plant_id):
         return
 
 
+#      Get Base Plants     #
+@app.route("/getbaseplants")
+def get_base_plants():
+    plants = crud.get_base_plants_JSON()
+    return plants
+
+
 """ ####   Server Methods   #### """
 
 
