@@ -23,8 +23,13 @@ with open("data/plants.json") as f:
 
 plants_in_db = []
 for each in plant_data:
-    name, price, base_return = (each["name"], each["price"], each["base_return"])
-    db_plant = crud.new_game_plant(name, price, base_return)
+    name, price, base_return, color = (
+        each["name"],
+        each["price"],
+        each["base_return"],
+        each["color"],
+    )
+    db_plant = crud.new_game_plant(name, price, base_return, color)
     plants_in_db.append(db_plant)
 
 with app.app_context():

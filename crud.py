@@ -67,8 +67,8 @@ def get_user_save_JSON(user_id):
 
 
 # plants
-def new_game_plant(name, price, base_return):
-    plant = Plant(name=name, price=price, base_return=base_return)
+def new_game_plant(name, price, base_return, color):
+    plant = Plant(name=name, price=price, base_return=base_return, color=color)
     return plant
 
 

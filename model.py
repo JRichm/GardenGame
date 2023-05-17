@@ -49,6 +49,7 @@ class Plant(db.Model):
     name = db.Column(db.String(), unique=True, nullable=False)
     price = db.Column(db.Integer(), nullable=False)
     base_return = db.Column(db.Integer(), nullable=False)
+    color = db.Column(db.String(), nullable=False)
 
 
 """  ####     DB Config     ####  """

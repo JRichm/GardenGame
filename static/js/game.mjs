@@ -16,6 +16,7 @@ class GameSquare {
             if (selection.store) {
                 this.plant_id = selection.store;
                 this.plantSeed();
+                this.plantable = false
             }
         }
     }
@@ -27,7 +28,7 @@ class GameSquare {
 
     plantSeed() {
         this.char = this.base_plants[parseInt(this.plant_id) - 1].name.charAt(0)
-        this.element.innerHTML = this.char;
+        this.element.firstElementChild.innerHTML = this.char;
         this.element.style = `color:${this.color}`
     }
 
