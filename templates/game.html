@@ -19,27 +19,25 @@
         <span>
             <p>Current Leaves:</p>
             <div>
-                <p style="margin-right:-5px;">{{ user_save[0].current_currency }}</p>
+                <p style="margin-right:-5px;">{{ user_save.current_currency }}</p>
                 <p style="width:0px; margin-left:10px; margin-right:-5px"> Leaves</p>
             </div>
         </span>
         <span>
             <p>Leaves Per Second:</p>
             <div>
-                <p style="margin-right:-5px;">{{ user_save[0].leaves_per_second }}</p>
+                <p style="margin-right:-5px;">{{ user_save.leaves_per_second }}</p>
                 <p style="width:0px; margin-left:10px; margin-right:-5px"> /lps</p>
             </div>
         </span>
         <span>
             <p>Level</p>
-            <p>{{ user_save[0].map_level }}</p>
+            <p>{{ user_save.map_level }}</p>
         </span>
+        <button class="btn btn-success" id="save-game-button">Save Game</button>
     </article>
 </nav>
 <main>
-    <script> var base_plants = {{ base_plants | tojson }} </script>
-    <script src="static/js/game.mjs" type="module"></script>
-    <script src="static/js/initGame.mjs" type="module"></script>
     <div id="shop">
         {% for each in base_plants %}
         <span class="shop-item" id="{{ each.plant_id }}">
@@ -80,4 +78,8 @@
         {% endfor %}
     </div>
 </main>
+<script> var base_plants = JSON.parse('{{ base_plants | tojson | safe }}')</script>
+<script> var userSave = JSON.parse('{{ user_save | tojson | safe }}')</script>
+<script src="static/js/game.mjs" type="module"></script>
+<script src="static/js/initGame.mjs" type="module"></script>
 {% endblock %}

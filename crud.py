@@ -105,6 +105,30 @@ def get_base_plant(plant_id):
     return base_plant
 
 
+# saves
+def get_save_by_map_id(map_id):
+    save = Save.query.filter(Save.map_id == map_id).first()
+    return save
+
+
+def update_map_save(map_id, new_map_data):
+    print("\n\n\n\n\nupdating map")
+    print(map_id)
+    print(new_map_data)
+
+    save = Save.query.get(map_id)
+    if save:
+        save.map_data = new_map_data
+        db.session.commit()
+        flash("Success: Map data updated.")
+        return "Success: Map data updated."
+    else:
+        flash("Error: Save not found.")
+        return "Error: Save not found."
+
+    return "success!"
+
+
 """ #      Server Methods       # """
 if __name__ == "__main__":
     from server import app

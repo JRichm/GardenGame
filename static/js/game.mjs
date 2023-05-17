@@ -14,9 +14,8 @@ class GameSquare {
     userClick(selection) {
         if (this.plantable) {
             if (selection.store) {
-                this.plant_id = selection.store;
-                this.plantSeed();
-                this.plantable = false;
+                let plant_id = selection.store;
+                this.plantSeed(plant_id);
             }
         }
     }
@@ -24,17 +23,17 @@ class GameSquare {
     userRightClick(selection) {
         if (this.plant_id) {
             this.removePlant();
-            this.plantable = true;
         }
         return false;
     }
 
     userHover() {
-
         this.element.style = 'background-color:#202129;';
     }
 
-    plantSeed() {
+    plantSeed(plant_id) {
+        this.plant_id = plant_id;
+        this.plantable = false;
         this.char = this.base_plants[parseInt(this.plant_id) - 1].name.charAt(0)
         this.color = this.base_plants[parseInt(this.plant_id) - 1].color
         this.element.firstElementChild.innerHTML = this.char;
@@ -46,24 +45,16 @@ class GameSquare {
         this.color = '#555555'
         this.element.firstElementChild.innerHTML = this.char;
         this.element.firstElementChild.style = `color: #${this.color}`
+        this.plantable = true;
         return false;
     }
 
-    returnSaveData() {
-        // this function will be called whenever the 'map_data' string gets updated
-        // let's call this whenever the player places a new plant or deletes one
-        // and maybe when the user hovers over the header as if to close the game
-
-        // the data that this function returns needs to hold all of the data that 
-        // needs to be saved to the server so the user can close the window and come back
-
-        // the data that we will need to save is:
-        //      
-        //      square_id
-        //      plant_id
+    getSaveData() {
         if (this.plant_id) {
-            console.log(`saved ${this.plant_id} at location ${this.squareIndex}`)
-            return `${this.squareIndex}w${this.plant_id}`
+            console.log(`saved ${this.plant_id} at location ${this.square_id}`)
+            return `${this.square_id}w${this.plant_id}`
+        } else {
+            return undefined
         }
     }
 }
@@ -103,6 +94,7 @@ export class Game {
         }
 
         this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
+        this.loadGame(this.id)
     }
 
     updateUserSelection(event) {
@@ -166,10 +158,30 @@ export class Game {
     }
 
     saveGame() {
+        let saveString = ''
         for (let sqx = 0; sqx < 9; sqx++) {
             for (let sqy = 0; sqy < 9; sqy++) {
-                this.game_board[sqx][sqy].getSaveData
+                let squareData = this.game_board[sqx][sqy].getSaveData()
+                if (squareData)
+                    saveString += squareData + ','
             }
         }
+        console.log(saveString)
+
+        fetch(`/savegame/${this.id}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 'map_data': saveString }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+
+    }
+
+    loadGame(map_id) {
+        this.id = userSave.map_id
+        console.log(this.id)
     }
 }

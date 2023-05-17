@@ -6,6 +6,7 @@ let y = 0;
 
 let gameSquares = document.getElementsByClassName('game-square');
 let shopItems = document.getElementsByClassName('shop-item-info');
+let saveButton = document.getElementById('save-game-button');
 
 
 // get map data from db and feed into newgame Game() constructor
@@ -32,3 +33,6 @@ for (let sq = 0; sq < gameSquares.length; sq++) {
     gameSquares[sq].addEventListener('contextmenu', e => newGame.userRightclickGameSquare(e), false)
     //gameSquares[sq].addEventListener('mouseenter', e => newGame.userHoverGameSquare(e))
 }
+
+// save game event listener
+saveButton.addEventListener('click', e => newGame.saveGame(e))

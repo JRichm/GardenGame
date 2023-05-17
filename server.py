@@ -59,19 +59,32 @@ def new_game():
 @app.route("/mygame")
 def open_game():
     if check_login():
-        users_game = crud.get_user_save_JSON(session.get("gg_user_id"))
+        users_game_list = json.loads(crud.get_user_save_JSON(session.get("gg_user_id")))
+        users_game = users_game_list[0]
         if users_game is not None:
+            session["map_id"] = users_game["map_id"]
             user = crud.get_user_by_id(session.get("gg_user_id"))
             plants = json.loads(crud.get_base_plants_JSON())
-            users_save = json.loads(users_game)
             return render_template(
-                "game.html", user_save=users_save, user=user, base_plants=plants
+                "game.html", user_save=users_game, user=user, base_plants=plants
             )
         else:
             return redirect("/newgame")
     else:
         flash(f"Please log in to view your garden!")
         return redirect(url_for("homepage"))
+
+
+#        Save Game         #
+@app.route("/savegame/<map_id>", methods=["POST"])
+def save_game(map_id):
+    if check_login():
+        save = crud.get_save_by_map_id(map_id)
+        if save.user_id == session.get("gg_user_id"):
+            new_map_data = request.json.get("map_data")
+
+            flash("Game saved successfully!")
+            return crud.update_map_save(map_id, new_map_data)
 
 
 #      Get Plant Data      #
