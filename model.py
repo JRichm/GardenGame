@@ -50,6 +50,7 @@ class Plant(db.Model):
     price = db.Column(db.Integer(), nullable=False)
     base_return = db.Column(db.Integer(), nullable=False)
     color = db.Column(db.String(), nullable=False)
+    stage = db.Column(db.Integer(), nullable=False)
 
 
 """  ####     DB Config     ####  """

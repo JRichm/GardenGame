@@ -70,27 +70,29 @@ def get_user_save_JSON(user_id):
 
 
 # plants
-def new_game_plant(name, price, base_return, color):
-    plant = Plant(name=name, price=price, base_return=base_return, color=color)
+def new_game_plant(name, price, base_return, color, stage):
+    plant = Plant(
+        name=name, price=price, base_return=base_return, color=color, stage=stage
+    )
     return plant
 
 
 def get_base_plants_JSON():
     plants = Plant.query.all()
-    json_result = json.dumps(
-        [
+    plant_list = []
+
+    for plant in plants:
+        plant_list.append(
             {
-                "plant_id": row.plant_id,
-                "name": row.name,
-                "price": row.price,
-                "base_return": row.base_return,
-                "color": row.color,
+                "plant_id": plant.plant_id,
+                "name": plant.name,
+                "price": plant.price,
+                "base_return": plant.base_return,
+                "color": plant.color,
+                "stage": plant.stage,
             }
-            for row in plants
-        ],
-        default=str,
-    )
-    return json_result
+        )
+    return json.dumps(plant_list)
 
 
 def get_base_plant(plant_id):
@@ -101,6 +103,7 @@ def get_base_plant(plant_id):
         "price": plant.price,
         "base_return": plant.base_return,
         "color": plant.color,
+        "stage": plant.stage,
     }
     return base_plant
 

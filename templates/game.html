@@ -39,31 +39,37 @@
 </nav>
 <main>
     <div id="shop">
-        {% for each in base_plants %}
-        <span class="shop-item" id="{{ each.plant_id }}">
-            <p class="plant-level"></p>
-            <div class="shop-item-info" id="{{ each.plant_id }}">
-                <p style="width:211px;">{{ each.name }}</p>
-                <div class="item-return">
-                    <p>+</p>
-                    <p style="font-weight:bold;">{{ each.base_return }}</p>
-                    <p>lps</p>
-                </div>
-                <div class="item-price">
-                    <p>$</p>
-                    <p style="font-weight:bold;">{{ each.price }}</p>
-                </div>
+        {% for stage in range(1, 5) %}
+        <div id="shop-{{ stage }}">
+            {% for plant in base_plants if plant.stage == stage %}
+            <div id="shop-1">
+                <span class="shop-item" id="{{ plant.plant_id }}">
+                    <p class="plant-level"></p>
+                    <div class="shop-item-info" id="{{ plant.plant_id }}">
+                        <p style="width:211px;">{{ plant.name }}</p>
+                        <div class="item-return">
+                            <p>+</p>
+                            <p style="font-weight:bold;">{{ plant.price }}</p>
+                            <p>lps</p>
+                        </div>
+                        <div class="item-price">
+                            <p>$</p>
+                            <p style="font-weight:bold;">{{ plant.base_return }}</p>
+                        </div>
+                    </div>
+                    <div class="plant-qty">
+                        <p style="font-weight:bold;">0</p>
+                        <p>x</p>
+                    </div>
+                    <div class="plant-lps">
+                        <p>+</p>
+                        <p style="font-weight:bold;">0</p>
+                        <p>lps</p>
+                    </div>
+                </span>
             </div>
-            <div class="plant-qty">
-                <p style="font-weight:bold;">0</p>
-                <p>x</p>
-            </div>
-            <div class="plant-lps">
-                <p>+</p>
-                <p style="font-weight:bold;">0</p>
-                <p>lps</p>
-            </div>
-        </span>
+            {% endfor %}
+        </div>
         {% endfor %}
     </div>
     <div id='game'>
