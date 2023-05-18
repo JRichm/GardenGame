@@ -26,7 +26,7 @@
         <span>
             <p>Leaves Per Second:</p>
             <div>
-                <p style="margin-right:-5px;">{{ user_save.leaves_per_second }}</p>
+                <p style="margin-right:-5px;" id="currentLPS">{{ user_save.leaves_per_second }}</p>
                 <p style="width:0px; margin-left:10px; margin-right:-5px">£ps</p>
             </div>
         </span>
@@ -34,7 +34,7 @@
             <p>Level</p>
             <p>{{ user_save.map_level }}</p>
         </span>
-        <button class="btn btn-success" id="save-game-button">Save Game</button>
+        <button class="btn btn-success" id="save-game-button">Calculate Leaves Per Second</button>
     </article>
 </nav>
 <main>
@@ -49,12 +49,12 @@
                         <p style="width:211px;">{{ plant.name }}</p>
                         <div class="item-return">
                             <p>+</p>
-                            <p style="font-weight:bold;">{{ plant.price }}</p>
+                            <p style="font-weight:bold;">{{ plant.base_return }}</p>
                             <p>£ps</p>
                         </div>
                         <div class="item-price">
                             <p>-£</p>
-                            <p style="font-weight:bold;">{{ plant.base_return }}</p>
+                            <p style="font-weight:bold;">{{ plant.price }}</p>
                         </div>
                     </div>
                     <div class="plant-qty">

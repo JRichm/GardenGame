@@ -28,4 +28,4 @@ for (let sq = 0; sq < gameSquares.length; sq++) {
 }
 
 // save game event listener
-saveButton.addEventListener('click', e => newGame.saveGame(e));
+saveButton.addEventListener('click', e => newGame.calculateLeavesPerSecond(e));

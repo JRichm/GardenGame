@@ -3,6 +3,7 @@ class GameSquare {
         this.char = '.';
         this.color = 'ffffff';
         this.plant_id = undefined;
+        this.current_leaves_per_second
         this.square_id = '' + x + y;
         this.squareIndex = [x, y];
         this.element = document.getElementById('gs-' + this.square_id);
@@ -30,11 +31,17 @@ class GameSquare {
         this.element.style = 'background-color:#202129;';
     }
 
+    get_current_yield() {
+        return this.current_leaves_per_second
+    }
+
     plantSeed(plant_id) {
         this.plant_id = plant_id;
         this.plantable = false;
-        this.char = this.base_plants[parseInt(this.plant_id) - 1].name.charAt(0)
-        this.color = this.base_plants[parseInt(this.plant_id) - 1].color
+        let plant = this.base_plants[parseInt(this.plant_id) - 1]
+        this.current_leaves_per_second = plant.base_return
+        this.char = plant.name.charAt(0)
+        this.color = plant.color
         this.element.firstElementChild.innerHTML = this.char;
         this.element.firstElementChild.style = `color: #${this.color};`
     }
@@ -50,7 +57,6 @@ class GameSquare {
 
     getSaveData() {
         if (this.plant_id) {
-            console.log(`saved ${this.plant_id} at location ${this.square_id}`)
             return `${this.square_id}w${this.plant_id}`
         } else {
             return undefined
@@ -68,20 +74,20 @@ export class Game {
         this.upgrades = upgrades;
         this.last_login = last_login;
 
-        this.map_size = 9
+        this.map_size = 9;
         this.selection = {
             store: undefined,
             inventory: undefined
         };
 
-        this.base_plants = this.getBasePlants()
-        this.game_board
+        this.base_plants = this.getBasePlants();
+        this.game_board;
 
         setTimeout(() => {
             this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
         }, 500)
 
-        this.loadGame(this.id)
+        this.loadGame(this.id);
     }
 
     updateUserSelection(event) {
@@ -112,6 +118,7 @@ export class Game {
                 let digits = number.split('').map(Number);
 
                 this.game_board[digits[0]][digits[1]].userClick(this.selection);
+                this.saveGame()
         }
     }
 
@@ -144,16 +151,31 @@ export class Game {
         }
     }
 
+    calculateLeavesPerSecond() {
+        console.log('\nLeaves per second:')
+        let squareArray = this.map_data.split(',');
+        let leaves_per_second = 0
+
+        squareArray.forEach(square => {
+            let squareCords = square.split('w')[0].split('')
+            if (squareCords[1] === '' || squareCords[0] === undefined) return
+            leaves_per_second += this.game_board[squareCords[0]][squareCords[1]].get_current_yield()
+        })
+        this.leaves_per_second = leaves_per_second;
+        document.getElementById('currentLPS').innerHTML = this.leaves_per_second
+    }
+
     saveGame() {
         let saveString = ''
         for (let sqx = 0; sqx < 9; sqx++) {
             for (let sqy = 0; sqy < 9; sqy++) {
-                let squareData = this.game_board[sqx][sqy].getSaveData()
+                let squareData = this.game_board[sqx][sqy].getSaveData();
                 if (squareData)
-                    saveString += squareData + ','
+                    saveString += squareData + ',';
             }
         }
-        console.log(saveString)
+        this.map_data = saveString;
+        this.calculateLeavesPerSecond()
 
         fetch(`/savegame/${this.id}`,
             {
@@ -161,33 +183,31 @@ export class Game {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 'map_data': saveString }),
             })
-            .then(response => response.json())
             .then(data => console.log(data))
             .catch(err => console.log(err))
-
     }
 
     loadGame(map_id) {
 
-        document.getElementById('shop-1').classList.remove('hidden')
+        document.getElementById('shop-1').classList.remove('hidden');
         setTimeout(() => {
-            this.id = userSave.map_id
-            this.map_data = userSave.map_data
+            this.id = userSave.map_id;
+            this.map_data = userSave.map_data;
 
-            if (this.map_data === null) return
+            if (this.map_data === null) return;
 
-            let mapData = this.map_data.split(',')
+            let mapData = this.map_data.split(',');
             for (let sq = 0; sq < mapData.length; sq++) {
                 if (mapData[0]) {
-                    let squarePos = mapData[sq].split('w')[0].split('')
-                    let plant_id = mapData[sq].split('w')[1]
+                    let squarePos = mapData[sq].split('w')[0].split('');
+                    let plant_id = mapData[sq].split('w')[1];
                     if (squarePos[0] !== undefined) {
-                        this.game_board[squarePos[0]][squarePos[1]].plantSeed(plant_id)
+                        this.game_board[squarePos[0]][squarePos[1]].plantSeed(plant_id);
                     }
                 }
             }
-        }, 500)
-
+            this.calculateLeavesPerSecond()
+        }, 500);
     }
 
     getBasePlants() {

@@ -48,7 +48,7 @@ def get_user_by_username(username):
 def get_user_save_JSON(user_id):
     user_save = Save.query.filter(Save.user_id == user_id).first()
     if user_save:
-        flash(f"\n\n\n\n\n\n\n\n\n\nuser save found for {user_id}")
+        flash(f"user save found for {user_id}")
 
         user_save_dict = {
             "map_id": user_save.map_id,
@@ -65,7 +65,7 @@ def get_user_save_JSON(user_id):
         return user_save_JSON
 
     else:
-        flash("\n\n\n\n\n\n\n\n\n\nno user save found!")
+        flash("no user save found!")
         return None
 
 
