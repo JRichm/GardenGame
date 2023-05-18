@@ -4,7 +4,6 @@ body::-webkit-scrollbar {
 }
 
 body {
-    background-color: #202124;
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;

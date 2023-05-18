@@ -1,4 +1,5 @@
 """ ####    Server File     #### """
+
 from flask import (
     Flask,
     render_template,
@@ -21,20 +22,15 @@ app.secret_key = "garden"
 app.jinja_env.undefined = StrictUndefined
 
 
-""" ####    Flask Routes    #### """
+"""#  -   -   -   -   -   -   -   -  #"""
+"""   -        Page Routes        -   """
+"""#  -   -   -   -   -   -   -   -  #"""
 
 
-#      View Homepage       #
+##     """ View Homepage """     ##
 @app.route("/")
 def homepage():
     return render_template("login.html", form=forms.LoginForm(), user=check_login())
-
-
-##      """   New User   """     ##
-@app.route("/users", methods=["POST"])
-def register_user():
-    form = forms.CreateAccoutForm(request.form)
-    return form.create_user()
 
 
 ##      """  User Login  """     ##
@@ -44,11 +40,34 @@ def login():
     return form.login_user()
 
 
+##   """ View Leaderboards """   ##
+@app.route("/leaderboards")
+def view_leaderboards():
+    return render_template("leaderboards.html", user=check_login())
+
+
+"""#  -   -   -   -   -   -   -   -  #"""
+"""   -        User Routes        -   """
+"""#  -   -   -   -   -   -   -   -  #"""
+
+
+##      """   New User   """     ##
+@app.route("/users", methods=["POST"])
+def register_user():
+    form = forms.CreateAccoutForm(request.form)
+    return form.create_user()
+
+
 ##      """  User Logout """     ##
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("homepage"))
+
+
+"""#  -   -   -   -   -   -   -   -  #"""
+"""   -        Game Routes        -   """
+"""#  -   -   -   -   -   -   -   -  #"""
 
 
 #         New Game         #
@@ -114,13 +133,15 @@ def get_base_plants():
     return plants
 
 
+"""#  -   -   -   -   -   -   -   -  #"""
+"""   -      Server Methods       -   """
+"""#  -   -   -   -   -   -   -   -  #"""
+
+
 #          Favicon         #
 @app.route("/favicon.ico")
 def favicon():
     return send_from_directory(app.static_folder, "favicon.png")
-
-
-""" ####   Server Methods   #### """
 
 
 def check_login():
