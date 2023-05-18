@@ -11,28 +11,28 @@
             "name": "Tomatoes",
             "price": "200",
             "base_return": "5",
-            "color": "2a8c2a",
+            "color": "E60000",
             "stage": "1"
         },
         {
             "name": "Dill",
             "price": "500",
             "base_return": "10",
-            "color": "ff8400",
+            "color": "77B300",
             "stage": "1"
         },
         {
             "name": "Horseradish",
             "price": "1000",
             "base_return": "20",
-            "color": "4a930e",
+            "color": "EAE3C8",
             "stage": "1"
         },
         {
             "name": "Lettuce",
             "price": "2000",
             "base_return": "40",
-            "color": "4f3884",
+            "color": "228B22",
             "stage": "1"
         }
     ],
@@ -41,28 +41,28 @@
             "name": "Iceberg Lettuce",
             "price": "5000",
             "base_return": "80",
-            "color": "ffffff",
+            "color": "D9FFDB",
             "stage": "2"
         },
         {
             "name": "Brocooli",
             "price": "10000",
             "base_return": "150",
-            "color": "8a00c5",
+            "color": "74BBFB",
             "stage": "2"
         },
         {
             "name": "Pumpkin",
             "price": "20000",
             "base_return": "300",
-            "color": "ffffff",
+            "color": "FF7F00",
             "stage": "2"
         },
         {
             "name": "Kale",
             "price": "40000",
             "base_return": "600",
-            "color": "ffffff",
+            "color": "4B5320",
             "stage": "2"
         }
     ],
@@ -71,28 +71,28 @@
             "name": "Carrot",
             "price": "80000",
             "base_return": "1000",
-            "color": "e4d1a3",
+            "color": "FFA500",
             "stage": "3"
         },
         {
             "name": "Eggplant",
             "price": "150000",
             "base_return": "2000",
-            "color": "ffffff",
+            "color": "663399",
             "stage": "3"
         },
         {
             "name": "Jalapeno Peppers",
             "price": "300000",
             "base_return": "4000",
-            "color": "e4d1a3",
+            "color": "00FF00",
             "stage": "3"
         },
         {
             "name": "Grapes",
             "price": "600000",
             "base_return": "8000",
-            "color": "e4d1a3",
+            "color": "8A2BE2",
             "stage": "3"
         }
     ],
@@ -101,28 +101,28 @@
             "name": "Asparagus",
             "price": "1200000",
             "base_return": "15000",
-            "color": "ffffff",
+            "color": "7BA05B",
             "stage": "4"
         },
         {
             "name": "Strawberries",
             "price": "2500000",
             "base_return": "30000",
-            "color": "ffffff",
+            "color": "FF1493",
             "stage": "4"
         },
         {
             "name": "Watermelon",
             "price": "5000000",
             "base_return": "50000",
-            "color": "f07000",
+            "color": "FF3366",
             "stage": "4"
         },
         {
             "name": "Radishes",
             "price": "10000000",
             "base_return": "100000",
-            "color": "ffffff",
+            "color": "FF355E",
             "stage": "4"
         }
     ]

@@ -1,8 +1,18 @@
 """ ####    Server File     #### """
-from flask import Flask, render_template, flash, session, request, redirect, url_for
+from flask import (
+    Flask,
+    render_template,
+    flash,
+    session,
+    request,
+    redirect,
+    url_for,
+    send_from_directory,
+)
 from model import connect_to_db, db
 from jinja2 import StrictUndefined
 import json
+import os
 import crud
 import forms
 
@@ -102,6 +112,12 @@ def get_plant_info(plant_id):
 def get_base_plants():
     plants = crud.get_base_plants_JSON()
     return plants
+
+
+#          Favicon         #
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(app.static_folder, "favicon.png")
 
 
 """ ####   Server Methods   #### """
