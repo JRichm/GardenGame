@@ -162,7 +162,27 @@ export class Game {
             leaves_per_second += this.game_board[squareCords[0]][squareCords[1]].get_current_yield()
         })
         this.leaves_per_second = leaves_per_second;
-        document.getElementById('currentLPS').innerHTML = this.leaves_per_second
+        console.log(this.leaves_per_second)
+        document.getElementById('current-LPS').innerHTML = this.leaves_per_second
+    }
+
+    updateCurrentLeaves() {
+        const startTime = Date.now(); // Get the current timestamp
+        let currentLeaves = 0;
+        const update = () => {
+
+            console.log(this.leaves_per_second)
+            const currentTime = Date.now();
+            const deltaTime = (currentTime - startTime) / 1000; // Calculate the time difference in seconds
+            currentLeaves = this.leaves_per_second * deltaTime;
+
+            // Update the current leaves value on the screen
+            document.getElementById('current-leaves').innerHTML = currentLeaves.toFixed(0); // Replace 'current-leaves' with the current leaves with two decimal places
+
+            requestAnimationFrame(update); // Call update function recursively for continuous updates
+        }
+
+        update(); // Initial call to start the update loop
     }
 
     saveGame() {
@@ -207,6 +227,7 @@ export class Game {
                 }
             }
             this.calculateLeavesPerSecond()
+            this.updateCurrentLeaves()
         }, 500);
     }
 

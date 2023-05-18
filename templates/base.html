@@ -1,61 +1,74 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>
-      {% block title %}{% endblock %}
-    </title>
-    {% block head %}{% endblock %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/base.css">
-  </head>
 
-  <body>
-    <header id="main-header">
-      <section id="links-area">
-        <a href="/mygame"> My Garden </a>
-        <p> | </p>
-        <a href="/users"> Profile </a>
-        <p> | </p>
-        <a href="/shop"> Shop </a>
-      </section>
-      <div id="message-area">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% for category, message in messages %}
-            <div class="alert {% if category=='success' %}alert-success{% elif category=='danger' %}alert-danger{% elif category=='info' %}alert-info{% endif %}">
-              {{ message }}
-            </div>
-          {% endfor %}
-        {% endwith %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>
+    {% block title %}{% endblock %}
+  </title>
+  {% block head %}{% endblock %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/base.css">
+</head>
+
+<body>
+  <header id="main-header">
+    <section id="links-area">
+      <a href="/mygame"> My Garden </a>
+      <p> | </p>
+      <a href="/users"> Profile </a>
+      <p> | </p>
+      <a href="/shop"> Shop </a>
+    </section>
+    <div id="message-area">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+      <div
+        class="alert {% if category=='success' %}alert-success{% elif category=='danger' %}alert-danger{% elif category=='info' %}alert-info{% endif %}">
+        {{ message }}
       </div>
-      <article>
-        {% if user %}
-          <!-- Content for logged-in user -->
-          <a href="" id="user-name"><p>{{ user.username }}</p></a>
-          <span>
-            <a href=""><p>settings</p></a>
-            <p>|</p>
-            <a href="/logout"><p>logout</p></a>
-          </span>
-          <!-------------------------------->
-        {% else %}
-          <!-- Content for guest user -->
-          <span>
-            <a href="/"><p>Login</p></a>
-          </span>
-          <!---------------------------->
-        {% endif %}
-      </article>
-    </header>
-    
-    <div class="content-container">
-      {% block body %}{% endblock %}
-      {% block after_body %}{% endblock %}
-
+      {% endfor %}
+      {% endwith %}
     </div>
-  </body>
+    <article>
+      {% if user %}
+      <!-- Content for logged-in user -->
+      <a href="" id="user-name">
+        <p>{{ user.username }}</p>
+      </a>
+      <span>
+        <a href="">
+          <p>settings</p>
+        </a>
+        <p>|</p>
+        <a href="/logout">
+          <p>logout</p>
+        </a>
+      </span>
+      <!-------------------------------->
+      {% else %}
+      <!-- Content for guest user -->
+      <span>
+        <a href="/">
+          <p>Login</p>
+        </a>
+      </span>
+      <!---------------------------->
+      {% endif %}
+    </article>
+  </header>
+
+  <div class="content-container">
+    {% block body %}{% endblock %}
+    {% block after_body %}{% endblock %}
+
+  </div>
+</body>
+
 </html>

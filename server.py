@@ -82,8 +82,6 @@ def save_game(map_id):
         save = crud.get_save_by_map_id(map_id)
         if save.user_id == session.get("gg_user_id"):
             new_map_data = request.json.get("map_data")
-
-            flash("Game saved successfully!")
             return crud.update_map_save(map_id, new_map_data)
 
 

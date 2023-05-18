@@ -45,6 +45,11 @@ body {
     color: white;
 }
 
+#main-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 #main-header article {
     display: flex;
     flex-direction: column;
@@ -74,14 +79,15 @@ body {
 
 #message-area {
     display: flex;
-    flex-direction: column;
-    min-width: 500px;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
 }
 
 #message-area div {
     display: flex;
     justify-content: center;
+    min-width: 500px;
 }
 
 .content-container {

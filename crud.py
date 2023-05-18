@@ -48,8 +48,6 @@ def get_user_by_username(username):
 def get_user_save_JSON(user_id):
     user_save = Save.query.filter(Save.user_id == user_id).first()
     if user_save:
-        flash(f"user save found for {user_id}")
-
         user_save_dict = {
             "map_id": user_save.map_id,
             "user_id": user_save.user_id,
@@ -65,7 +63,6 @@ def get_user_save_JSON(user_id):
         return user_save_JSON
 
     else:
-        flash("no user save found!")
         return None
 
 
@@ -123,10 +120,8 @@ def update_map_save(map_id, new_map_data):
     if save:
         save.map_data = new_map_data
         db.session.commit()
-        flash("Success: Map data updated.")
         return "Success: Map data updated."
     else:
-        flash("Error: Save not found.")
         return "Error: Save not found."
 
     return "success!"
