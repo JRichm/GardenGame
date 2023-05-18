@@ -2,36 +2,36 @@
     [
         {
             "name": "Onions",
-            "price": "30",
+            "price": "50",
             "base_return": "1",
             "color": "ffffff",
             "stage": "1"
         },
         {
             "name": "Tomatoes",
-            "price": "75",
-            "base_return": "10",
+            "price": "200",
+            "base_return": "5",
             "color": "2a8c2a",
             "stage": "1"
         },
         {
             "name": "Dill",
-            "price": "150",
-            "base_return": "25",
+            "price": "500",
+            "base_return": "10",
             "color": "ff8400",
             "stage": "1"
         },
         {
             "name": "Horseradish",
-            "price": "250",
-            "base_return": "50",
+            "price": "1000",
+            "base_return": "20",
             "color": "4a930e",
             "stage": "1"
         },
         {
             "name": "Lettuce",
-            "price": "500",
-            "base_return": "100",
+            "price": "2000",
+            "base_return": "40",
             "color": "4f3884",
             "stage": "1"
         }
@@ -39,29 +39,29 @@
     [
         {
             "name": "Iceberg Lettuce",
-            "price": "850",
-            "base_return": "250",
+            "price": "5000",
+            "base_return": "80",
             "color": "ffffff",
             "stage": "2"
         },
         {
             "name": "Brocooli",
-            "price": "1500",
-            "base_return": "500",
+            "price": "10000",
+            "base_return": "150",
             "color": "8a00c5",
             "stage": "2"
         },
         {
             "name": "Pumpkin",
-            "price": "3000",
-            "base_return": "1100",
+            "price": "20000",
+            "base_return": "300",
             "color": "ffffff",
             "stage": "2"
         },
         {
             "name": "Kale",
-            "price": "5500",
-            "base_return": "2500",
+            "price": "40000",
+            "base_return": "600",
             "color": "ffffff",
             "stage": "2"
         }
@@ -69,29 +69,29 @@
     [
         {
             "name": "Carrot",
-            "price": "10000",
-            "base_return": "4500",
+            "price": "80000",
+            "base_return": "1000",
             "color": "e4d1a3",
             "stage": "3"
         },
         {
             "name": "Eggplant",
-            "price": "20000",
-            "base_return": "7000",
+            "price": "150000",
+            "base_return": "2000",
             "color": "ffffff",
             "stage": "3"
         },
         {
             "name": "Jalapeno Peppers",
-            "price": "35000",
-            "base_return": "12500",
+            "price": "300000",
+            "base_return": "4000",
             "color": "e4d1a3",
             "stage": "3"
         },
         {
             "name": "Grapes",
-            "price": "65000",
-            "base_return": "20000",
+            "price": "600000",
+            "base_return": "8000",
             "color": "e4d1a3",
             "stage": "3"
         }
@@ -99,29 +99,29 @@
     [
         {
             "name": "Asparagus",
-            "price": "125000",
-            "base_return": "50000",
+            "price": "1200000",
+            "base_return": "15000",
             "color": "ffffff",
             "stage": "4"
         },
         {
             "name": "Strawberries",
-            "price": "250000",
-            "base_return": "10000",
+            "price": "2500000",
+            "base_return": "30000",
             "color": "ffffff",
             "stage": "4"
         },
         {
             "name": "Watermelon",
-            "price": "500000",
-            "base_return": "250000",
+            "price": "5000000",
+            "base_return": "50000",
             "color": "f07000",
             "stage": "4"
         },
         {
             "name": "Radishes",
-            "price": "1000000",
-            "base_return": "750000",
+            "price": "10000000",
+            "base_return": "100000",
             "color": "ffffff",
             "stage": "4"
         }

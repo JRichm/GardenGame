@@ -37,6 +37,6 @@ function highlightSelection(event) {
         selectedShopItem = null;
     }
 
-    event.currentTarget.style.backgroundColor = '#dddddd';
+    event.currentTarget.style.backgroundColor = '{{ base_plants[plant_id].color }}';
     selectedShopItem = event.currentTarget;
 }

@@ -111,7 +111,7 @@ def get_save_by_map_id(map_id):
     return save
 
 
-def update_map_save(map_id, new_map_data):
+def update_map_save(map_id, new_map_data, current_currency):
     print("\n\n\n\n\nupdating map")
     print(map_id)
     print(new_map_data)
@@ -119,6 +119,7 @@ def update_map_save(map_id, new_map_data):
     save = Save.query.get(map_id)
     if save:
         save.map_data = new_map_data
+        save.current_currency = current_currency
         db.session.commit()
         return "Success: Map data updated."
     else:
