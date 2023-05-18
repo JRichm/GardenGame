@@ -1,23 +1,15 @@
 import { Game } from './game.mjs'
 
 
-let x = 0;
-let y = 0;
-
+// ####       document selectors        #### ///
+// game
 let gameSquares = document.getElementsByClassName('game-square');
-let shopItems = document.getElementsByClassName('shop-item-info');
 let saveButton = document.getElementById('save-game-button');
+// shop
+let shopItems = document.getElementsByClassName('shop-item-info');
 
 
-// get map data from db and feed into newgame Game() constructor
-fetch('/mygame').then(response => response.json())
-    .then(data => {
-        //process the response data
-        console.log(data)
-    }).catch(err => {
-        // handle any errors
-        console.error('Error:', err)
-    });
+// ####           START GAME            #### ///
 
 // instantiate new game
 const newGame = new Game();
@@ -36,4 +28,4 @@ for (let sq = 0; sq < gameSquares.length; sq++) {
 }
 
 // save game event listener
-saveButton.addEventListener('click', e => newGame.saveGame(e))
+saveButton.addEventListener('click', e => newGame.saveGame(e));

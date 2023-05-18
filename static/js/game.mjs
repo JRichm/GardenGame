@@ -168,6 +168,8 @@ export class Game {
     }
 
     loadGame(map_id) {
+
+        document.getElementById('shop-1').classList.remove('hidden')
         setTimeout(() => {
             this.id = userSave.map_id
             this.map_data = userSave.map_data
@@ -177,15 +179,11 @@ export class Game {
             let mapData = this.map_data.split(',')
             for (let sq = 0; sq < mapData.length; sq++) {
                 if (mapData[0]) {
-
                     let squarePos = mapData[sq].split('w')[0].split('')
                     let plant_id = mapData[sq].split('w')[1]
-
-                    let gameSquare = this.game_board[squarePos[0]][squarePos[1]]
-                    if (gameSquare) {
-                        gameSquare.plantSeed(plant_id)
+                    if (squarePos[0] !== undefined) {
+                        this.game_board[squarePos[0]][squarePos[1]].plantSeed(plant_id)
                     }
-
                 }
             }
         }, 500)
