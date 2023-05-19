@@ -8,8 +8,10 @@ class GameSquare {
         this.squareIndex = [x, y];
         this.element = document.getElementById('gs-' + this.square_id);
         this.plantable = true;
-        this.base_plants = base_plants
-        this.gameObject = gameObject
+        this.base_plants = base_plants;
+        this.gameObject = gameObject;
+        this.readyToHarvest = false;
+        this.timesToNurture = 0
     }
 
     userClick(selection) {
@@ -35,6 +37,23 @@ class GameSquare {
 
     userHover() {
         this.element.style = 'background-color:#202129;';
+
+        if (this.plant_id !== undefined) {
+
+            // generate random number
+            const randNum = Math.random();
+
+            // call function readyToHarvest() if the number is liss than or equal to 20
+            if (randNum <= 0.2) {
+                this.readyToHarvest()
+            }
+        }
+    }
+
+    increasePlantNurture() {
+        if (this.nurtureAmount < this.threshold) {
+            this.nurtureAmount++;
+        }
     }
 
     plantSeed(plant_id) {
@@ -50,6 +69,7 @@ class GameSquare {
         qty.innerHTML = +qty.innerHTML + 1
         let lps = document.getElementById(`total-${plant_id}-lps`)
         lps.innerHTML = plant.base_return * (+qty.innerHTML)
+        this.timesToNurture = 10
     }
 
     removePlant() {
