@@ -10,7 +10,7 @@ def create_save(user_id):
     save = Save(
         user_id=user_id,
         map_level=0,
-        current_currency=0,
+        current_currency=100,
         leaves_per_second=0,
         map_data=None,
         upgrades=None,

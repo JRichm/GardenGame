@@ -1,5 +1,5 @@
 class GameSquare {
-    constructor(x, y, base_plants) {
+    constructor(x, y, gameObject) {
         this.char = '.';
         this.color = 'ffffff';
         this.plant_id = undefined;
@@ -9,13 +9,19 @@ class GameSquare {
         this.element = document.getElementById('gs-' + this.square_id);
         this.plantable = true;
         this.base_plants = base_plants
+        this.gameObject = gameObject
     }
 
     userClick(selection) {
         if (this.plantable) {
             if (selection.store) {
+
                 let plant_id = selection.store;
-                this.plantSeed(plant_id);
+                if (this.gameObject.current_leaves > this.base_plants[plant_id - 1]['price']) {
+                    this.plantSeed(plant_id);
+                    this.gameObject.current_leaves -= this.base_plants[plant_id - 1]['price']
+                }
+
             }
         }
     }
@@ -91,7 +97,7 @@ export class Game {
         this.game_board;
 
         setTimeout(() => {
-            this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this.base_plants)));
+            this.game_board = Array(9).fill().map((_, rowIndex) => Array(9).fill().map((_, colIndex) => new GameSquare(rowIndex, colIndex, this)));
         }, 500);
 
         // Call the loadGame function after the game_board is fully initialized
