@@ -112,7 +112,7 @@ def get_save_by_map_id(map_id):
     return save
 
 
-def update_map_save(map_id, new_map_data, current_currency):
+def update_map_save(map_id, new_map_data, current_currency, leaves_per_second):
     print("\n\n\n\n\nupdating map")
     print(map_id)
     print(new_map_data)
@@ -121,6 +121,7 @@ def update_map_save(map_id, new_map_data, current_currency):
     if save:
         save.map_data = new_map_data
         save.current_currency = current_currency
+        save.leaves_per_second = leaves_per_second
         db.session.commit()
         return "Success: Map data updated."
     else:
@@ -130,8 +131,8 @@ def update_map_save(map_id, new_map_data, current_currency):
 
 
 def get_leaderboard_data(page_number):
-    page_size = 10
-    offset = (page_number - 1) * page_size
+    page_size = 5
+    offset = (int(page_number) - 1) * page_size
 
     scores = (
         Save.query.order_by(desc(Save.current_currency))

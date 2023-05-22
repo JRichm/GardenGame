@@ -12,6 +12,7 @@ from flask import (
 )
 from model import connect_to_db, db
 from jinja2 import StrictUndefined
+import datetime
 import json
 import os
 import crud
@@ -44,8 +45,16 @@ def login():
 @app.route("/leaderboards/", defaults={"page_number": 1})
 @app.route("/leaderboards/<page_number>")
 def view_leaderboards(page_number):
+    session["lb-page"] = page_number
     scores = crud.get_leaderboard_data(page_number)
-    return render_template("leaderboards.html", scores=scores, user=check_login())
+    current_time = datetime.datetime.now()
+    return render_template(
+        "leaderboards.html",
+        scores=scores,
+        current_time=current_time,
+        user=check_login(),
+        page_number=page_number,
+    )
 
 
 """#  -   -   -   -   -   -   -   -  #"""
@@ -114,7 +123,10 @@ def save_game(map_id):
         if save.user_id == session.get("gg_user_id"):
             new_map_data = request.json.get("map_data")
             current_currency = request.json.get("current_currency")
-            return crud.update_map_save(map_id, new_map_data, current_currency)
+            leaves_per_second = request.json.get("leaves_per_second")
+            return crud.update_map_save(
+                map_id, new_map_data, current_currency, leaves_per_second
+            )
 
 
 #      Get Plant Data      #
@@ -154,6 +166,15 @@ def check_login():
     else:
         return None
 
+
+def format_timedelta(timedelta):
+    days = timedelta.days
+    hours, remainder = divmod(timedelta.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return f"{days} days"
+
+
+app.jinja_env.filters["format_timedelta"] = format_timedelta
 
 if __name__ == "__main__":
     connect_to_db(app)

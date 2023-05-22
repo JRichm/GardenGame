@@ -5,16 +5,24 @@
 {% endblock %}
 {% block body %}
 <main>
+
     {% for save in scores %}
+    {% set last_login = save.last_login %}
+    {% set time_difference = current_time - last_login %}
+    {% set time_since_login = time_difference | format_timedelta %}
+
     <span>
         <article>
-            <p>{{ save.user.username }}</p>
+            <p>#{{ loop.index + (page_number * 5) - 5 }} - <a href="/users/{{ save.user.user_id }}">{{
+                    save.user.username
+                    }}</a></p>
             <p>{{ save.current_currency }} leaves</p>
             <p>{{ save.leaves_per_second }} leaves per second</p>
-            <p>last login: {{ save.last_login }}</p>
+            <p>opened {{ time_since_login }} ago</p>
         </article>
         <div class="user-garden">
             <table>
+
                 {% set squareData = save.map_data %}
 
                 {% set grid = {} %}
@@ -41,10 +49,42 @@
                 </span>
                 {% endfor %}
 
-
             </table>
         </div>
     </span>
     {% endfor %}
+    <footer>
+        <div class="btn-group" id="lb-page-controls">
+            <button class="btn btn-primary" id="prev-lb">◄</button>
+            <p class="btn btn-primary" id="current-page">{{ page_number }}</p>
+            <button class="btn btn-primary" id="next-lb">►</button>
+        </div>
+    </footer>
+    <script>
+        let currentPage = document.getElementById('current-page').innerHTML;
+        let nextPageButton = document.getElementById('next-lb')
+        let prevPageButton = document.getElementById('prev-lb')
+
+        nextPageButton.addEventListener('click', e => changePage(1))
+        prevPageButton.addEventListener('click', e => changePage(+(-1)))
+
+        function changePage(amount) {
+            console.log(+currentPage + amount)
+            if (+currentPage + amount > 0) {
+                fetch(`/leaderboards/${+currentPage + amount}`)
+                    .then(function (response) {
+                        if (response.ok) {
+                            window.location.href = response.url;  // Redirect to the previous page
+                        } else {
+                            console.error("Failed to load previous page");
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error("Error:", error);
+                    });
+            }
+        }
+
+    </script>
 </main>
 {% endblock %}

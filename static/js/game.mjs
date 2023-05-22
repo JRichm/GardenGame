@@ -254,7 +254,8 @@ export class Game {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     'map_data': saveString,
-                    'current_currency': this.current_leaves
+                    'current_currency': this.current_leaves,
+                    'leaves_per_second': this.leaves_per_second
                 }),
             })
             .then(data => console.log(data))
