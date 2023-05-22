@@ -9,16 +9,21 @@ main span {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 750px;
+    width: 900px;
+    margin: 20px;
 }
 
-.save-row {
+.user-garden p {
+    font-family: 'Courier Prime', monospace;
     display: flex;
-    width: fit-content;
-    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    margin: 0px;
 }
 
-.save-square {
-    width: 15px;
+.garden-row {
+    width: fit-content;
+    margin: 0px;
 }

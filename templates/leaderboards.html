@@ -14,20 +14,37 @@
             <p>last login: {{ save.last_login }}</p>
         </article>
         <div class="user-garden">
+            <table>
+                {% set squareData = save.map_data %}
 
-            {% set squareData = save.map_data.split(',') %}
-            {% for row in range(9) %}
-            <span class="save-row">
-                {% for col in range(9) %}
-                {% set currentSquare = row|string ~ col|string %}
-                <div class="save-square">
-                    <p>{{ currentSquare }}</p>
-                </div>
+                {% set grid = {} %}
+
+                {% for item in squareData.split(',') if item %}
+                {% set cords, value = item.split('w') %}
+                {% set row, col = cords[:1] | int, cords[1:] | int %}
+                {% set _ = grid.update({(row, col): value}) %}
                 {% endfor %}
-            </span>
-            {% endfor %}
+
+                {% set rows = 9 %}
+                {% set cols = 9 %}
+
+                {% for row in range(rows) %}
+                <span class="garden-row">
+                    {% for col in range(cols) %}
+                    {% set cord = (row, col) %}
+                    {% if cord in grid %}
+                    <p>{{ grid[cord] | default('.') }}</p>
+                    {% else %}
+                    <p>.</p>
+                    {% endif %}
+                    {% endfor %}
+                </span>
+                {% endfor %}
+
+
+            </table>
         </div>
     </span>
-    {% endfor%}
+    {% endfor %}
 </main>
 {% endblock %}
