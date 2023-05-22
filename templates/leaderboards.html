@@ -1,7 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}GardenGame | Leaderboards{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="../static/css/leaderboards.css">
+<link rel="stylesheet" href="/static/css/leaderboards.css">
 {% endblock %}
 {% block body %}
+<main>
+    {% for save in scores %}
+    <span>
+        <article>
+            <p>{{ save.user.username }}</p>
+            <p>{{ save.current_currency }} leaves</p>
+            <p>{{ save.leaves_per_second }} leaves per second</p>
+            <p>last login: {{ save.last_login }}</p>
+        </article>
+        <div class="user-garden">
+
+            {% set squareData = save.map_data.split(',') %}
+            {% for row in range(9) %}
+            <span class="save-row">
+                {% for col in range(9) %}
+                {% set currentSquare = row|string ~ col|string %}
+                <div class="save-square">
+                    <p>{{ currentSquare }}</p>
+                </div>
+                {% endfor %}
+            </span>
+            {% endfor %}
+        </div>
+    </span>
+    {% endfor%}
+</main>
 {% endblock %}

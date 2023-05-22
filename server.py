@@ -33,7 +33,7 @@ def homepage():
     return render_template("login.html", form=forms.LoginForm(), user=check_login())
 
 
-##      """  User Login  """     ##
+##      """  View Login  """     ##
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = forms.LoginForm(request.form)
@@ -41,9 +41,11 @@ def login():
 
 
 ##   """ View Leaderboards """   ##
-@app.route("/leaderboards")
-def view_leaderboards():
-    return render_template("leaderboards.html", user=check_login())
+@app.route("/leaderboards/", defaults={"page_number": 1})
+@app.route("/leaderboards/<page_number>")
+def view_leaderboards(page_number):
+    scores = crud.get_leaderboard_data(page_number)
+    return render_template("leaderboards.html", scores=scores, user=check_login())
 
 
 """#  -   -   -   -   -   -   -   -  #"""

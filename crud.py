@@ -2,6 +2,7 @@
 
 from model import db, User, Save, Plant, connect_to_db
 from flask import redirect, url_for, flash
+from sqlalchemy import desc
 from datetime import datetime
 import json
 
@@ -126,6 +127,20 @@ def update_map_save(map_id, new_map_data, current_currency):
         return "Error: Save not found."
 
     return "success!"
+
+
+def get_leaderboard_data(page_number):
+    page_size = 10
+    offset = (page_number - 1) * page_size
+
+    scores = (
+        Save.query.order_by(desc(Save.current_currency))
+        .limit(page_size)
+        .offset(offset)
+        .all()
+    )
+
+    return scores
 
 
 """ #      Server Methods       # """
