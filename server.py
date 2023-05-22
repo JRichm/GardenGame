@@ -48,12 +48,14 @@ def view_leaderboards(page_number):
     session["lb-page"] = page_number
     scores = crud.get_leaderboard_data(page_number)
     current_time = datetime.datetime.now()
+    plants = json.loads(crud.get_base_plants_JSON())
     return render_template(
         "leaderboards.html",
         scores=scores,
         current_time=current_time,
         user=check_login(),
         page_number=page_number,
+        base_plants=plants,
     )
 
 
@@ -124,8 +126,9 @@ def save_game(map_id):
             new_map_data = request.json.get("map_data")
             current_currency = request.json.get("current_currency")
             leaves_per_second = request.json.get("leaves_per_second")
+            last_login = request.json.get("last_login")
             return crud.update_map_save(
-                map_id, new_map_data, current_currency, leaves_per_second
+                map_id, new_map_data, current_currency, leaves_per_second, last_login
             )
 
 

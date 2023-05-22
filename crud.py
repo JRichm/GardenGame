@@ -112,7 +112,9 @@ def get_save_by_map_id(map_id):
     return save
 
 
-def update_map_save(map_id, new_map_data, current_currency, leaves_per_second):
+def update_map_save(
+    map_id, new_map_data, current_currency, leaves_per_second, last_login
+):
     print("\n\n\n\n\nupdating map")
     print(map_id)
     print(new_map_data)
@@ -122,6 +124,7 @@ def update_map_save(map_id, new_map_data, current_currency, leaves_per_second):
         save.map_data = new_map_data
         save.current_currency = current_currency
         save.leaves_per_second = leaves_per_second
+        save.last_login = datetime.fromtimestamp(last_login / 1000)
         db.session.commit()
         return "Success: Map data updated."
     else:

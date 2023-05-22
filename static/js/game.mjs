@@ -255,7 +255,8 @@ export class Game {
                 body: JSON.stringify({
                     'map_data': saveString,
                     'current_currency': this.current_leaves,
-                    'leaves_per_second': this.leaves_per_second
+                    'leaves_per_second': this.leaves_per_second,
+                    'last_login': Date.now()
                 }),
             })
             .then(data => console.log(data))

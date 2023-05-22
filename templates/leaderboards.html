@@ -13,7 +13,7 @@
 
     <span>
         <article>
-            <p>#{{ loop.index + (page_number * 5) - 5 }} - <a href="/users/{{ save.user.user_id }}">{{
+            <p>#{{ loop.index + (page_number|int) * 5 - 5 }} - <a href="/users/{{ save.user.user_id }}">{{
                     save.user.username
                     }}</a></p>
             <p>{{ save.current_currency }} leaves</p>
@@ -41,7 +41,9 @@
                     {% for col in range(cols) %}
                     {% set cord = (row, col) %}
                     {% if cord in grid %}
-                    <p>{{ grid[cord] | default('.') }}</p>
+                    <p style="color:#{{ base_plants[grid[cord] | int - 1].color }}; font-weight:bold;">{{
+                        base_plants[grid[cord] | int -
+                        1].name[0] }}</p>
                     {% else %}
                     <p>.</p>
                     {% endif %}
