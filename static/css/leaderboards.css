@@ -9,8 +9,14 @@ main span {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 900px;
+    width: 650px;
     margin: 20px;
+}
+
+.user-garden {
+    background-color: #202129;
+    padding: 8px;
+    border-radius: 15px;
 }
 
 .user-garden p {

@@ -8,10 +8,10 @@
             "stage": "1"
         },
         {
-            "name": "Tomatoes",
+            "name": "Asparagus",
             "price": "400",
             "base_return": "5",
-            "color": "E60000",
+            "color": "7BA05B",
             "stage": "1"
         },
         {
@@ -98,10 +98,10 @@
     ],
     [
         {
-            "name": "Asparagus",
+            "name": "Tomatoes",
             "price": "1200000",
             "base_return": "15000",
-            "color": "7BA05B",
+            "color": "E60000",
             "stage": "4"
         },
         {

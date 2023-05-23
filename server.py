@@ -41,6 +41,12 @@ def login():
     return form.login_user()
 
 
+##      """  View User   """     ##
+@app.route("/user/<user_id>")
+def view_user(user_id):
+    return render_template("user.html", user=check_login())
+
+
 ##   """ View Leaderboards """   ##
 @app.route("/leaderboards/", defaults={"page_number": 1})
 @app.route("/leaderboards/<page_number>")

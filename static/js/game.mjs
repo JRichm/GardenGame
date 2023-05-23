@@ -10,8 +10,9 @@ class GameSquare {
         this.plantable = true;
         this.base_plants = base_plants;
         this.gameObject = gameObject;
-        this.readyToHarvest = false;
-        this.timesToNurture = 0
+        this.timesToNurture = 1;
+        this.nurtureAmount = 0;
+        this.readyToHarvest = false
     }
 
     userClick(selection) {
@@ -36,24 +37,27 @@ class GameSquare {
     }
 
     userHover() {
-        this.element.style = 'background-color:#202129;';
 
         if (this.plant_id !== undefined) {
-
-            // generate random number
-            const randNum = Math.random();
-
-            // call function readyToHarvest() if the number is liss than or equal to 20
-            if (randNum <= 0.2) {
-                this.readyToHarvest()
+            if (this.nurtureAmount >= this.timesToNurture) {
+                this.boldPlant()
+            } else if (this.nurtureAmount <= this.timesToNurture) {
+                this.nurtureAmount++;
+            } else if (this.readyToHarvest == true) {
+                this.harvestPlant()
             }
         }
     }
 
-    increasePlantNurture() {
-        if (this.nurtureAmount < this.threshold) {
-            this.nurtureAmount++;
-        }
+    boldPlant() {
+        this.element.style = `font-weight:bold;`
+        this.readyToHarvest = true;
+    }
+
+    harvestPlant() {
+        console.log('revert')
+        this.element.style = `font-weight:400;`
+        this.readyToHarvest = false;
     }
 
     plantSeed(plant_id) {
@@ -220,7 +224,7 @@ export class Game {
         this.current_leaves += leavesToAdd;
 
         // Update the current leaves value on the screen
-        document.getElementById('current-leaves').innerHTML = this.current_leaves.toFixed(1);
+        document.getElementById('current-leaves').innerHTML = this.current_leaves.toFixed(0);
 
         // Call the update function recursively for continuous updates
         this.startTime = Date.now();
