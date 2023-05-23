@@ -10,7 +10,7 @@ class GameSquare {
         this.plantable = true;
         this.base_plants = base_plants;
         this.gameObject = gameObject;
-        this.timesToNurture = 1;
+        this.timesToNurture;
         this.nurtureAmount = 0;
         this.readyToHarvest = false
     }
@@ -43,6 +43,7 @@ class GameSquare {
             } else if (this.nurtureAmount >= this.timesToNurture) {
                 this.boldPlant();
             } else if (this.nurtureAmount <= this.timesToNurture) {
+                console.log(`${this.nurtureAmount} / ${this.timesToNurture}`)
                 this.nurtureAmount++;
             }
         }
@@ -50,12 +51,15 @@ class GameSquare {
 
     boldPlant() {
         this.element.parentElement.style = `font-weight:bold;`;
+        this.element.style.fontSize = '60px'
         this.readyToHarvest = true;
     }
 
     harvestPlant() {
         this.element.parentElement.style = `font-weight:400;`;
+        this.element.style.fontSize = '45px'
         this.readyToHarvest = false;
+        this.nurtureAmount = 0
     }
 
     plantSeed(plant_id) {
@@ -71,8 +75,7 @@ class GameSquare {
         qty.innerHTML = +qty.innerHTML + 1
         let lps = document.getElementById(`total-${plant_id}-lps`)
         lps.innerHTML = plant.base_return * (+qty.innerHTML)
-        this.timesToNurture = 10
-        console.log(`New ${this.base_plants[this.plant_id - 1].name} planted!\t\t\t\t\t\t\t\t\t-$${this.base_plants[this.plant_id - 1].price}`)
+        this.timesToNurture = 1 + (this.plant_id * 10)
     }
 
     removePlant() {

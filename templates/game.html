@@ -5,71 +5,74 @@
 {% endblock %}
 {% block body %}
 <nav id="nav-bar">
-    <article id="game-stats">
-        <span>
-            <p>Current Leaves:</p>
-            <div>
-                <p style="margin-right:-5px;" id="current-leaves">{{ user_save.current_currency }}</p>
-                <p style="width:0px; margin-left:10px; margin-right:-5px"> Leaves</p>
-            </div>
-        </span>
-        <span>
-            <p>Leaves Per Second:</p>
-            <div>
-                <p style="margin-right:-5px;" id="current-LPS">{{ user_save.leaves_per_second }}</p>
-                <p style="width:0px; margin-left:10px; margin-right:-5px">£ps</p>
-            </div>
-        </span>
-        <span>
-            <p>Level</p>
-            <p>{{ user_save.map_level }}</p>
-        </span>
-    </article>
 </nav>
 <main>
-    <article id="shop">
-        <span id="shop-nav">
-            <button class="btn btn-success">plants</button>
-            <button class="btn btn-info">upgrades</button>
-        </span>
-        <div id="shop-pages">
-            {% for stage in range(1, 5) %}
-            <div id="shop-{{ stage }}" class="hidden">
-                {% for plant in base_plants if plant.stage == stage %}
-                <span class="shop-item" id="{{ plant.plant_id }}">
-                    <p class="plant-level"></p>
-                    <div class="shop-item-info" id="{{ plant.plant_id }}">
-                        <p style="width:175px;">{{ plant.name }}</p>
-                        <div class="item-return">
+    <article>
+        <section id="game-stats">
+            <span>
+                <p>Current Leaves:</p>
+                <div>
+                    <p style="margin-right:-5px;" id="current-leaves">{{ user_save.current_currency }}</p>
+                    <p style="width:0px; margin-left:10px; margin-right:-5px"> Leaves</p>
+                </div>
+            </span>
+            <span>
+                <p>Leaves Per Second:</p>
+                <div>
+                    <p style="margin-right:-5px;" id="current-LPS">{{ user_save.leaves_per_second }}</p>
+                    <p style="width:0px; margin-left:10px; margin-right:-5px">£ps</p>
+                </div>
+            </span>
+            <span>
+                <p>Level</p>
+                <p>{{ user_save.map_level }}</p>
+            </span>
+        </section>
+        <section id="shop">
+            <span id="shop-nav">
+                <button class="btn btn-success">PLANTS</button>
+                <button class="btn btn-dark">UPGRADES</button>
+            </span>
+            <div id="shop-pages">
+                {% for stage in range(1, 5) %}
+                <div id="shop-{{ stage }}" class="hidden">
+                    {% for plant in base_plants if plant.stage == stage %}
+                    <span class="shop-item" id="{{ plant.plant_id }}">
+                        <p class="plant-level"></p>
+                        <div class="shop-item-info" id="{{ plant.plant_id }}">
+                            <p style="width:175px;">{{ plant.name }}</p>
+                            <div class="item-return">
+                                <p>+</p>
+                                <p style="font-weight:bold;">{{ plant.base_return }}</p>
+                                <p>£ps</p>
+                            </div>
+                            <div class="item-price">
+                                <p>-£</p>
+                                <p style="font-weight:bold;">{{ plant.price }}</p>
+                            </div>
+                        </div>
+                        <div class="plant-qty-div">
+                            <p style="font-weight:bold;" class="plant-qty" id="{{ plant.plant_id }}-qty">0</p>
+                            <p>x</p>
+                        </div>
+                        <div class="plant-lps">
                             <p>+</p>
-                            <p style="font-weight:bold;">{{ plant.base_return }}</p>
+                            <p style="font-weight:bold;" class="total-plant-lps" id="total-{{ plant.plant_id }}-lps">0
+                            </p>
                             <p>£ps</p>
                         </div>
-                        <div class="item-price">
-                            <p>-£</p>
-                            <p style="font-weight:bold;">{{ plant.price }}</p>
-                        </div>
-                    </div>
-                    <div class="plant-qty-div">
-                        <p style="font-weight:bold;" class="plant-qty" id="{{ plant.plant_id }}-qty">0</p>
-                        <p>x</p>
-                    </div>
-                    <div class="plant-lps">
-                        <p>+</p>
-                        <p style="font-weight:bold;" class="total-plant-lps" id="total-{{ plant.plant_id }}-lps">0</p>
-                        <p>£ps</p>
-                    </div>
-                </span>
+                    </span>
+                    {% endfor %}
+                </div>
                 {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-        <span id="store-btns" style="justify-self: flex-end;">
-            <div class="btn-group">
-                <button class="btn btn-primary" id="prev-shop">◄</button>
-                <button class="btn btn-primary" id="next-shop">►</button>
-            </div>
-        </span>
+            <span id="store-btns" style="justify-self: flex-end;">
+                <div class="btn-group">
+                    <button class="btn btn-dark" id="prev-shop">◄</button>
+                    <button class="btn btn-dark" id="next-shop">►</button>
+                </div>
+            </span>
+        </section>
     </article>
     <div id='game'>
         {% for row in range(0,9) %}

@@ -16,13 +16,6 @@ main>* {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    font-family: 'Courier Prime', monospace;
-}
-
-#nav-bar article {
-    background-color: #cccccc;
-    width: 600px;
-    margin: 15px;
 }
 
 #store-nav {
@@ -39,11 +32,15 @@ main>* {
 }
 
 #game-stats {
+    font-family: 'Courier Prime', monospace;
+    background-color: #cccccc;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 25px;
+    width: 600px;
+    margin: 15px;
 }
 
 #game-stats span {
@@ -98,16 +95,20 @@ main>* {
 
 .game-char {
     color: #555555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -8px -8px -16px -8px;
     font-family: 'Courier Prime', monospace;
-    font-size: 40px;
-    width: 20px;
-    height: 30px;
+    font-size: 45px;
+    width: 0px;
+    height: 0px;
 }
 
 .click-div {
     position: absolute;
-    height: 60px;
-    width: 60px;
+    height: 45px;
+    width: 45px;
 }
 
 #shop {
@@ -121,16 +122,29 @@ main>* {
     display: flex;
     width: 100%;
     justify-content: start;
+    align-items: center;
 }
 
 #shop-nav button {
     margin: 10px;
     border: none;
+    font-family: 'Courier Prime', monospace;
+}
+
+#shop-nav p {
+    width: 40%;
+    text-align: left;
+    margin: 0px;
 }
 
 #store-btns {
     position: absolute;
+    align-self: flex-end;
     top: 600px;
+}
+
+#store-btns button {
+    font-family: 'Courier Prime', monospace;
 }
 
 .shop-item {
@@ -212,8 +226,4 @@ main>* {
 
 .plant-lps p {
     margin: 0px;
-}
-
-#user-stats {
-    width: 600px;
 }
