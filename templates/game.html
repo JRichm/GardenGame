@@ -43,7 +43,7 @@
                             style="width:175px; font-family: 'Josefin Sans', sans-serif; font-weight:bold;">{{
                             plant.name }}</p>
                         <div class="shop-item-info" id="sii-{{ plant.plant_id }}">
-                            <article class="item-price-info">
+                            <article class="item-price-info" id="ipi-{{ plant.plant_id }}">
                                 <section class="item-return">
                                     <p>+</p>
                                     <p style="font-weight:bold;">{{ plant.base_return }}</p>
@@ -54,7 +54,7 @@
                                     <p style="font-weight:bold;">{{ plant.price }}</p>
                                 </section>
                             </article>
-                            <article class="item-qty-info hidden">
+                            <article class="item-qty-info hidden" id="iqi-{{ plant.plant_id }}">
                                 <section class="plant-qty-div">
                                     <p style="font-weight:bold;" class="plant-qty" id="{{ plant.plant_id }}-qty">0</p>
                                     <p>x</p>

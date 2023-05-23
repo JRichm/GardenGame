@@ -16,6 +16,7 @@ class GameSquare {
     }
 
     userClick(selection) {
+        console.log(selection)
         if (this.plantable) {
             if (selection.store) {
                 let plant_id = selection.store;
@@ -111,6 +112,7 @@ export class Game {
         this.map_data = map_data;
         this.upgrades = upgrades;
         this.last_login = last_login;
+        this.previousSelection = undefined;
 
         this.map_size = 9;
         this.selection = {
@@ -133,17 +135,25 @@ export class Game {
     }
 
     updateUserSelection(event) {
+        console.log(event.target.className)
         switch (true) {
 
             // click shop item box
-            case event.target.className === 'shop-item-info':
+            case event.target.className === 'shop-item':
                 this.selection.store = event.target.id;
                 break;
 
             // click shop item name
+            case event.target.parentElement.className === 'shop-item':
+                this.selection.store = event.target.parentElement.id;
+                console.log(this.selection)
+                break;
+
             case event.target.parentElement.className === 'shop-item-info':
                 this.selection.store = event.target.parentElement.id;
+                console.log(this.selection)
                 break;
+
         }
     }
 
@@ -236,16 +246,20 @@ export class Game {
     }
 
     showShopItemStats(event) {
-        document.getElementById(`sii-${event.target.id}`).firstElementChild.nextElementSibling.classList.remove('hidden')
-        document.getElementById(`sii-${event.target.id}`).firstElementChild.classList.add('hidden')
-    }
+        if (this.previousSelection) {
+            document.getElementById(`ipi-${this.previousSelection}`).classList.remove('hidden')
+            document.getElementById(`iqi-${this.previousSelection}`).classList.add('hidden')
+        }
 
-    showShopItemPrice(event) {
+        document.getElementById(`iqi-${event.target.id}`).classList.remove('hidden')
+        document.getElementById(`ipi-${event.target.id}`).classList.add('hidden')
+
+        this.previousSelection = event.target.id
+
         setTimeout(() => {
-            document.getElementById(`sii-${event.target.id}`).firstElementChild.classList.remove('hidden')
-            document.getElementById(`sii-${event.target.id}`).firstElementChild.nextElementSibling.classList.add('hidden')
-        }, 500)
-
+            document.getElementById(`ipi-${this.previousSelection}`).classList.remove('hidden')
+            document.getElementById(`iqi-${this.previousSelection}`).classList.add('hidden')
+        }, 5000)
     }
 
 

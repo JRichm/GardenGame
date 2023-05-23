@@ -19,7 +19,6 @@ const newGame = new Game();
 for (let sb = 0; sb < shopItems.length; sb++) {
     shopItems[sb].addEventListener('click', e => newGame.updateUserSelection(e))
     shopItems[sb].addEventListener('mouseenter', e => newGame.showShopItemStats(e))
-    shopItems[sb].addEventListener('mouseout', e => newGame.showShopItemPrice(e))
 }
 
 // game square event listeners

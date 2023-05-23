@@ -165,6 +165,7 @@ main>* {
 
 .item-name {
     padding: 10px;
+    margin: 0px;
 }
 
 .shop-item {
@@ -224,7 +225,6 @@ main>* {
     flex-direction: row;
     justify-content: center;
     width: 200px;
-    margin: 10px;
     padding: 10px;
 }
 
