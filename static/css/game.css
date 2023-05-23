@@ -91,7 +91,8 @@ main>* {
 }
 
 .game-square:hover {
-    background-color: #222331;
+    background-color: #232432;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -113,6 +114,23 @@ main>* {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 400px;
+}
+
+#shop-nav {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+}
+
+#shop-nav button {
+    margin: 10px;
+    border: none;
+}
+
+#store-btns {
+    position: absolute;
+    top: 600px;
 }
 
 .shop-item {
@@ -120,7 +138,7 @@ main>* {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 22px 0px;
+    margin: 0px 0px 10px 0px;
     width: max-content;
 }
 
