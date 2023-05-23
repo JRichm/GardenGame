@@ -75,7 +75,7 @@
             {% for char in range(0,9) %}
             <div class="game-square" id="gs-{{ row }}{{ char }}">
                 <div class="click-div"></div>
-                <p class="game-char">.</p>
+                <p class="game-char" id="gc-{{ row }}{{ char }}">.</p>
             </div>
             {% endfor %}
         </span>

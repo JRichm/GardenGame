@@ -3,7 +3,7 @@ import { Game } from './game.mjs'
 
 // ####       document selectors        #### ///
 // game
-let gameSquares = document.getElementsByClassName('game-square');
+let gameSquares = document.getElementsByClassName('click-div');
 // shop
 let shopItems = document.getElementsByClassName('shop-item-info');
 
@@ -23,5 +23,5 @@ for (let j = 0; j < shopItems.length; j++) {
 for (let sq = 0; sq < gameSquares.length; sq++) {
     gameSquares[sq].addEventListener('click', e => newGame.userClickGameSquare(e))
     gameSquares[sq].addEventListener('contextmenu', e => newGame.userRightClickGameSquare(e), false)
-    //gameSquares[sq].addEventListener('mouseenter', e => newGame.userHoverGameSquare(e))
+    gameSquares[sq].addEventListener('mouseenter', e => newGame.userHoverGameSquare(e))
 }

@@ -6,7 +6,7 @@ class GameSquare {
         this.current_leaves_per_second = 0;
         this.square_id = '' + x + y;
         this.squareIndex = [x, y];
-        this.element = document.getElementById('gs-' + this.square_id);
+        this.element = document.getElementById('gc-' + this.square_id);
         this.plantable = true;
         this.base_plants = base_plants;
         this.gameObject = gameObject;
@@ -37,7 +37,6 @@ class GameSquare {
     }
 
     userHover() {
-
         if (this.plant_id !== undefined) {
             if (this.nurtureAmount >= this.timesToNurture) {
                 this.boldPlant()
@@ -50,13 +49,13 @@ class GameSquare {
     }
 
     boldPlant() {
-        this.element.style = `font-weight:bold;`
+        this.element.parentElement.style = `font-weight:bold;`
         this.readyToHarvest = true;
     }
 
     harvestPlant() {
         console.log('revert')
-        this.element.style = `font-weight:400;`
+        this.element.parentElement.style = `font-weight:400;`
         this.readyToHarvest = false;
     }
 
@@ -67,13 +66,14 @@ class GameSquare {
         this.current_leaves_per_second = plant.base_return
         this.char = plant.name.charAt(0)
         this.color = plant.color
-        this.element.firstElementChild.innerHTML = this.char;
-        this.element.firstElementChild.style = `color: #${this.color};`
+        this.element.innerHTML = this.char;
+        this.element.style = `color: #${this.color};`
         let qty = document.getElementById(`${plant_id}-qty`)
         qty.innerHTML = +qty.innerHTML + 1
         let lps = document.getElementById(`total-${plant_id}-lps`)
         lps.innerHTML = plant.base_return * (+qty.innerHTML)
         this.timesToNurture = 10
+        console.log(`New ${this.base_plants[this.plant_id].name} planted!\t\t\t\t\t\t\t\t\t-$${this.base_plants[this.plant_id].price}`)
     }
 
     removePlant() {
@@ -81,8 +81,8 @@ class GameSquare {
         this.color = '#555555'
         this.current_leaves_per_second = 0;
         this.plant_id = undefined
-        this.element.firstElementChild.innerHTML = this.char;
-        this.element.firstElementChild.style = `color: #${this.color}`
+        this.element.innerHTML = this.char;
+        this.element.style = `color: #${this.color}`
         this.plantable = true;
         return false;
     }
@@ -142,7 +142,6 @@ export class Game {
             // click shop item name
             case event.target.parentElement.className === 'shop-item-info':
                 this.selection.store = event.target.parentElement.id;
-                console.log(this.selection);
                 break;
         }
     }
@@ -151,10 +150,10 @@ export class Game {
         switch (true) {
 
             // only do stuff when click event is game-square
-            case event.target.className === 'game-square':
+            case event.target.className === 'click-div':
 
                 // get index from html elements id
-                let number = event.target.id.split('-')[1]; // Extract the number after 'gs-'
+                let number = event.target.nextElementSibling.id.split('-')[1]; // Extract the number after 'gs-'
                 let digits = number.split('').map(Number);
                 let clickSquare = this.game_board[digits[0]][digits[1]]
 
@@ -167,10 +166,10 @@ export class Game {
         switch (true) {
 
             // only do stuff when click event is game-square
-            case event.target.className === 'game-square':
+            case event.target.className === 'click-div':
 
                 // get index from html elements id
-                let number = event.target.id.split('-')[1]; // Extract the number after 'gs-'
+                let number = event.target.id.split('-')[1]; // Extract the number after 'gc-'
                 let digits = number.split('').map(Number);
 
                 this.game_board[digits[0]][digits[1]].userRightClick(this.selection);
@@ -182,10 +181,10 @@ export class Game {
         switch (true) {
 
             // only do stuff when hover event is game-square
-            case event.target.className === 'game-square':
+            case event.target.className === 'click-div':
 
                 // get index from html elements id
-                let number = event.target.id.split('-')[1]; // Extract the number after 'gs-'
+                let number = event.target.nextElementSibling.id.split('-')[1]; // Extract the number after 'gc-'
                 let digits = number.split('').map(Number);
 
                 this.game_board[digits[0]][digits[1]].userHover();
@@ -276,7 +275,6 @@ export class Game {
             this.id = userSave.map_id;
             this.map_data = userSave.map_data;
             this.current_leaves = userSave.current_currency;
-            console.log(this.current_leaves)
 
             // if map data is empty, dont load anything
             if (this.map_data === null) return;
