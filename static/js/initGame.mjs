@@ -5,7 +5,8 @@ import { Game } from './game.mjs'
 // game
 let gameSquares = document.getElementsByClassName('click-div');
 // shop
-let shopItems = document.getElementsByClassName('shop-item-info');
+let shopItems = document.getElementsByClassName('shop-item');
+
 
 
 // ####           START GAME            #### ///
@@ -15,8 +16,10 @@ const newGame = new Game();
 
 
 // shop buttons event listeners
-for (let j = 0; j < shopItems.length; j++) {
-    shopItems[j].addEventListener('click', e => newGame.updateUserSelection(e))
+for (let sb = 0; sb < shopItems.length; sb++) {
+    shopItems[sb].addEventListener('click', e => newGame.updateUserSelection(e))
+    shopItems[sb].addEventListener('mouseenter', e => newGame.showShopItemStats(e))
+    shopItems[sb].addEventListener('mouseout', e => newGame.showShopItemPrice(e))
 }
 
 // game square event listeners

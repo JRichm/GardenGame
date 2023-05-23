@@ -18,13 +18,11 @@ class GameSquare {
     userClick(selection) {
         if (this.plantable) {
             if (selection.store) {
-
                 let plant_id = selection.store;
                 if (this.gameObject.current_leaves > this.base_plants[plant_id - 1]['price']) {
                     this.plantSeed(plant_id);
                     this.gameObject.current_leaves -= this.base_plants[plant_id - 1]['price']
                 }
-
             }
         }
     }
@@ -43,7 +41,6 @@ class GameSquare {
             } else if (this.nurtureAmount >= this.timesToNurture) {
                 this.boldPlant();
             } else if (this.nurtureAmount <= this.timesToNurture) {
-                console.log(`${this.nurtureAmount} / ${this.timesToNurture}`)
                 this.nurtureAmount++;
             }
         }
@@ -60,13 +57,14 @@ class GameSquare {
         this.element.style.fontSize = '45px'
         this.readyToHarvest = false;
         this.nurtureAmount = 0
+        this.gameObject.addLeaves(Number(this.base_return) * 4)
     }
 
     plantSeed(plant_id) {
         this.plant_id = plant_id;
         this.plantable = false;
         let plant = this.base_plants[parseInt(this.plant_id) - 1]
-        this.current_leaves_per_second = plant.base_return
+        this.base_return = plant.base_return
         this.char = plant.name.charAt(0)
         this.color = plant.color
         this.element.innerHTML = this.char;
@@ -74,18 +72,20 @@ class GameSquare {
         let qty = document.getElementById(`${plant_id}-qty`)
         qty.innerHTML = +qty.innerHTML + 1
         let lps = document.getElementById(`total-${plant_id}-lps`)
-        lps.innerHTML = plant.base_return * (+qty.innerHTML)
+        lps.innerHTML = this.base_return * (+qty.innerHTML)
         this.timesToNurture = 1 + (this.plant_id * 10)
+        this.current_leaves_per_second = this.base_return
     }
 
     removePlant() {
         this.char = '.'
         this.color = '#555555'
-        this.current_leaves_per_second = 0;
+        this.base_return = 0;
         this.plant_id = undefined
         this.element.innerHTML = this.char;
         this.element.style = `color: #${this.color}`
         this.plantable = true;
+        this.current_leaves_per_second = 0
         return false;
     }
 
@@ -138,7 +138,6 @@ export class Game {
             // click shop item box
             case event.target.className === 'shop-item-info':
                 this.selection.store = event.target.id;
-                console.log(this.selection);
                 break;
 
             // click shop item name
@@ -231,6 +230,24 @@ export class Game {
         this.startTime = Date.now();
         requestAnimationFrame(this.updateCurrentLeaves);
     }
+
+    addLeaves(amount) {
+        this.current_leaves += +amount
+    }
+
+    showShopItemStats(event) {
+        document.getElementById(`sii-${event.target.id}`).firstElementChild.nextElementSibling.classList.remove('hidden')
+        document.getElementById(`sii-${event.target.id}`).firstElementChild.classList.add('hidden')
+    }
+
+    showShopItemPrice(event) {
+        setTimeout(() => {
+            document.getElementById(`sii-${event.target.id}`).firstElementChild.classList.remove('hidden')
+            document.getElementById(`sii-${event.target.id}`).firstElementChild.nextElementSibling.classList.add('hidden')
+        }, 500)
+
+    }
+
 
     saveGame() {
         let saveString = ''

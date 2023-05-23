@@ -53,6 +53,17 @@ class Plant(db.Model):
     stage = db.Column(db.Integer(), nullable=False)
 
 
+##          Plant Game Object
+class Upgrade(db.Model):
+    __tablename__ = "upgrades"
+
+    upgrade_id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    name = db.Column(db.String(), unique=True, nullable=False)
+    price = db.Column(db.Integer(), nullable=False)
+    description = db.Column(db.String(), unique=True, nullable=False)
+    page = db.Column(db.Integer(), nullable=False)
+
+
 """  ####     DB Config     ####  """
 
 

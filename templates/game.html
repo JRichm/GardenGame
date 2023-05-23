@@ -30,36 +30,62 @@
         </section>
         <section id="shop">
             <span id="shop-nav">
-                <button class="btn btn-success">PLANTS</button>
-                <button class="btn btn-dark">UPGRADES</button>
+                <button class="btn btn-success" id="plants-tab">PLANTS</button>
+                <button class="btn btn-dark" id="upgrades-tab">UPGRADES</button>
             </span>
             <div id="shop-pages">
                 {% for stage in range(1, 5) %}
                 <div id="shop-{{ stage }}" class="hidden">
                     {% for plant in base_plants if plant.stage == stage %}
                     <span class="shop-item" id="{{ plant.plant_id }}">
-                        <p class="plant-level"></p>
-                        <div class="shop-item-info" id="{{ plant.plant_id }}">
-                            <p style="width:175px;">{{ plant.name }}</p>
-                            <div class="item-return">
-                                <p>+</p>
-                                <p style="font-weight:bold;">{{ plant.base_return }}</p>
-                                <p>£ps</p>
+                        <aside class="plant-level"></aside>
+                        <p class="item-name"
+                            style="width:175px; font-family: 'Josefin Sans', sans-serif; font-weight:bold;">{{
+                            plant.name }}</p>
+                        <div class="shop-item-info" id="sii-{{ plant.plant_id }}">
+                            <article class="item-price-info">
+                                <section class="item-return">
+                                    <p>+</p>
+                                    <p style="font-weight:bold;">{{ plant.base_return }}</p>
+                                    <p>£ps</p>
+                                </section>
+                                <section class="item-price">
+                                    <p>-£</p>
+                                    <p style="font-weight:bold;">{{ plant.price }}</p>
+                                </section>
+                            </article>
+                            <article class="item-qty-info hidden">
+                                <section class="plant-qty-div">
+                                    <p style="font-weight:bold;" class="plant-qty" id="{{ plant.plant_id }}-qty">0</p>
+                                    <p>x</p>
+                                </section>
+                                <section class="plant-lps">
+                                    <p>+</p>
+                                    <p style="font-weight:bold;" class="total-plant-lps"
+                                        id="total-{{ plant.plant_id }}-lps">0</p>
+                                    <p>£ps</p>
+                                </section>
+                            </article>
+                        </div>
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                {% for page in range(1, 3) %}
+                <div id="upgrades-{{ page }}" class="hidden">
+                    {% for upgrade in upgrades if upgrade.page == page %}
+                    <span class="shop-item" id="{{ upgrade.upgrade_id }}">
+                        <div class="upgrade-item-info" id="{{ upgrade.upgrade_id }}">
+                            <p class="upgrade-level"></p>
+                            <p style="width:175px; font-family: 'Josefin Sans', sans-serif; font-weight:bold;">{{
+                                upgrade.name }}</p>
+                            <div class="upgrade-description">
+                                <p style="font-family: 'Josefin Sans', sans-serif;">{{ upgrade.description }}</p>
                             </div>
-                            <div class="item-price">
+                            <div class="upgrade-price">
                                 <p>-£</p>
-                                <p style="font-weight:bold;">{{ plant.price }}</p>
+                                <p style="font-weight:bold;">{{ upgrade.price }}</p>
                             </div>
-                        </div>
-                        <div class="plant-qty-div">
-                            <p style="font-weight:bold;" class="plant-qty" id="{{ plant.plant_id }}-qty">0</p>
-                            <p>x</p>
-                        </div>
-                        <div class="plant-lps">
-                            <p>+</p>
-                            <p style="font-weight:bold;" class="total-plant-lps" id="total-{{ plant.plant_id }}-lps">0
-                            </p>
-                            <p>£ps</p>
                         </div>
                     </span>
                     {% endfor %}

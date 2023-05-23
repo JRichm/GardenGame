@@ -1,6 +1,6 @@
 """  ####   CRUD Funcitons   ####"""
 
-from model import db, User, Save, Plant, connect_to_db
+from model import db, User, Save, Plant, Upgrade, connect_to_db
 from flask import redirect, url_for, flash
 from sqlalchemy import desc
 from datetime import datetime
@@ -104,6 +104,29 @@ def get_base_plant(plant_id):
         "stage": plant.stage,
     }
     return base_plant
+
+
+# upgrades
+def new_game_upgrade(name, price, description, page):
+    upgrade = Upgrade(name=name, price=price, description=description, page=page)
+    return upgrade
+
+
+def get_upgrades_JSON():
+    upgrades = Upgrade.query.all()
+    upgrade_list = []
+
+    for upgrade in upgrades:
+        upgrade_list.append(
+            {
+                "upgrade_id": upgrade.upgrade_id,
+                "name": upgrade.name,
+                "price": upgrade.price,
+                "description": upgrade.description,
+                "page": upgrade.page,
+            }
+        )
+    return json.dumps(upgrade_list)
 
 
 # saves

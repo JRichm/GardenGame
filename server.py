@@ -113,8 +113,13 @@ def open_game():
             session["map_id"] = users_game["map_id"]
             user = crud.get_user_by_id(session.get("gg_user_id"))
             plants = json.loads(crud.get_base_plants_JSON())
+            upgrades = json.loads(crud.get_upgrades_JSON())
             return render_template(
-                "game.html", user_save=users_game, user=user, base_plants=plants
+                "game.html",
+                user_save=users_game,
+                user=user,
+                base_plants=plants,
+                upgrades=upgrades,
             )
         else:
             return redirect("/newgame")

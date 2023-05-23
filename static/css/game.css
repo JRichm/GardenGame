@@ -116,6 +116,7 @@ main>* {
     flex-direction: column;
     align-items: center;
     height: 400px;
+    width: 100%;
 }
 
 #shop-nav {
@@ -147,83 +148,104 @@ main>* {
     font-family: 'Courier Prime', monospace;
 }
 
-.shop-item {
+#shop-pages>div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin: 0px 0px 10px 0px;
-    width: max-content;
+    width: 600px;
 }
 
-.shop-item-info {
-    background-color: #eeeeee;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 50%;
-    padding: 10px;
-    width: max-content;
-}
+/* store items styling */
 
-.shop-item-info p {
-    margin: 0px;
-}
-
-.shop-item-info:hover {
+.shop-item:hover {
     background-color: #dddddd;
     cursor: pointer;
 }
 
-.item-price {
+
+.item-name {
+    padding: 10px;
+}
+
+.shop-item {
+    background-color: #eeeeee;
     display: flex;
     flex-direction: row;
-    width: 100px;
-    margin: 0px 15px 0px 15px;
-    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.item-price-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.item-price-info p {
+    margin: 0px;
+}
+
+.item-qty-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.item-qty-info p {
+    margin: 0px;
 }
 
 .item-return {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100px;
+    width: 200px;
+    padding: 10px;
 }
 
-.shop-item p {
-    font-family: 'Courier Prime', monospace;
-}
-
-.plant-level {
-    background-color: #cccccc;
-    padding: 22px 5px 22px 5px;
-    margin: 0px;
-}
-
-.plant-qty-div {
-    background-color: #cccccc;
+.item-price {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
+    width: 200px;
     padding: 10px;
-    width: 65px;
 }
 
 .plant-lps {
-    background-color: #cccccc;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
+    width: 200px;
     padding: 10px;
-    width: 95px;
 }
 
-.plant-qty-div p {
+.plant-qty-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.upgrade-item-info p {
     margin: 0px;
 }
 
-.plant-lps p {
+.upgrade-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 100px;
+}
+
+.upgrade-description {
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 300px;
     margin: 0px;
 }
