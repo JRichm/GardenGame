@@ -4,6 +4,8 @@ from model import db, User, Save, Plant, Upgrade, connect_to_db
 from flask import redirect, url_for, flash
 from sqlalchemy import desc
 from datetime import datetime
+import colorsys
+import random
 import json
 
 
@@ -17,8 +19,7 @@ def create_save(user_id):
         upgrades=None,
         last_login=datetime.now(),
     )
-    print("\n\n\n\n\n\n\n\nthis is my save")
-    print(save)
+
     db.session.add(save)
     db.session.commit()
     return save
@@ -26,7 +27,21 @@ def create_save(user_id):
 
 # users
 def create_user(username, password, email):
-    user = User(username=username, password=password, email=email, gems=0)
+    hue = random.random()
+    color = colorsys.hsv_to_rgb(hue, 0.75, 0.75)
+    hex = "{:02x}{:02x}{:02x}".format(
+        int(color[0] * 255), int(color[1] * 255), int(color[2] * 255)
+    )
+    user = User(
+        username=username,
+        email=email,
+        password=password,
+        color=hex,
+        experience=0,
+        total_currency=0,
+        gems=0,
+    )
+
     return user
 
 
@@ -35,6 +50,7 @@ def get_users():
 
 
 def get_user_by_id(user_id):
+    print(f"\n\n\n\n\n\nthis is my user id {User.query.all()}")
     return User.query.get(user_id)
 
 
@@ -90,6 +106,7 @@ def get_base_plants_JSON():
                 "stage": plant.stage,
             }
         )
+
     return json.dumps(plant_list)
 
 
@@ -103,6 +120,7 @@ def get_base_plant(plant_id):
         "color": plant.color,
         "stage": plant.stage,
     }
+
     return base_plant
 
 
@@ -126,6 +144,7 @@ def get_upgrades_JSON():
                 "page": upgrade.page,
             }
         )
+
     return json.dumps(upgrade_list)
 
 

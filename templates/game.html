@@ -9,26 +9,10 @@
 <main>
     <div id="all">
         <span id="game-span">
-            <section id="game-stats">
-                <span>
-                    <p>Current Leaves:</p>
-                    <div>
-                        <p style="margin-right:-5px;" id="current-leaves">{{ user_save.current_currency }}</p>
-                        <p style="width:0px; margin-left:10px; margin-right:-5px"> Leaves</p>
-                    </div>
-                </span>
-                <span>
-                    <p>Leaves Per Second:</p>
-                    <div>
-                        <p style="margin-right:-5px;" id="current-LPS">{{ user_save.leaves_per_second }}</p>
-                        <p style="width:0px; margin-left:10px; margin-right:-5px">£ps</p>
-                    </div>
-                </span>
-                <span>
-                    <p>Level</p>
-                    <p>{{ user_save.map_level }}</p>
-                </span>
-            </section>
+            <p id="current-leaves">{{ user_save.current_currency }}</p>
+            <p>Leaves @</p>
+            <p id="current-LPS">{{ user_save.leaves_per_second }}</p>
+            <p>£ps</p>
         </span>
         <section class="main-section">
             <article id="shop">

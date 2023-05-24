@@ -1,0 +1,39 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+aside {}
+
+section {}
+
+#user-card {
+    background-color: #dddddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+}
+
+#user-card span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#user-img {
+    height: 250px;
+    width: 250px;
+    border-radius: 125px;
+}
+
+.uc-username {
+    background-color: #202129;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 3px 6px 3px 6px;
+    border-radius: 10px;
+    margin: 15px;
+}

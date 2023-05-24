@@ -44,7 +44,8 @@ def login():
 ##      """  View User   """     ##
 @app.route("/user/<user_id>")
 def view_user(user_id):
-    return render_template("user.html", user=check_login())
+    view_user = crud.get_user_by_id(user_id)
+    return render_template("user.html", user=check_login(), view_user=view_user)
 
 
 ##   """ View Leaderboards """   ##

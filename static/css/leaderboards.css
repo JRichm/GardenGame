@@ -1,8 +1,18 @@
+.content-container {
+    background-color: #232323;
+}
+
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+main article {
+    width: fit-content;
+    background-color: #b4b4b4;
+}
+
 
 main span {
     display: flex;
@@ -10,7 +20,22 @@ main span {
     justify-content: space-between;
     align-items: center;
     width: 650px;
-    margin: 20px;
+    margin: 10px;
+}
+
+.save-span {
+    background-color: #d4d4d4;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.save-details a {
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #202129;
+    font-size: 18px;
+    padding: 2px 4px 2px 4px;
+    border-radius: 4px;
 }
 
 .user-garden {
@@ -45,4 +70,10 @@ main span {
 
 #lb-page-controls p {
     margin: 0px;
+}
+
+.button-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

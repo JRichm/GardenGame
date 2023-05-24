@@ -5,7 +5,26 @@
 {% endblock %}
 {% block body %}
 <main>
-    <h1>Hello World!</h1>
-</main>
+    <aside>
+        <article id="user-card">
+            <img id="user-img" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
+                style="background-color:#{{ view_user.color }}">
+            <hr style="border-top:3px solid #aaaaaa; width:100%;">
+            <p class="uc-username" style="color:#{{ view_user.color }}">{{ view_user.username }}</p>
+            <span>
+                <p>{{ view_user.experience }}</p>
+                <p>{{ view_user.total_currency }}</p>
+                <p>{{ view_user.gems }}</p>
+            </span>
+        </article>
+    </aside>
+    <section>
+        <article>
 
+        </article>
+        <article>
+
+        </article>
+    </section>
+</main>
 {% endblock %}

@@ -10,59 +10,63 @@
     {% set last_login = save.last_login %}
     {% set time_difference = current_time - last_login %}
     {% set time_since_login = time_difference | format_timedelta %}
+    <article>
+        <span class="save-span">
+            <section class="save-details">
+                <p>#{{ loop.index + (page_number|int) * 5 - 5 }} - <a href="/user/{{ save.user.user_id }}"
+                        style="color:#{{ save.user.color }}">{{
+                        save.user.username
+                        }}</a></p>
+                <p>{{ save.current_currency }} leaves</p>
+                <p>{{ save.leaves_per_second }} leaves per second</p>
+                <p>opened {{ time_since_login }} ago</p>
+            </section>
+            <div class="user-garden">
+                <table>
 
-    <span>
-        <article>
-            <p>#{{ loop.index + (page_number|int) * 5 - 5 }} - <a href="/user/{{ save.user.user_id }}">{{
-                    save.user.username
-                    }}</a></p>
-            <p>{{ save.current_currency }} leaves</p>
-            <p>{{ save.leaves_per_second }} leaves per second</p>
-            <p>opened {{ time_since_login }} ago</p>
-        </article>
-        <div class="user-garden">
-            <table>
+                    {% set squareData = save.map_data %}
 
-                {% set squareData = save.map_data %}
+                    {% set grid = {} %}
 
-                {% set grid = {} %}
-
-                {% for item in squareData.split(',') if item %}
-                {% set cords, value = item.split('w') %}
-                {% set row, col = cords[:1] | int, cords[1:] | int %}
-                {% set _ = grid.update({(row, col): value}) %}
-                {% endfor %}
-
-                {% set rows = 9 %}
-                {% set cols = 9 %}
-
-                {% for row in range(rows) %}
-                <span class="garden-row">
-                    {% for col in range(cols) %}
-                    {% set cord = (row, col) %}
-                    {% if cord in grid %}
-                    <p style="color:#{{ base_plants[grid[cord] | int - 1].color }}; font-weight:bold; font-size:25px;">
-                        {{
-                        base_plants[grid[cord] | int -
-                        1].name[0] }}</p>
-                    {% else %}
-                    <p style="color:#313149;">.</p>
-                    {% endif %}
+                    {% for item in squareData.split(',') if item %}
+                    {% set cords, value = item.split('w') %}
+                    {% set row, col = cords[:1] | int, cords[1:] | int %}
+                    {% set _ = grid.update({(row, col): value}) %}
                     {% endfor %}
-                </span>
-                {% endfor %}
 
-            </table>
-        </div>
-    </span>
-    {% endfor %}
-    <footer>
-        <div class="btn-group" id="lb-page-controls">
-            <button class="btn btn-primary" id="prev-lb">◄</button>
-            <p class="btn btn-primary" id="current-page">{{ page_number }}</p>
-            <button class="btn btn-primary" id="next-lb">►</button>
-        </div>
-    </footer>
+                    {% set rows = 9 %}
+                    {% set cols = 9 %}
+
+                    {% for row in range(rows) %}
+                    <span class="garden-row">
+                        {% for col in range(cols) %}
+                        {% set cord = (row, col) %}
+                        {% if cord in grid %}
+                        <p
+                            style="color:#{{ base_plants[grid[cord] | int - 1].color }}; font-weight:bold; font-size:25px;">
+                            {{
+                            base_plants[grid[cord] | int -
+                            1].name[0] }}</p>
+                        {% else %}
+                        <p style="color:#313149;">.</p>
+                        {% endif %}
+                        {% endfor %}
+                    </span>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </span>
+        {% endfor %}
+        <section class="button-section">
+            <div class="btn-group" id="lb-page-controls">
+                <button class="btn btn-primary" id="prev-lb">◄</button>
+                <p class="btn btn-primary" id="current-page">{{ page_number }}</p>
+                <button class="btn btn-primary" id="next-lb">►</button>
+            </div>
+        </section>
+    </article>
+
     <script>
         let currentPage = document.getElementById('current-page').innerHTML;
         let nextPageButton = document.getElementById('next-lb')

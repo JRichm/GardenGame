@@ -38,15 +38,15 @@ shopItems.forEach(item => {
 
 function highlightSelection(event) {
     if (selectedShopItem !== null) {
-        selectedShopItem.style.backgroundColor = '#eeeeee';
+        selectedShopItem.style.backgroundColor = '#e7e6e1';
     }
 
     if (selectedShopItem === event.currentTarget) {
-        event.currentTarget.style.backgroundColor = '#eeeeee';
+        event.currentTarget.style.backgroundColor = '#e7e6e1';
         selectedShopItem = null;
     }
 
-    event.currentTarget.style.backgroundColor = '#dddddd';
+    event.currentTarget.style.backgroundColor = '#bdbdbd';
     selectedShopItem = event.currentTarget;
 }
 

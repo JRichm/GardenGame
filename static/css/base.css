@@ -74,6 +74,19 @@ body {
 #user-name {
     font-size: larger;
     margin-bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#user-name img {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+#user-name p {
+    margin: 5px;
 }
 
 #message-area {

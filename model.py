@@ -16,7 +16,10 @@ class User(db.Model):
     username = db.Column(db.String(), unique=True, nullable=False)
     email = db.Column(db.String(), nullable=True)
     password = db.Column(db.String(), nullable=False)
-    gems = db.Column(db.Integer(), nullable=False)
+    color = db.Column(db.String(), nullable=False)
+    experience = db.Column(db.Integer(), nullable=True)
+    total_currency = db.Column(db.BigInteger(), nullable=False)
+    gems = db.Column(db.Integer(), nullable=True)
 
     def __repr__(self):
         return f"<User Data:\n\t{self.username}\n\t{self.email}\n\tgems: {self.gems}>"

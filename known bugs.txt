@@ -1,0 +1,9 @@
+• loading /leaderboards with no map data
+	if you open a leaderboard page with empty levels, jinja freaks out because there is no map data.
+	the error is caused from jinja trying to .split(',') the map data, but there is nothing to split!
+
+• game selection and gameUI highlight selection are separate and sometimes have to different selections
+	causing the player to plant the incorrect plant unintentionally
+
+• user can create an account without putting in password
+	no user input validation
