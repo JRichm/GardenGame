@@ -6,9 +6,9 @@
 
 
 • game selection does not match highlighted UI element
- - the way the game keeps track of the users selection and the way the ui is set up to display the users selection
-   are two different systems. these need to be merged for a more smooth playing expirence
- - sometimes one fruit will be highlighted but a different plant will be planted once the user clicks the game
+ - the system that keeps track of the users selection in game and the system that highlights the user selection
+   are separate and need to be merged to create a smoother experience for the player
+ - sometimes one plant will be highlighted but a different plant will be planted once the user clicks the game
    board
 
 
