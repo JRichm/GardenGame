@@ -145,15 +145,24 @@ export class Game {
 
             // click shop item name
             case event.target.parentElement.className === 'shop-item':
-                this.selection.store = event.target.parentElement.id;
+                this.selection.store = +event.target.parentElement.id
                 console.log(this.selection)
                 break;
 
             case event.target.parentElement.className === 'shop-item-info':
-                this.selection.store = event.target.parentElement.id;
+                this.selection.store = +event.target.parentElement.id.split('-')[1]
                 console.log(this.selection)
                 break;
 
+            case event.target.parentElement.className === 'item-qty-info':
+                this.selection.store = +event.target.parentElement.id.split('-')[1]
+                console.log(this.selection)
+                break;
+
+            case event.target.parentElement.className === 'plant-qty-div':
+                this.selection.store = +event.target.parentElement.id.split('-')[1]
+                console.log(this.selection)
+                break;
         }
     }
 
