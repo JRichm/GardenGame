@@ -58,7 +58,7 @@ class GameSquare {
         this.element.style.fontSize = '45px'
         this.readyToHarvest = false;
         this.nurtureAmount = 0
-        this.gameObject.addLeaves(Number(this.base_return) * 4)
+        this.gameObject.addLeaves(Number(this.base_return) * 10)
     }
 
     plantSeed(plant_id) {

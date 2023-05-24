@@ -1,16 +1,39 @@
 .content-container {
-    background-color: white;
+    background-color: #232323;
+    min-height: 947px;
+}
+
+#all {
+    display: flex;
+    flex-direction: column;
+    background-color: #d4d4d4;
+    padding: 10px;
+    border-radius: 0px 0px 50px 50px;
 }
 
 main {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-main>* {
-    margin: 15px;
+#game-span {
+    display: flex;
+    flex-direction: row;
+    background-color: #d4d4d4;
+    margin-bottom: 10px;
 }
+
+.main-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #b4b4b4;
+    width: fit-content;
+    border-radius: 40px;
+    padding: 0px 5px 5px 5px;
+}
+
 
 #nav-bar {
     display: flex;
@@ -33,14 +56,10 @@ main>* {
 
 #game-stats {
     font-family: 'Courier Prime', monospace;
-    background-color: #cccccc;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 25px;
-    width: 600px;
-    margin: 15px;
 }
 
 #game-stats span {
@@ -68,7 +87,7 @@ main>* {
     align-items: center;
     background-color: #202129;
     padding: 10px;
-    margin: 15px 30px 15px 30px;
+    margin: 15px 10px 15px 10px;
     border-radius: 25px;
 }
 
@@ -116,12 +135,13 @@ main>* {
     flex-direction: column;
     align-items: center;
     height: 400px;
-    width: 100%;
+    width: 585px;
+    padding: 10px;
 }
 
 #shop-nav {
     display: flex;
-    width: 100%;
+    width: 555px;
     justify-content: start;
     align-items: center;
 }
@@ -139,20 +159,21 @@ main>* {
 }
 
 #store-btns {
-    position: absolute;
     align-self: flex-end;
-    top: 600px;
 }
 
 #store-btns button {
     font-family: 'Courier Prime', monospace;
 }
 
+#shop-pages {
+    min-height: 280px;
+}
+
 #shop-pages>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 600px;
 }
 
 /* store items styling */
@@ -169,11 +190,12 @@ main>* {
 }
 
 .shop-item {
-    background-color: #eeeeee;
+    background-color: #E7E6E1;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 10px;
+    margin: 5px;
+    border-radius: 3px;
 }
 
 .item-price-info {
