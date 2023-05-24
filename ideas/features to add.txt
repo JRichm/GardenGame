@@ -1,0 +1,8 @@
+• make it so that when the user hovers over a square, give the user 1x of the base return
+	right now it only give 5x when it is ready to harvest
+	1x every time the user hovers over, weather its ready to harvest or not
+
+• levels for plants and upgrades
+	display level as a color or number next to name in shop
+
+• implement upgrades

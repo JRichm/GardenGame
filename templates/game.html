@@ -8,12 +8,19 @@
 </nav>
 <main>
     <div id="all">
-        <span id="game-span">
-            <p id="current-leaves">{{ user_save.current_currency }}</p>
-            <p>Leaves @</p>
-            <p id="current-LPS">{{ user_save.leaves_per_second }}</p>
-            <p>£ps</p>
-        </span>
+        <nav id="game-header">
+            <div></div>
+            <span id="game-span">
+                <div>
+                    <p id="current-leaves" class="game-span-num">{{ user_save.current_currency }}</p>
+                    <p>Leaves</p>
+                </div>
+                <div>
+                    <p id="current-LPS" class="game-span-num">{{ user_save.leaves_per_second }}</p>
+                    <p>£ps</p>
+                </div>
+            </span>
+        </nav>
         <section class="main-section">
             <article id="shop">
                 <span id="shop-nav">

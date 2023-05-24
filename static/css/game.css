@@ -17,11 +17,45 @@ main {
     align-items: center;
 }
 
-#game-span {
+#game-header {
     display: flex;
     flex-direction: row;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    margin: 15px;
 }
+
+#game-span {
+    background-color: #b4b4b4;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 2px 7px 2px 7px;
+    width: fit-content;
+    min-width: 300px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+#game-span div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: -165px;
+}
+
+#game-span p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 5px 0px 0px;
+}
+
+.game-span-num {
+    font-family: 'Courier Prime', monospace;
+}
+
 .main-section {
     display: flex;
     flex-direction: row;

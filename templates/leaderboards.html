@@ -44,11 +44,13 @@
 
                     {% set grid = {} %}
 
-                    {% for item in squareData.split(',') if item %}
+                    {% if squareData %}
+                    {% for item in squareData.split(',') if item%}
                     {% set cords, value = item.split('w') %}
                     {% set row, col = cords[:1] | int, cords[1:] | int %}
                     {% set _ = grid.update({(row, col): value}) %}
                     {% endfor %}
+                    {% endif %}
 
                     {% set rows = 9 %}
                     {% set cols = 9 %}
