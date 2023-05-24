@@ -17,25 +17,66 @@ main article {
 main span {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 650px;
-    margin: 10px;
 }
 
 .save-span {
+    display: flex;
+    flex-direction: row;
     background-color: #d4d4d4;
+    font-family: 'Josefin Sans', sans-serif;
     padding: 10px;
     border-radius: 25px;
+    justify-content: space-between;
+    min-width: 600px;
+    margin: 10px;
+}
+
+.save-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.save-details span {
+    display: flex;
+    justify-content: start;
+    margin: 0px;
 }
 
 .save-details a {
+    font-weight: bold;
     text-decoration: none;
     font-weight: bold;
     background-color: #202129;
     font-size: 18px;
     padding: 2px 4px 2px 4px;
     border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.save-details p {
+    margin: 2px;
+}
+
+.lb-user-title a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.lb-user-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lb-user-title p {
+    margin: 2px 2px -2px 2px;
 }
 
 .user-garden {

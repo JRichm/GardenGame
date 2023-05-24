@@ -2,7 +2,7 @@
 
 from model import db, User, Save, Plant, Upgrade, connect_to_db
 from flask import redirect, url_for, flash
-from sqlalchemy import desc, asc
+from sqlalchemy import desc, asc, cast, Integer
 from datetime import datetime
 import colorsys
 import random
@@ -201,7 +201,7 @@ def get_leaderboard_data(page_number):
     offset = (int(page_number) - 1) * page_size
 
     scores = (
-        Save.query.order_by(asc(Save.total_leaves_earned))
+        Save.query.order_by(cast(Save.total_leaves_earned, Integer).desc())
         .limit(page_size)
         .offset(offset)
         .all()

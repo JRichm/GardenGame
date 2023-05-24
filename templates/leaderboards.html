@@ -13,13 +13,29 @@
     <article>
         <span class="save-span">
             <section class="save-details">
-                <p>#{{ loop.index + (page_number|int) * 5 - 5 }} - <a href="/user/{{ save.user.user_id }}"
-                        style="color:#{{ save.user.color }}">{{
-                        save.user.username
-                        }}</a></p>
-                <p>{{ save.total_leaves_earned }} leaves</p>
-                <p>{{ save.leaves_per_second }} leaves per second</p>
-                <p>opened {{ time_since_login }} ago</p>
+                <div class="lb-user-title">
+                    <a href="/user/{{ save.user.user_id }}">
+                        <p style="font-weight:bold; font-size:20px; color:#{{ save.user.color }}; margin-right:5px">#{{
+                            loop.index +
+                            (page_number|int) * 5 - 5 }}</p>
+                        <p style="color:#{{ save.user.color }};">{{save.user.username}}</p>
+                        <p style="color:#454545;">=></p>
+                        <p
+                            style="color:white; font-family: 'Courier Prime', monospace; font-size:20px; font-weight:bold;">
+                            {{save.total_leaves_earned}}</p>
+                        <p style="color:white; font-family: 'Courier Prime', monospace; font-size:12px;">total leaves
+                        </p>
+                    </a>
+                </div>
+                <span>
+                    <p style="font-weight:bold;">{{ save.leaves_per_second }}</p>
+                    <p>leaves per second</p>
+                </span>
+                <span>
+                    <p>opened</p>
+                    <p style="font-weight:bold;">{{ time_since_login }}</p>
+                    <p>ago</p>
+                </span>
             </section>
             <div class="user-garden">
                 <table>
