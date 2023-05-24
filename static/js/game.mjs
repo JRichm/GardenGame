@@ -113,6 +113,7 @@ export class Game {
         this.upgrades = upgrades;
         this.last_login = last_login;
         this.previousSelection = undefined;
+        this.total_leaves_since_save = 0
 
         this.map_size = 9;
         this.selection = {
@@ -241,6 +242,7 @@ export class Game {
 
         // Add the calculated leaves to the current leaves value
         this.current_leaves += leavesToAdd;
+        this.total_leaves_since_save += +leavesToAdd
 
         // Update the current leaves value on the screen
         document.getElementById('current-leaves').innerHTML = this.current_leaves.toFixed(0);
@@ -301,11 +303,13 @@ export class Game {
                     'map_data': saveString,
                     'current_currency': this.current_leaves,
                     'leaves_per_second': this.leaves_per_second,
-                    'last_login': Date.now()
+                    'last_login': Date.now(),
+                    'total_leaves': Math.floor(this.total_leaves_since_save)
                 }),
             })
-            .then(data => console.log(data))
+            .then(this.total_leaves_since_save = 0)
             .catch(err => console.log(err))
+
     }
 
     loadGame(map_id) {

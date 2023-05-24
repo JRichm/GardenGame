@@ -20,6 +20,7 @@ class User(db.Model):
     experience = db.Column(db.Integer(), nullable=True)
     total_currency = db.Column(db.BigInteger(), nullable=False)
     gems = db.Column(db.Integer(), nullable=True)
+    total_leaves_earned = db.Column(db.String(), nullable=False)
 
     def __repr__(self):
         return f"<User Data:\n\t{self.username}\n\t{self.email}\n\tgems: {self.gems}>"
@@ -37,6 +38,7 @@ class Save(db.Model):
     map_data = db.Column(db.String())
     upgrades = db.Column(db.String())
     last_login = db.Column(db.DateTime())
+    total_leaves_earned = db.Column(db.String(), nullable=False)
 
     user = db.relationship("User", backref="saves")
 

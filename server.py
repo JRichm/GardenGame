@@ -139,8 +139,14 @@ def save_game(map_id):
             current_currency = request.json.get("current_currency")
             leaves_per_second = request.json.get("leaves_per_second")
             last_login = request.json.get("last_login")
+            total_leaves_earned = request.json.get("total_leaves")
             return crud.update_map_save(
-                map_id, new_map_data, current_currency, leaves_per_second, last_login
+                map_id,
+                new_map_data,
+                current_currency,
+                leaves_per_second,
+                last_login,
+                total_leaves_earned,
             )
 
 

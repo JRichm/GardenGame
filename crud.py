@@ -2,7 +2,7 @@
 
 from model import db, User, Save, Plant, Upgrade, connect_to_db
 from flask import redirect, url_for, flash
-from sqlalchemy import desc
+from sqlalchemy import desc, asc
 from datetime import datetime
 import colorsys
 import random
@@ -18,6 +18,7 @@ def create_save(user_id):
         map_data=None,
         upgrades=None,
         last_login=datetime.now(),
+        total_leaves_earned="0",
     )
 
     db.session.add(save)
@@ -40,6 +41,7 @@ def create_user(username, password, email):
         experience=0,
         total_currency=0,
         gems=0,
+        total_leaves_earned=0,
     )
 
     return user
@@ -74,6 +76,7 @@ def get_user_save_JSON(user_id):
             "map_data": user_save.map_data,
             "upgrades": user_save.upgrades,
             "last_login": str(user_save.last_login),
+            "total_leaves_earned": user_save.total_leaves_earned,
         }
 
         user_save_JSON = json.dumps([user_save_dict])
@@ -155,18 +158,36 @@ def get_save_by_map_id(map_id):
 
 
 def update_map_save(
-    map_id, new_map_data, current_currency, leaves_per_second, last_login
+    map_id,
+    new_map_data,
+    current_currency,
+    leaves_per_second,
+    last_login,
+    total_leaves_earned,
 ):
-    print("\n\n\n\n\nupdating map")
-    print(map_id)
-    print(new_map_data)
-
+    print(f"\n\n\n\n\nupdating map {map_id}")
     save = Save.query.get(map_id)
+
     if save:
         save.map_data = new_map_data
         save.current_currency = current_currency
         save.leaves_per_second = leaves_per_second
         save.last_login = datetime.fromtimestamp(last_login / 1000)
+
+        total_leaves_earned = int(total_leaves_earned)
+
+        print(
+            f"\n\n\n\n\n\n\n\n\n updating map, total leaves earned: {total_leaves_earned}"
+        )
+
+        save.total_leaves_earned = str(
+            int(save.total_leaves_earned) + total_leaves_earned
+        )
+
+        save.user.total_leaves_earned = str(
+            int(save.user.total_leaves_earned) + total_leaves_earned
+        )
+
         db.session.commit()
         return "Success: Map data updated."
     else:
@@ -180,7 +201,7 @@ def get_leaderboard_data(page_number):
     offset = (int(page_number) - 1) * page_size
 
     scores = (
-        Save.query.order_by(desc(Save.current_currency))
+        Save.query.order_by(asc(Save.total_leaves_earned))
         .limit(page_size)
         .offset(offset)
         .all()
