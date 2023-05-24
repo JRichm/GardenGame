@@ -20,7 +20,7 @@ class GameSquare {
         if (this.plantable) {
             if (selection.store) {
                 let plant_id = selection.store;
-                if (this.gameObject.current_leaves > this.base_plants[plant_id - 1]['price']) {
+                if (this.gameObject.current_leaves >= this.base_plants[plant_id - 1]['price']) {
                     this.plantSeed(plant_id);
                     this.gameObject.current_leaves -= this.base_plants[plant_id - 1]['price']
                 }
@@ -58,7 +58,7 @@ class GameSquare {
         this.element.style.fontSize = '45px'
         this.readyToHarvest = false;
         this.nurtureAmount = 0
-        this.gameObject.addLeaves(Number(this.base_return) * 10)
+        this.gameObject.addLeaves(Number(this.base_return) * 5)
     }
 
     plantSeed(plant_id) {

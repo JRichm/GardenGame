@@ -47,7 +47,7 @@ class Plant(db.Model):
 
     plant_id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     name = db.Column(db.String(), unique=True, nullable=False)
-    price = db.Column(db.Integer(), nullable=False)
+    price = db.Column(db.BigInteger(), nullable=False)
     base_return = db.Column(db.Integer(), nullable=False)
     color = db.Column(db.String(), nullable=False)
     stage = db.Column(db.Integer(), nullable=False)
