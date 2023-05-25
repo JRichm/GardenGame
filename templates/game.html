@@ -8,96 +8,103 @@
 </nav>
 <main>
     <div id="all">
-        <nav id="game-header">
-            <div></div>
-            <span id="game-span">
-                <div>
-                    <p id="current-leaves" class="game-span-num">{{ user_save.current_currency }}</p>
-                    <p>Leaves</p>
-                </div>
-                <div>
-                    <p id="current-LPS" class="game-span-num">{{ user_save.leaves_per_second }}</p>
-                    <p>£ps</p>
-                </div>
-            </span>
-        </nav>
-        <section class="main-section">
-            <article id="shop">
-                <span id="shop-nav">
-                    <button class="btn btn-success" id="plants-tab">PLANTS</button>
-                    <button class="btn btn-dark" id="upgrades-tab">UPGRADES</button>
+        <div id="same-level-container">
+            <nav id="game-header">
+                <span id="game-span">
+                    <div>
+                        <p id="current-leaves" class="game-span-num">{{ user_save.current_currency }}</p>
+                        <p>Leaves</p>
+                    </div>
+                    <div>
+                        <p id="current-LPS" class="game-span-num">{{ user_save.leaves_per_second }}</p>
+                        <p>£ps</p>
+                    </div>
                 </span>
-                <div id="shop-pages">
-                    {% for stage in range(1, 5) %}
-                    <div id="shop-{{ stage }}" class="hidden">
-                        {% for plant in base_plants if plant.stage == stage %}
-                        <span class="shop-item" id="{{ plant.plant_id }}">
-                            <article class="shop-item-info" id="ipi-{{ plant.plant_id }}">
-                                <aside class="plant-level"></aside>
-                                <p class="item-name" style="font-family: 'Josefin Sans', sans-serif; font-weight:bold;">
-                                    {{
-                                    plant.name }}</p>
-                            </article>
-                            <article class="item-price-info" id="ipi-{{ plant.plant_id }}">
-                                <section class="item-return">
-                                    <p>+</p>
-                                    <p style="font-weight:bold;">{{ plant.base_return }}</p>
-                                    <p>£ps</p>
-                                </section>
-                                <section class="item-price">
-                                    <p>-£</p>
-                                    <p style="font-weight:bold;">{{ plant.price }}</p>
-                                </section>
-                            </article>
+            </nav>
+            <section class="main-section">
+                <aside id="left-panel">
+                    <article id="shop">
+                        <span id="shop-nav">
+                            <button class="btn btn-success" id="plants-tab">PLANTS</button>
+                            <button class="btn btn-dark" id="upgrades-tab">UPGRADES</button>
                         </span>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-                    {% for page in range(1, 3) %}
-                    <div id="upgrades-{{ page }}" class="hidden">
-                        {% for upgrade in upgrades if upgrade.page == page %}
-                        <span class="shop-item" id="{{ upgrade.upgrade_id }}">
-                            <article>
-                                <aside class="plant-level"></aside>
-                                <p class="item-name"
-                                    style="width:max-content; font-family: 'Josefin Sans', sans-serif; font-weight:bold;">
-                                    {{
-                                    upgrade.name }}</p>
-                            </article>
-                            <article class="item-price-info" id="ipi-{{ upgrade.upgrade_id}}-u">
-                                <section class="upgrade-description">
-                                    <p class="upgrade-description">{{ upgrade.description }}</p>
-                                </section>
-                                <section class="item-price">
-                                    <p>-£</p>
-                                    <p style="font-weight:bold;">{{ upgrade.price }}</p>
-                                </section>
-                            </article>
+                        <div id="shop-pages">
+                            {% for stage in range(1, 5) %}
+                            <div id="shop-{{ stage }}" class="hidden">
+                                {% for plant in base_plants if plant.stage == stage %}
+                                <span class="shop-item" id="{{ plant.plant_id }}">
+                                    <article class="shop-item-info" id="ipi-{{ plant.plant_id }}">
+                                        <aside class="plant-level"></aside>
+                                        <p class="item-name"
+                                            style="font-family: 'Josefin Sans', sans-serif; font-weight:bold;">
+                                            {{
+                                            plant.name }}</p>
+                                    </article>
+                                    <article class="item-price-info" id="ipi-{{ plant.plant_id }}">
+                                        <section class="item-return">
+                                            <p>+</p>
+                                            <p style="font-weight:bold;">{{ plant.base_return }}</p>
+                                            <p>£ps</p>
+                                        </section>
+                                        <section class="item-price">
+                                            <p>-£</p>
+                                            <p style="font-weight:bold;">{{ plant.price }}</p>
+                                        </section>
+                                    </article>
+                                </span>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                            {% for page in range(1, 3) %}
+                            <div id="upgrades-{{ page }}" class="hidden">
+                                {% for upgrade in upgrades if upgrade.page == page %}
+                                <span class="shop-item" id="{{ upgrade.upgrade_id }}">
+                                    <article>
+                                        <aside class="plant-level"></aside>
+                                        <p class="item-name"
+                                            style="width:max-content; font-family: 'Josefin Sans', sans-serif; font-weight:bold;">
+                                            {{
+                                            upgrade.name }}</p>
+                                    </article>
+                                    <article class="item-price-info" id="ipi-{{ upgrade.upgrade_id}}-u">
+                                        <section class="upgrade-description">
+                                            <p class="upgrade-description">{{ upgrade.description }}</p>
+                                        </section>
+                                        <section class="item-price">
+                                            <p>-£</p>
+                                            <p style="font-weight:bold;">{{ upgrade.price }}</p>
+                                        </section>
+                                    </article>
+                                </span>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <span id="store-btns" style="justify-self: flex-end;">
+                            <div class="btn-group">
+                                <button class="btn btn-dark" id="prev-shop">◄</button>
+                                <button class="btn btn-dark" id="next-shop">►</button>
+                            </div>
                         </span>
+                    </article>
+                    <article id="tip-area">
+                        <p>this is the tip of the day!</p>
+                    </article>
+                </aside>
+                <div id='game'>
+                    {% for row in range(0,9) %}
+                    <span class="game-row">
+                        {% for char in range(0,9) %}
+                        <div class="game-square" id="gs-{{ row }}{{ char }}">
+                            <div class="click-div"></div>
+                            <p class="game-char" id="gc-{{ row }}{{ char }}">.</p>
+                        </div>
                         {% endfor %}
-                    </div>
+                    </span>
                     {% endfor %}
                 </div>
-                <span id="store-btns" style="justify-self: flex-end;">
-                    <div class="btn-group">
-                        <button class="btn btn-dark" id="prev-shop">◄</button>
-                        <button class="btn btn-dark" id="next-shop">►</button>
-                    </div>
-                </span>
-            </article>
-            <div id='game'>
-                {% for row in range(0,9) %}
-                <span class="game-row">
-                    {% for char in range(0,9) %}
-                    <div class="game-square" id="gs-{{ row }}{{ char }}">
-                        <div class="click-div"></div>
-                        <p class="game-char" id="gc-{{ row }}{{ char }}">.</p>
-                    </div>
-                    {% endfor %}
-                </span>
-                {% endfor %}
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 </main>
 <script> var base_plants = JSON.parse('{{ base_plants | tojson | safe }}')</script>

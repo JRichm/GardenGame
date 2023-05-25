@@ -14,3 +14,8 @@
 
 • user can create an account without putting in password
  - no user input validation
+
+
+• user can go to empty leaderboards pages
+ - dont redirect  user if there are not leaderboard stats on the next page
+ - also fix the rendering of the last page if there are < 3 saves

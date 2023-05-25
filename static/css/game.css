@@ -3,6 +3,12 @@
     min-height: 947px;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #all {
     display: flex;
     flex-direction: column;
@@ -11,28 +17,26 @@
     border-radius: 0px 0px 50px 50px;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#same-level-container {
+    background-color: #b4b4b4;
+    border-radius: 38px 38px 42px 42px;
 }
 
 #game-header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     margin: 15px;
 }
 
 #game-span {
-    background-color: #b4b4b4;
+    background-color: #212029;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
-    padding: 2px 7px 2px 7px;
-    width: fit-content;
-    min-width: 300px;
-    border-radius: 10px;
+    justify-content: end;
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
     font-weight: bold;
 }
 
@@ -41,10 +45,11 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-right: -165px;
+    margin-right: -1000px;
 }
 
 #game-span p {
+    color: white;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -60,12 +65,19 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #b4b4b4;
     width: fit-content;
     border-radius: 40px;
     padding: 0px 5px 5px 5px;
 }
 
+#left-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #cdcdcd;
+    margin: 10px;
+    border-radius: 25px;
+}
 
 #nav-bar {
     display: flex;
@@ -117,9 +129,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #202129;
+    background-color: #212029;
     padding: 10px;
-    margin: 15px 10px 15px 10px;
+    margin: 10px 10px 10px 10px;
     border-radius: 25px;
 }
 
@@ -130,7 +142,7 @@ main {
 }
 
 .game-square {
-    background-color: #202129;
+    background-color: #212029;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,9 +178,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 400px;
-    width: 585px;
-    padding: 10px;
+    height: 390px;
+    width: 580px;
+    margin: 10px;
+    background-color: #bbbbbb;
+    border-radius: 25px 25px 25px 25px;
 }
 
 #shop-nav {
@@ -176,6 +190,10 @@ main {
     width: 555px;
     justify-content: start;
     align-items: center;
+    background-color: #dedede;
+    border-radius: 15px 15px 0px 0px;
+    margin-bottom: 5px;
+    width: 580px;
 }
 
 #shop-nav button {
@@ -191,7 +209,13 @@ main {
 }
 
 #store-btns {
-    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #dedede;
+    width: 580px;
+    padding: 10px;
+    border-radius: 0px 0px 15px 15px;
+    margin-top: -5px;
 }
 
 #store-btns button {
@@ -222,7 +246,7 @@ main {
 }
 
 .shop-item {
-    background-color: #E7E6E1;
+    background-color: #dddddd;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -304,4 +328,15 @@ main {
     justify-content: end;
     margin: 0px;
     font-size: 14px;
+}
+
+#tip-area {
+    background-color: #b4b4b4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 580px;
+    height: 100%;
+    margin: 10px;
+    border-radius: 15px;
 }

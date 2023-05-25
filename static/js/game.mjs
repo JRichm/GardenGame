@@ -42,6 +42,7 @@ class GameSquare {
             } else if (this.nurtureAmount >= this.timesToNurture) {
                 this.boldPlant();
             } else if (this.nurtureAmount <= this.timesToNurture) {
+                this.gameObject.addLeaves(1)
                 this.nurtureAmount++;
             }
         }
@@ -70,7 +71,7 @@ class GameSquare {
         this.color = plant.color
         this.element.innerHTML = this.char;
         this.element.style = `color: #${this.color};`
-        this.timesToNurture = 1 + (this.plant_id * 10)
+        this.timesToNurture = 1 + (this.plant_id * 7)
         this.current_leaves_per_second = this.base_return
     }
 
@@ -339,7 +340,7 @@ export class Game {
             this.startTime = Date.now();
             this.calculateLeavesPerSecond()
             this.updateCurrentLeaves()
-        }, 2000);
+        }, 600);
     }
 
     getBasePlants() {
