@@ -21,7 +21,7 @@
                     <p style="font-family: 'Courier Prime', monospace;">{{ view_user.total_leaves_earned }}</p>
                 </span>
                 <span class="uc-info-span">
-                    <p style="
+                    <p style="`
                     font-family: 'Josefin Sans', sans-serif;">Gems</p>
                     <p style="font-family: 'Courier Prime', monospace;">{{ view_user.gems }}</p>
                 </span>
@@ -29,11 +29,17 @@
         </article>
     </aside>
     <section>
-        <article>
-
-        </article>
-        <article>
-
+        <article id="game-squares">
+            <span class="save-row" style="align-items:end; 
+                border-radius: 25px 25px 0px 0px;">
+                <div class="save-box" id="sb-1"></div>
+                <div class="save-box" id="sb-2"></div>
+            </span>
+            <span class="save-row" style="align-items:start;
+                border-radius: 0px 0px 25px 25px;">
+                <div class="save-box" id="sb-3"></div>
+                <div class="save-box" id="sb-4"></div>
+            </span>
         </article>
     </section>
 </main>

@@ -50,7 +50,7 @@
                                 </article>
                                 <article class="item-qty-info hidden" id="iqi-{{ plant.plant_id }}">
                                     <section class="plant-qty-div">
-                                        <p style="font-weight:bold;" class="plant-qty" id="{{ plant.plant_id }}-qty">0
+                                        <p style="font-weight:bold;" class="plant-qty" id="{{ plant.plant_id }}-qty">
                                         </p>
                                         <p>x</p>
                                     </section>
@@ -70,17 +70,36 @@
                     <div id="upgrades-{{ page }}" class="hidden">
                         {% for upgrade in upgrades if upgrade.page == page %}
                         <span class="shop-item" id="{{ upgrade.upgrade_id }}">
-                            <div class="upgrade-item-info" id="{{ upgrade.upgrade_id }}">
-                                <p class="upgrade-level"></p>
-                                <p style="width:175px; font-family: 'Josefin Sans', sans-serif; font-weight:bold;">{{
-                                    upgrade.name }}</p>
-                                <div class="upgrade-description">
-                                    <p style="font-family: 'Josefin Sans', sans-serif;">{{ upgrade.description }}</p>
-                                </div>
-                                <div class="upgrade-price">
-                                    <p>-£</p>
-                                    <p style="font-weight:bold;">{{ upgrade.price }}</p>
-                                </div>
+                            <aside class="plant-level"></aside>
+                            <p class="item-name"
+                                style="width:175; font-family: 'Josefin Sans', sans-serif; font-weight:bold;">{{
+                                upgrade.name }}</p>
+                            <div class="shop-item-info" id="sii-{{ upgrade.upgrade_id}}-u">
+                                <article class="item-price-info" id="ipi-{{ upgrade.upgrade_id}}-u">
+                                    <section class="upgrade-description">
+                                        <p>This should display the description of the upgrade but this is just a hard
+                                            coded
+                                            test that is located inside of the game.html on line ~79</p>
+                                    </section>
+                                    <section class="item-price">
+                                        <p>-£</p>
+                                        <p style="font-weight:bold;">{{ upgrade.price }}</p>
+                                    </section>
+                                </article>
+                                <article class="item-qty-info hidden" id="iqi-{{ upgrade.upgrade_id }}-u">
+                                    <section class="plant-qty-div">
+                                        <p style="font-weight:bold;" class="plant-qty"
+                                            id="{{ upgrade.upgrade_id }}-qty">
+                                        </p>
+                                        <p>x</p>
+                                    </section>
+                                    <section class="plant-lps">
+                                        <p>+</p>
+                                        <p style="font-weight:bold;" class="total-plant-lps"
+                                            id="total-{{ upgrade.upgrade_id }}-lps">0</p>
+                                        <p>£ps</p>
+                                    </section>
+                                </article>
                             </div>
                         </span>
                         {% endfor %}
