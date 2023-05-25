@@ -70,10 +70,6 @@ class GameSquare {
         this.color = plant.color
         this.element.innerHTML = this.char;
         this.element.style = `color: #${this.color};`
-        let qty = document.getElementById(`${plant_id}-qty`)
-        qty.innerHTML = +qty.innerHTML + 1
-        let lps = document.getElementById(`total-${plant_id}-lps`)
-        lps.innerHTML = this.base_return * (+qty.innerHTML)
         this.timesToNurture = 1 + (this.plant_id * 10)
         this.current_leaves_per_second = this.base_return
     }
