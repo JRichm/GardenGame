@@ -12,14 +12,13 @@ main {
 #all {
     display: flex;
     flex-direction: column;
-    background-color: #d4d4d4;
+    background-color: #b4b4b4;
     padding: 10px;
-    border-radius: 0px 0px 50px 50px;
 }
 
 #same-level-container {
-    background-color: #b4b4b4;
     border-radius: 38px 38px 42px 42px;
+    background-color: #cdcdcd;
 }
 
 #game-header {
@@ -27,6 +26,7 @@ main {
     flex-direction: row;
     justify-content: center;
     margin: 15px;
+    margin-bottom: 5px;
 }
 
 #game-span {
@@ -36,7 +36,7 @@ main {
     justify-content: end;
     padding: 10px;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 25px;
     font-weight: bold;
 }
 
@@ -74,9 +74,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #cdcdcd;
-    margin: 10px;
-    border-radius: 25px;
 }
 
 #nav-bar {
@@ -338,5 +335,5 @@ main {
     width: 580px;
     height: 100%;
     margin: 10px;
-    border-radius: 15px;
+    border-radius: 15px 15px 25px 25px
 }

@@ -1,3 +1,5 @@
+import { highlightSelection } from './gameUI.mjs'
+
 class GameSquare {
     constructor(x, y, gameObject) {
         this.char = '.';
@@ -133,34 +135,11 @@ export class Game {
     }
 
     updateUserSelection(event) {
-        console.log(event.target.className)
-        switch (true) {
-
-            // click shop item box
-            case event.target.className === 'shop-item':
-                this.selection.store = event.target.id;
-                break;
-
-            // click shop item name
-            case event.target.parentElement.className === 'shop-item':
-                this.selection.store = +event.target.parentElement.id
-                console.log(this.selection)
-                break;
-
-            case event.target.parentElement.className === 'shop-item-info':
-                this.selection.store = +event.target.parentElement.id.split('-')[1]
-                console.log(this.selection)
-                break;
-
-            case event.target.parentElement.className === 'item-qty-info':
-                this.selection.store = +event.target.parentElement.id.split('-')[1]
-                console.log(this.selection)
-                break;
-
-            case event.target.parentElement.className === 'plant-qty-div':
-                this.selection.store = +event.target.parentElement.id.split('-')[1]
-                console.log(this.selection)
-                break;
+        let shopItem = event.target.closest('.shop-item');
+        if (shopItem) {
+            this.selection.store = +shopItem.id;
+            console.log(this.selection)
+            highlightSelection(event)
         }
     }
 

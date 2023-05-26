@@ -32,11 +32,8 @@ upgradesTab.addEventListener('click', e => {
 const shopItems = document.querySelectorAll('.shop-item');
 let selectedShopItem = null;
 
-shopItems.forEach(item => {
-    item.addEventListener('click', highlightSelection);
-});
 
-function highlightSelection(event) {
+export function highlightSelection(event) {
     if (selectedShopItem !== null) {
         selectedShopItem.style.backgroundColor = '#e7e6e1';
     }
@@ -59,6 +56,7 @@ shopPrev.addEventListener('click', e => updateShop(-1));
 
 function updateShop(amount) {
 
+    // plants
     if (plantsOpen) {
         // dont switch to a page that doesn't exist
         if (currentPage + amount > 0 && currentPage + amount < 5) {
@@ -67,8 +65,9 @@ function updateShop(amount) {
             document.getElementById(`shop-${currentPage}`).classList.remove('hidden')
         }
 
+
+        // upgrades
     } else {
-        console.log(currentPage + amount)
         // dont switch to a page that doesn't exist
         if (currentPage + amount > 0 && currentPage + amount < 3) {
             document.getElementById(`upgrades-${currentPage}`).classList.add('hidden')

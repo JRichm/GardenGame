@@ -88,7 +88,7 @@
                         </span>
                     </article>
                     <article id="tip-area">
-                        <p>this is the tip of the day!</p>
+                        <p>tip of the day!</p>
                     </article>
                 </aside>
                 <div id='game'>
@@ -110,6 +110,6 @@
 <script> var base_plants = JSON.parse('{{ base_plants | tojson | safe }}')</script>
 <script> var userSave = JSON.parse('{{ user_save | tojson | safe }}')</script>
 <script src="static/js/game.mjs" type="module"></script>
-<script src="static/js/gameUI.js"></script>
+<script src="static/js/gameUI.mjs" type="module"></script>
 <script src="static/js/initGame.mjs" type="module"></script>
 {% endblock %}
