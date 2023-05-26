@@ -1,4 +1,5 @@
 import { highlightSelection } from './gameUI.mjs'
+import './upgrades.mjs'
 
 class GameSquare {
     constructor(x, y, gameObject) {
@@ -117,7 +118,7 @@ export class Game {
         this.map_size = 9;
         this.selection = {
             store: undefined,
-            inventory: undefined
+            type: undefined
         };
         this.startTime = Date.now();
 
@@ -137,7 +138,8 @@ export class Game {
     updateUserSelection(event) {
         let shopItem = event.target.closest('.shop-item');
         if (shopItem) {
-            this.selection.store = +shopItem.id;
+            this.selection.store = +shopItem.id.split('-')[0];
+            this.selection.type = shopItem.id.split('-')[1];
             console.log(this.selection)
             highlightSelection(event)
         }

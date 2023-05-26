@@ -202,6 +202,7 @@ def get_leaderboard_data(page_number):
 
     scores = (
         Save.query.order_by(cast(Save.total_leaves_earned, Integer).desc())
+        .where(cast(Save.total_leaves_earned, Integer) > 0)
         .limit(page_size)
         .offset(offset)
         .all()

@@ -32,7 +32,7 @@
                             {% for stage in range(1, 5) %}
                             <div id="shop-{{ stage }}" class="hidden">
                                 {% for plant in base_plants if plant.stage == stage %}
-                                <span class="shop-item" id="{{ plant.plant_id }}">
+                                <span class="shop-item" id="{{ plant.plant_id }}-p">
                                     <article class="shop-item-info" id="ipi-{{ plant.plant_id }}">
                                         <aside class="plant-level"></aside>
                                         <p class="item-name"
@@ -58,7 +58,7 @@
                             {% for page in range(1, 3) %}
                             <div id="upgrades-{{ page }}" class="hidden">
                                 {% for upgrade in upgrades if upgrade.page == page %}
-                                <span class="shop-item" id="{{ upgrade.upgrade_id }}">
+                                <span class="shop-item" id="{{ upgrade.upgrade_id }}-u">
                                     <article>
                                         <aside class="plant-level"></aside>
                                         <p class="item-name"
