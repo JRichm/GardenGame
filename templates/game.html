@@ -10,7 +10,17 @@
     <div id="all">
         <div id="same-level-container">
             <nav id="game-header">
-                <span id="game-span">
+                <section style="justify-content:left;">
+                    <div>
+                        <p>Onion</p>
+                        <p>+1£ps</p>
+                    </div>
+                    <div>
+                        <p>+25%</p>
+                        <p>-17ht</p>
+                    </div>
+                </section>
+                <section style="align-items:center;">
                     <div>
                         <p id="current-leaves" class="game-span-num">{{ user_save.current_currency }}</p>
                         <p>Leaves</p>
@@ -19,7 +29,7 @@
                         <p id="current-LPS" class="game-span-num">{{ user_save.leaves_per_second }}</p>
                         <p>£ps</p>
                     </div>
-                </span>
+                </section>
             </nav>
             <section class="main-section">
                 <aside id="left-panel">
@@ -98,6 +108,7 @@
                         <div class="game-square" id="gs-{{ row }}{{ char }}">
                             <div class="click-div"></div>
                             <p class="game-char" id="gc-{{ row }}{{ char }}">.</p>
+                            <div class="color-square" id="csq-{{ row }}{{ char }}"></div>
                         </div>
                         {% endfor %}
                     </span>
@@ -108,8 +119,10 @@
     </div>
 </main>
 <script> var base_plants = JSON.parse('{{ base_plants | tojson | safe }}')</script>
+<script> var upgrades = JSON.parse('{{ upgrades | tojson | safe}}')</script>
 <script> var userSave = JSON.parse('{{ user_save | tojson | safe }}')</script>
 <script src="static/js/game.mjs" type="module"></script>
 <script src="static/js/gameUI.mjs" type="module"></script>
+<script src="static/js/upgrades.mjs" type="module"></script>
 <script src="static/js/initGame.mjs" type="module"></script>
 {% endblock %}

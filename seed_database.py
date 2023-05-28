@@ -41,14 +41,15 @@ with open("data/upgrades.json") as u:
 upgrades_in_db = []
 for page in upgrade_data:
     for upgrade in page:
-        name, price, description, page = (
+        name, price, description, color, page = (
             upgrade["name"],
             upgrade["price"],
             upgrade["description"],
+            upgrade["color"],
             upgrade["page"],
         )
 
-        db_upgrade = crud.new_game_upgrade(name, price, description, page)
+        db_upgrade = crud.new_game_upgrade(name, price, description, color, page)
         upgrades_in_db.append(db_upgrade)
 
 

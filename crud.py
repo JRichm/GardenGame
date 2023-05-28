@@ -1,3 +1,5 @@
+
+
 """  ####   CRUD Funcitons   ####"""
 
 from model import db, User, Save, Plant, Upgrade, connect_to_db
@@ -128,8 +130,10 @@ def get_base_plant(plant_id):
 
 
 # upgrades
-def new_game_upgrade(name, price, description, page):
-    upgrade = Upgrade(name=name, price=price, description=description, page=page)
+def new_game_upgrade(name, price, description, color, page):
+    upgrade = Upgrade(
+        name=name, price=price, description=description, color=color, page=page
+    )
     return upgrade
 
 
@@ -144,6 +148,7 @@ def get_upgrades_JSON():
                 "name": upgrade.name,
                 "price": upgrade.price,
                 "description": upgrade.description,
+                "color": upgrade.color,
                 "page": upgrade.page,
             }
         )

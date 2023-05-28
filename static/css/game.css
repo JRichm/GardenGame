@@ -13,42 +13,39 @@ main {
     display: flex;
     flex-direction: column;
     background-color: #b4b4b4;
+    border-radius: 0px 0px 50px 50px;
     padding: 10px;
 }
 
 #same-level-container {
-    border-radius: 38px 38px 42px 42px;
+    border-radius: 25px 25px 42px 42px;
     background-color: #cdcdcd;
 }
 
 #game-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 15px;
-    margin-bottom: 5px;
-}
-
-#game-span {
     background-color: #212029;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px;
     padding: 10px;
-    width: 100%;
-    border-radius: 25px;
-    font-weight: bold;
+    margin-bottom: 5px;
+    border-radius: 15px 15px 15px 15px;
 }
 
-#game-span div {
+#game-header section {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+
+#game-header div {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    margin-right: -1000px;
 }
 
-#game-span p {
+#game-header p {
     color: white;
     display: flex;
     flex-direction: row;
@@ -135,7 +132,6 @@ main {
 .game-row {
     display: flex;
     flex-direction: row;
-    margin-left: 8px;
 }
 
 .game-square {
@@ -154,6 +150,7 @@ main {
 }
 
 .game-char {
+    position: absolute;
     color: #555555;
     display: flex;
     justify-content: center;
@@ -166,6 +163,7 @@ main {
 }
 
 .click-div {
+    z-index: 10;
     position: absolute;
     height: 45px;
     width: 45px;
@@ -336,4 +334,12 @@ main {
     height: 100%;
     margin: 10px;
     border-radius: 15px 15px 25px 25px
+}
+
+.color-square {
+    position: absolute;
+    width: 175px;
+    height: 175px;
+    opacity: 6%;
+    border-radius: 8px;
 }

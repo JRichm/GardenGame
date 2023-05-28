@@ -1,5 +1,5 @@
 import { highlightSelection } from './gameUI.mjs'
-import './upgrades.mjs'
+import { getUpgrade } from './upgrades.mjs'
 
 class GameSquare {
     constructor(x, y, gameObject) {
@@ -12,6 +12,7 @@ class GameSquare {
         this.element = document.getElementById('gc-' + this.square_id);
         this.plantable = true;
         this.base_plants = base_plants;
+        this.upgrades = upgrades
         this.gameObject = gameObject;
         this.timesToNurture;
         this.nurtureAmount = 0;
@@ -19,13 +20,36 @@ class GameSquare {
     }
 
     userClick(selection) {
-        console.log(selection)
         if (this.plantable) {
             if (selection.store) {
-                let plant_id = selection.store;
-                if (this.gameObject.current_leaves >= this.base_plants[plant_id - 1]['price']) {
-                    this.plantSeed(plant_id);
-                    this.gameObject.current_leaves -= this.base_plants[plant_id - 1]['price']
+                let itemID = selection.store;
+
+                // check what selection type is (plants/upgrade)
+                switch (selection.type) {
+
+                    // if a plant is selected
+                    case 'p':
+
+                        // check if user has enough funds
+                        if (this.gameObject.current_leaves >= this.base_plants[itemID - 1]['price']) {
+
+                            // plant seed and adjust current amount of leaves
+                            this.plantSeed(itemID);
+                            this.gameObject.current_leaves -= this.base_plants[itemID - 1]['price']
+                        } else console.log('not enough funds');
+                        break;
+
+                    // if an upgrade is selected
+                    case 'u':
+
+                        // check if user has enough funds
+                        if (this.gameObject.current_leaves >= this.upgrades[itemID - 1]['price']) {
+
+                            // plant seed and adjust current amount of leaves
+                            this.plantUpgrade(itemID);
+                            this.gameObject.current_leaves -= this.upgrades[itemID - 1]['price']
+                        } else console.log('not enough funds');
+                        break;
                 }
             }
         }
@@ -76,6 +100,52 @@ class GameSquare {
         this.element.style = `color: #${this.color};`
         this.timesToNurture = 1 + (this.plant_id * 7)
         this.current_leaves_per_second = this.base_return
+    }
+
+    plantUpgrade(upgrade_id) {
+        let upgrade = getUpgrade(upgrade_id, this.squareIndex, this.gameObject)
+        if (upgrade) {
+            console.log(upgrade)
+            this.upgrade_id = upgrade_id
+            this.plantable = false;
+            this.char = upgrade.name.charAt(0)
+            this.color = upgrade.color
+            this.element.innerHTML = this.char;
+            this.element.style = `color: #${this.color};`
+
+            upgrade.activate(this.upgrade_id);
+        } else {
+            console.log('Invalid Upgrade ID')
+        }
+    }
+
+    receiveUpgrade(upgrade_value) {
+        // each upgrade value will contain the target and the multiplier
+        // something like {value to change}{multiplier}
+        // switch
+        let upgradeString = upgrade_value.split('-');
+
+        switch (upgradeString[0]) {
+
+            // reduces times to nurture
+            case 'nt':
+                this.timesToNurture = 1 + this.plant_id * 7 * (1 - upgradeString[1]);
+                break;
+
+            // adds to base return
+            case 'rx':
+                this.current_leaves_per_second = this.base_return + (this.base_return * upgradeString[1]);
+                break;
+
+            // give money to player if plant is removed
+            // Zero Waste:       [zm-25][]
+            case 'zm':
+                console.log('zombie cash')
+                break;
+        }
+
+
+        console.log(this.char + ' received an upgrade of' + upgrade_value);
     }
 
     removePlant() {
@@ -197,12 +267,14 @@ export class Game {
         let leaves_per_second = 0
 
         // loop through squares with plants
+        console.log('calculating leaves per second:')
         squareArray.forEach(square => {
-            let squareCords = square.split('w')[0].split('')
-            if (squareCords[1] === '' || squareCords[0] === undefined) return
+            let sqc = square.split('w')[0].split('')
+            if (sqc[1] === '' || sqc[0] === undefined) return
 
             // add each plants current yield to new leaves per second value
-            leaves_per_second += this.game_board[squareCords[0]][squareCords[1]].getCurrentYield()
+            leaves_per_second += this.game_board[sqc[0]][sqc[1]].getCurrentYield()
+            console.log('\t' + this.base_plants[this.game_board[sqc[0]][sqc[1]].plant_id - 1].name + ' ' + this.game_board[sqc[0]][sqc[1]].getCurrentYield())
         })
 
         // update game object and front end's lps
@@ -338,3 +410,5 @@ export class Game {
             })
     }
 }
+
+

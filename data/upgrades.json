@@ -1,68 +1,24 @@
 [
     [
         {
-            "name": "upgrade_1",
-            "price": "1",
-            "description": "upgrade_1.description",
-            "max-level": "4",
-            "page": "1"
-        },
-        {
-            "name": "upgrade_2",
-            "price": "2",
-            "description": "upgrade_2.description",
-            "max-level": "4",
-            "page": "1"
-        },
-        {
             "name": "Mushroom Magic",
             "price": "3",
             "description": "Reduces time to harvest of nearby plants",
-            "max-level": "4",
+            "color": "FFFFFF",
             "page": "1"
         },
         {
             "name": "Yield Multiplier",
             "price": "4",
             "description": "Multiplies the yield of nearby plants.",
-            "max-level": "4",
+            "color": "FFFFFF",
             "page": "1"
-        },
-        {
-            "name": "upgrade_5",
-            "price": "5",
-            "description": "upgrade_5.description",
-            "max-level": "4",
-            "page": "1"
-        }
-    ],
-    [
-        {
-            "name": "upgrade_6",
-            "price": "6",
-            "description": "upgrade_6.description",
-            "max-level": "4",
-            "page": "2"
-        },
-        {
-            "name": "upgrade_7",
-            "price": "7",
-            "description": "upgrade_7.description",
-            "max-level": "4",
-            "page": "2"
-        },
-        {
-            "name": "upgrade_8",
-            "price": "8",
-            "description": "upgrade_8.description",
-            "max-level": "4",
-            "page": "2"
         },
         {
             "name": "Zero Waste Composting",
             "price": "9",
             "description": "Removing plants gives player a small bit of cash.",
-            "max-level": "4",
+            "color": "FFFFFF",
             "page": "2"
         }
     ]

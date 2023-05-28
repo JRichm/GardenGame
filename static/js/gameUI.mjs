@@ -76,3 +76,16 @@ function updateShop(amount) {
         }
     }
 }
+
+export class upgradeArea {
+    constructor(squareID, color) {
+        const squareChar = document.getElementById(`csq-${squareID[0]}${squareID[1]}`);
+        console.log(`csq-${squareID}`);
+        console.log(squareChar)
+        squareChar.style = `background-color: #${color};`;
+    }
+
+    updateUpgradeArea(level) {
+
+    }
+}

@@ -66,6 +66,7 @@ class Upgrade(db.Model):
     name = db.Column(db.String(), unique=True, nullable=False)
     price = db.Column(db.Integer(), nullable=False)
     description = db.Column(db.String(), unique=True, nullable=False)
+    color = db.Column(db.String(), nullable=False)
     page = db.Column(db.Integer(), nullable=False)
 
 
