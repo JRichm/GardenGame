@@ -30,9 +30,20 @@
     </aside>
     <hr style="border-left:3px solid #cccccc; width:0px; margin-left:-3px; opacity:100%;">
     <section id="user-settings-area">
-        <button class="btn btn-primary">Change Username</button>
-        <button class="btn btn-primary">Change Password</button>
-        <button class="btn btn-danger">Delete Account</button>
+        <div id="info-area">
+            <span>
+                <p>Username</p>
+                <p>{{ user.username }}</p>
+            </span>
+            <span>
+                <p>Email</p>
+                <p>{{ user.email }}</p>
+            </span>
+        </div>
+        <div id="button-area">
+            <button class="btn btn-primary">Change Password</button>
+            <button class="btn btn-danger">Delete Account</button>
+        </div>
     </section>
 </main>
 {% endblock %}

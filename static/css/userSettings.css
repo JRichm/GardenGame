@@ -13,14 +13,31 @@ main {
     background-color: #dedede;
     display: flex;
     flex-direction: column;
-    width: 400px;
     align-items: center;
+    justify-content: space-between;
     border-radius: 0px 0px 50px 0px;
     padding: 35px 25px 25px 25px;
 }
 
-#user-settings-area button {
-    width: 250px;
-    margin: 15px;
+#user-settings-area div {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
 }
 
+#user-settings-area span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#button-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#button-area button {
+    width: 200px;
+    margin: 5px;
+}

@@ -69,3 +69,27 @@ class CreateAccoutForm(FlaskForm):
             )
 
         return redirect(url_for("homepage"))
+    
+    
+# change password form
+    # need to input email and previous password to change
+        # email
+        # current password
+        # new password
+
+# change username form
+    # need to input current username and password to change
+        # current username
+        # new username
+        # password
+
+# change email form
+    # need to input current email and password to change
+        # current email
+        # new email
+        # password
+
+# delete account form
+    # need to input username and password to change
+        # email
+        # password
