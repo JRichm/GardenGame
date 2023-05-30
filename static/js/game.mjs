@@ -1,9 +1,10 @@
-import { highlightSelection } from './gameUI.mjs'
+import { highlightSelection, updateHoverText } from './gameUI.mjs'
 import { getUpgrade } from './upgrades.mjs'
 
 class GameSquare {
     constructor(x, y, gameObject) {
         this.char = '.';
+        this.name = 'Empty Game Square';
         this.color = 'ffffff';
         this.plant_id = undefined;
         this.current_leaves_per_second = 0;
@@ -73,6 +74,14 @@ class GameSquare {
                 this.nurtureAmount++;
             }
         }
+
+        let hoverData = [
+            [[[`${this.name}`, 'bold']],
+            [[`Return: +${+this.current_leaves_per_second}£ps`],
+            [`Upgrade Bonus: +${+this.current_leaves_per_second - +this.base_return}£ps`]]]
+        ]
+
+        updateHoverText(hoverData)
     }
 
     boldPlant() {
@@ -92,26 +101,28 @@ class GameSquare {
     plantSeed(plant_id) {
         this.plant_id = plant_id;
         this.plantable = false;
-        let plant = this.base_plants[parseInt(this.plant_id) - 1]
-        this.base_return = plant.base_return
-        this.char = plant.name.charAt(0)
-        this.color = plant.color
+        let plant = this.base_plants[parseInt(this.plant_id) - 1];
+        this.base_return = plant.base_return;
+        this.name = plant.name;
+        this.char = plant.name.charAt(0);
+        this.color = plant.color;
         this.element.innerHTML = this.char;
         this.element.style = `color: #${this.color};`
-        this.timesToNurture = 1 + (this.plant_id * 7)
-        this.current_leaves_per_second = this.base_return
+        this.timesToNurture = 1 + (this.plant_id * 7);
+        this.current_leaves_per_second = this.base_return;
     }
 
     plantUpgrade(upgrade_id) {
         let upgrade = getUpgrade(upgrade_id, this.squareIndex, this.gameObject)
         if (upgrade) {
-            console.log(upgrade)
             this.upgrade_id = upgrade_id
+            this.name = upgrade.name;
             this.plantable = false;
             this.char = upgrade.name.charAt(0)
             this.color = upgrade.color
             this.element.innerHTML = this.char;
             this.element.style = `color: #${this.color};`
+            console.log(upgrade.color)
 
             upgrade.activate(this.upgrade_id);
         } else {
@@ -124,7 +135,6 @@ class GameSquare {
         // something like {value to change}{multiplier}
         // switch
         let upgradeString = upgrade_value.split('-');
-
         switch (upgradeString[0]) {
 
             // reduces times to nurture
@@ -135,6 +145,7 @@ class GameSquare {
             // adds to base return
             case 'rx':
                 this.current_leaves_per_second = this.base_return + (this.base_return * upgradeString[1]);
+
                 break;
 
             // give money to player if plant is removed
@@ -144,25 +155,27 @@ class GameSquare {
                 break;
         }
 
-
-        console.log(this.char + ' received an upgrade of' + upgrade_value);
+        console.log(this.char + ' received an upgrade of ' + upgrade_value);
     }
 
     removePlant() {
         this.char = '.'
         this.color = '#555555'
-        this.base_return = 0;
         this.plant_id = undefined
         this.element.innerHTML = this.char;
         this.element.style = `color: #${this.color}`
         this.plantable = true;
+        this.base_return = 0;
         this.current_leaves_per_second = 0
         return false;
     }
 
     getSaveData() {
+
         if (this.plant_id) {
             return `${this.square_id}w${this.plant_id}`
+        } else if (this.upgrade_id) {
+            return `${this.square_id}w${this.upgrade_id + 17}`
         } else {
             return undefined
         }
@@ -210,7 +223,6 @@ export class Game {
         if (shopItem) {
             this.selection.store = +shopItem.id.split('-')[0];
             this.selection.type = shopItem.id.split('-')[1];
-            console.log(this.selection)
             highlightSelection(event)
         }
     }
@@ -267,14 +279,12 @@ export class Game {
         let leaves_per_second = 0
 
         // loop through squares with plants
-        console.log('calculating leaves per second:')
         squareArray.forEach(square => {
             let sqc = square.split('w')[0].split('')
             if (sqc[1] === '' || sqc[0] === undefined) return
 
             // add each plants current yield to new leaves per second value
             leaves_per_second += this.game_board[sqc[0]][sqc[1]].getCurrentYield()
-            console.log('\t' + this.base_plants[this.game_board[sqc[0]][sqc[1]].plant_id - 1].name + ' ' + this.game_board[sqc[0]][sqc[1]].getCurrentYield())
         })
 
         // update game object and front end's lps
@@ -284,6 +294,8 @@ export class Game {
     }
 
     updateCurrentLeaves = () => {
+
+        // Caclulate the difference in time between this call and last
         const currentTime = Date.now();
         const deltaTime = (currentTime - this.startTime) / 1000;
 
@@ -333,15 +345,16 @@ export class Game {
                 let squareData = this.game_board[sqx][sqy].getSaveData();
 
                 // check if square has data
-                if (squareData)
-
+                if (squareData) {
                     // capture square data
                     saveString += squareData + ',';
+                }
             }
         }
 
         // save map_data to game object and update lps
         this.map_data = saveString;
+        this.up
         this.calculateLeavesPerSecond()
 
         // send map_data to server to update 'saves' table
@@ -375,19 +388,24 @@ export class Game {
             // if map data is empty, dont load anything
             if (this.map_data === null) return;
 
-            // loop through map data
+            // loop through saved plants
             let mapData = this.map_data.split(',');
+            let upgradeSquares = [];
             for (let sq = 0; sq < mapData.length; sq++) {
                 if (mapData[0]) {
                     let squarePos = mapData[sq].split('w')[0].split('');
                     let plant_id = mapData[sq].split('w')[1];
                     if (squarePos[0] !== undefined) {
+                        if (plant_id >= 17) upgradeSquares.push([this.game_board[squarePos[0]][squarePos[1]], plant_id]);
+                        else this.game_board[squarePos[0]][squarePos[1]].plantSeed(plant_id);
 
                         // update game board where plants exist
-                        this.game_board[squarePos[0]][squarePos[1]].plantSeed(plant_id);
+
                     }
                 }
             }
+
+            upgradeSquares.forEach(each => each[0].plantUpgrade(each[1] - 17));
 
             // update current leaves and lps
             this.startTime = Date.now();

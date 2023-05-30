@@ -69,29 +69,38 @@ main {
 /* 4 game save area */
 
 #game-squares {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #dddddd;
+    display: grid;
+    gap:10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     height: 500px;
     width: 500px;
+    background-color: #dddddd;
     padding: 30px;
     border-radius: 0px 0px 50px 0px;
 }
 
-.save-row {
+.save-box {
+    background-color: #212029;
+    border-radius: 15px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #cccccc;
-    height: 250px;
+    margin: 0px;
+    padding: 5px 5px 10px 5px;
 }
 
-.save-box {
-    background-color: #999999;
-    width: 195px;
-    height: 195px;
-    margin: 9px;
-    border-radius: 15px;
+.garden-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 200px;
+    height: 23px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.garden-row p {
+    height: 10px;
+    width: 10px;
 }

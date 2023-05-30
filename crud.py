@@ -1,5 +1,3 @@
-
-
 """  ####   CRUD Funcitons   ####"""
 
 from model import db, User, Save, Plant, Upgrade, connect_to_db
@@ -9,23 +7,6 @@ from datetime import datetime
 import colorsys
 import random
 import json
-
-
-def create_save(user_id):
-    save = Save(
-        user_id=user_id,
-        map_level=0,
-        current_currency=500,
-        leaves_per_second=0,
-        map_data=None,
-        upgrades=None,
-        last_login=datetime.now(),
-        total_leaves_earned="0",
-    )
-
-    db.session.add(save)
-    db.session.commit()
-    return save
 
 
 # users
@@ -157,9 +138,31 @@ def get_upgrades_JSON():
 
 
 # saves
+def create_save(user_id):
+    save = Save(
+        user_id=user_id,
+        map_level=0,
+        current_currency=500,
+        leaves_per_second=0,
+        map_data=None,
+        upgrades=None,
+        last_login=datetime.now(),
+        total_leaves_earned="0",
+    )
+
+    db.session.add(save)
+    db.session.commit()
+    return save
+
+
 def get_save_by_map_id(map_id):
     save = Save.query.filter(Save.map_id == map_id).first()
     return save
+
+
+def get_user_saves_by_id(user_id):
+    saves = Save.query.filter(Save.user_id == user_id).all()
+    return saves
 
 
 def update_map_save(

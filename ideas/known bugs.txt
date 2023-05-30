@@ -5,7 +5,7 @@
  - the error is caused from jinja trying to .split(',') the map data, but there is nothing to split!
 
 
-[FIXED] 
+[FIXED] game.mjs => gameUI.highlightSelection(event) w/ import
 • game selection does not match highlighted UI element
  - the system that keeps track of the users selection in game and the system that highlights the user selection
    are separate and need to be merged to create a smoother experience for the player

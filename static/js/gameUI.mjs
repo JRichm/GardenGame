@@ -80,12 +80,40 @@ function updateShop(amount) {
 export class upgradeArea {
     constructor(squareID, color) {
         const squareChar = document.getElementById(`csq-${squareID[0]}${squareID[1]}`);
-        console.log(`csq-${squareID}`);
-        console.log(squareChar)
         squareChar.style = `background-color: #${color};`;
     }
 
     updateUpgradeArea(level) {
 
     }
+}
+
+const titleLines = document.querySelectorAll('#hover-title > p');
+const descrLines = document.querySelectorAll('#hover-descr > p');
+
+export function updateHoverText(data) {
+    titleLines.forEach((titleLine, index) => {
+        if (data[0][0][0][0] === "Empty Game Square") {
+            titleLine.innerHTML = '';
+            descrLines[index].innerHTML = '';
+        } else if (data.length >= 1 && data[0][index]) {
+            titleLine.innerHTML = data[0][index][0][0];
+            if (data[0][index][1]) {
+                titleLine.style.fontWeight = data[0][index][0][1];
+            }
+        } else {
+            titleLine.innerHTML = '';
+        }
+    });
+
+    descrLines.forEach((descrLine, index) => {
+        if (data.length >= 2 && data[1][index]) {
+            descrLine.innerHTML = data[1][index][0][0];
+            if (data[1][index][1]) {
+                descrLine.style.fontWeight = data[1][index][0][1];
+            }
+        } else {
+            descrLine.innerHTML = '';
+        }
+    });
 }

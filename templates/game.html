@@ -11,16 +11,18 @@
         <div id="same-level-container">
             <nav id="game-header">
                 <section style="justify-content:left;">
-                    <div>
-                        <p>Onion</p>
-                        <p>+1£ps</p>
+                    <div id="hover-title">
+                        <p></p>
+                        <p></p>
+                        <p></p>
                     </div>
-                    <div>
-                        <p>+25%</p>
-                        <p>-17ht</p>
+                    <div id="hover-descr">
+                        <p></p>
+                        <p></p>
+                        <p></p>
                     </div>
                 </section>
-                <section style="align-items:center;">
+                <section id=current-lops style="align-items:center;">
                     <div>
                         <p id="current-leaves" class="game-span-num">{{ user_save.current_currency }}</p>
                         <p>Leaves</p>
@@ -98,7 +100,6 @@
                         </span>
                     </article>
                     <article id="tip-area">
-                        <p>tip of the day!</p>
                     </article>
                 </aside>
                 <div id='game'>
@@ -123,6 +124,5 @@
 <script> var userSave = JSON.parse('{{ user_save | tojson | safe }}')</script>
 <script src="static/js/game.mjs" type="module"></script>
 <script src="static/js/gameUI.mjs" type="module"></script>
-<script src="static/js/upgrades.mjs" type="module"></script>
 <script src="static/js/initGame.mjs" type="module"></script>
 {% endblock %}

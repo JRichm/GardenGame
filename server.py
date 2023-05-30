@@ -45,7 +45,19 @@ def login():
 @app.route("/user/<user_id>")
 def view_user(user_id):
     view_user = crud.get_user_by_id(user_id)
-    return render_template("user.html", user=check_login(), view_user=view_user)
+    user_saves = crud.get_user_saves_by_id(user_id)
+    base_plants = json.loads(crud.get_base_plants_JSON())
+    upgrades = json.loads(crud.get_upgrades_JSON())
+    return render_template(
+        "user.html", user=check_login(), view_user=view_user, user_saves=user_saves, base_plants=base_plants, upgrades=upgrades
+    )
+
+
+##  """  View User Settings  """ ##
+@app.route("/userSettings")
+def view_settings():
+    return render_template("userSettings.html", user=check_login())
+    
 
 
 ##   """ View Leaderboards """   ##
@@ -56,6 +68,7 @@ def view_leaderboards(page_number):
     scores = crud.get_leaderboard_data(page_number)
     current_time = datetime.datetime.now()
     plants = json.loads(crud.get_base_plants_JSON())
+    upgrades = json.loads(crud.get_upgrades_JSON())
     return render_template(
         "leaderboards.html",
         scores=scores,
@@ -63,6 +76,7 @@ def view_leaderboards(page_number):
         user=check_login(),
         page_number=page_number,
         base_plants=plants,
+        upgrades=upgrades,
     )
 
 

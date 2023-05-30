@@ -2,23 +2,23 @@
     [
         {
             "name": "Mushroom Magic",
-            "price": "3",
+            "price": "2000",
             "description": "Reduces time to harvest of nearby plants",
-            "color": "FFFFFF",
+            "color": "ff0000",
             "page": "1"
         },
         {
             "name": "Yield Multiplier",
-            "price": "4",
+            "price": "5000",
             "description": "Multiplies the yield of nearby plants.",
-            "color": "FFFFFF",
+            "color": "00ff00",
             "page": "1"
         },
         {
             "name": "Zero Waste Composting",
-            "price": "9",
+            "price": "9000",
             "description": "Removing plants gives player a small bit of cash.",
-            "color": "FFFFFF",
+            "color": "0000ff",
             "page": "2"
         }
     ]

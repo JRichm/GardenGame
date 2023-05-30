@@ -30,16 +30,56 @@
     </aside>
     <section>
         <article id="game-squares">
-            <span class="save-row" style="align-items:end; 
-                border-radius: 25px 25px 0px 0px;">
-                <div class="save-box" id="sb-1"></div>
-                <div class="save-box" id="sb-2"></div>
-            </span>
-            <span class="save-row" style="align-items:start;
-                border-radius: 0px 0px 25px 25px;">
-                <div class="save-box" id="sb-3"></div>
-                <div class="save-box" id="sb-4"></div>
-            </span>
+            {% if user_saves %}
+                {% for save in range(0,4) %}
+                    {% if save < user_saves|length %}
+                        {% set squareData = user_saves[save].map_data %}
+                        {% set grid = {} %}
+                        {% set rows = 9 %}
+                        {% set cols = 9 %}
+
+                        {% for item in squareData.split(',') if item %}
+                            {% set cords, value = item.split('w') %}
+                            {% set row, col = cords[:1] | int, cords[1:] | int %}
+                            {% set _ = grid.update({(row, col): value}) %}
+                        {% endfor %}
+
+                        <div class="save-box">
+                            <table>
+                                {% for row in range(rows) %}
+                                    <span class="garden-row">
+                                        {% for col in range(cols) %}
+                                            {% set cord = (row, col) %}
+                                            {% if cord in grid %}
+                                                {% set plant_index = grid[cord] | int - 1 %}
+                                                {% if plant_index < 0 %}
+                                                    <p style="color:#313149;">.</p>
+                                                {% elif plant_index < 17 %}
+                                                    <p style="color:#{{ base_plants[plant_index - 17].color }}; font-weight:bold; font-size:25px;">
+                                                        {{ base_plants[plant_index - 17].name[0] }}</p>
+                                                {% else %}
+                                                    {% set upgrade_index = plant_index - 17 %}
+                                                    {% if upgrade_index >= 0 and upgrade_index < upgrades|length %}
+                                                        <p style="color:#{{ upgrades[upgrade_index].color }}; font-weight:bold; font-size:25px;">
+                                                            {{ upgrades[upgrade_index].name[0] }}</p>
+                                                    {% else %}
+                                                        <p style="color:red;">Upgrade not found at index {{ upgrade_index }}</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% else %}
+                                                <p style="color:#313149;">.</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </span>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="save-box" style="background-color:#bcbcbc;">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </article>
     </section>
 </main>
