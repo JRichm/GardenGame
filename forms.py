@@ -48,6 +48,11 @@ class CreateAccoutForm(FlaskForm):
         username = self.username.data
         email = self.email.data
         password = self.password.data
+        
+        #check password length
+        if len(password) <= 5:
+            flash('Password too short! Try again!', "danger")
+            return redirect(url_for('homepage'))
 
         # create user if username or email arent already in db
         if not crud.get_user_by_email(email):
@@ -63,10 +68,7 @@ class CreateAccoutForm(FlaskForm):
             else:
                 flash(f"Username {username} already in use! Try again.", "danger")
         else:
-            flash(
-                "Invalid Email! Try logging in or enter a different email address.",
-                "danger",
-            )
+            flash("Invalid Email! Try logging in or enter a different email address.", "danger")
 
         return redirect(url_for("homepage"))
     
@@ -93,3 +95,38 @@ class CreateAccoutForm(FlaskForm):
     # need to input username and password to change
         # email
         # password
+        
+class DeleteAccountForm(FlaskForm):
+    email = StringField("email", [validators.InputRequired()])
+    password = PasswordField("password", [validators.InputRequired()])
+    
+    def deleteAccount(self):
+        
+        #user input data
+        email = self.email.data
+        password = self.password.data
+        
+        # get session user
+        sessionUser = crud.get_user_by_id(session["gg_user_id"])
+        
+        # get user by email that user entered
+        inputUser = crud.get_user_by_email(email)
+        
+        # check if user ID's match
+        if sessionUser.user_id != inputUser.user_id:
+            flash('Emails do not match! Try Again!', 'danger')
+            return redirect(url_for('homepage'))
+        
+        # check if session user matches user under the input email
+        if email != sessionUser.email:
+            flash('Emails do not match! Try Again!', 'danger')
+            return redirect(url_for('homepage'))
+        
+        if password != sessionUser.password:
+            flash('Passwords do not match! Try Again!', 'danger')
+            return redirect(url_for('homepage'))
+        
+        crud.delete_account_by_id(sessionUser.user_id)
+        flash('Account deleted successfully', 'success')
+        return redirect(url_for('homepage'))
+        
