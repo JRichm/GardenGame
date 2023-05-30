@@ -1,0 +1,26 @@
+.content-container {
+    background-color: #232323;
+    min-height: 947px;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#user-settings-area {
+    background-color: #dedede;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    align-items: center;
+    border-radius: 0px 0px 50px 0px;
+    padding: 35px 25px 25px 25px;
+}
+
+#user-settings-area button {
+    width: 250px;
+    margin: 15px;
+}
+

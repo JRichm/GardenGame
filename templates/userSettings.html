@@ -1,9 +1,38 @@
 {% extends 'base.html' %}
-{% block title %}GardenGame | Login{% endblock %}
+{% block title %}GardenGame | {{ user.username }}'s Settings{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="/static/css/user.css">
+<link rel="stylesheet" href="/static/css/userSettings.css">
 {% endblock %}
 {% block body %}
 <main>
+    <aside>
+        <article id="user-card">
+            <img id="user-img" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
+                style="background-color:#{{ user.color }}">
+            <hr style="border-top:3px solid #aaaaaa; width:100%;">
+            <section class="uc-username">
+                <p style="color:#{{ user.color }}">{{ user.username }}</p>
+                <p style="color:gold" id='view-user-xp'>{{ user.experience }}</p>
+            </section>
+            <section class="uc-info">
+                <span class="uc-info-span">
+                    <p style="
+                    font-family: 'Josefin Sans', sans-serif;">Total Leaves</p>
+                    <p style="font-family: 'Courier Prime', monospace;">{{ user.total_leaves_earned }}</p>
+                </span>
+                <span class="uc-info-span">
+                    <p style="`
+                    font-family: 'Josefin Sans', sans-serif;">Gems</p>
+                    <p style="font-family: 'Courier Prime', monospace;">{{ user.gems }}</p>
+                </span>
+            </section>
+        </article>
+    </aside>
+    <hr style="border-left:3px solid #cccccc; width:0px; margin-left:-3px; opacity:100%;">
+    <section id="user-settings-area">
+        <button class="btn btn-primary">Change Username</button>
+        <button class="btn btn-primary">Change Password</button>
+        <button class="btn btn-danger">Delete Account</button>
+    </section>
 </main>
 {% endblock %}
