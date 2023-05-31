@@ -290,13 +290,14 @@ export class Game {
         // update game object and front end's lps
         this.leaves_per_second = leaves_per_second;
         document.getElementById('current-LPS').innerHTML = this.leaves_per_second
-
+        requestAnimationFrame(this.updateCurrentLeaves);
     }
 
     updateCurrentLeaves = () => {
 
         // Caclulate the difference in time between this call and last
         const currentTime = Date.now();
+        if (this.startTime === undefined) this.startTime = 0
         const deltaTime = (currentTime - this.startTime) / 1000;
 
         // Calculate the amount of leaves to give the player based on the current LPS and deltaTime
@@ -408,7 +409,6 @@ export class Game {
             upgradeSquares.forEach(each => each[0].plantUpgrade(each[1] - 17));
 
             // update current leaves and lps
-            this.startTime = Date.now();
             this.calculateLeavesPerSecond()
             this.updateCurrentLeaves()
         }, 600);

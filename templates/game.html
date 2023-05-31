@@ -29,7 +29,7 @@
                     </div>
                     <div>
                         <p id="current-LPS" class="game-span-num">{{ user_save.leaves_per_second }}</p>
-                        <p>£ps</p>
+                        <p>LPS</p>
                     </div>
                 </section>
             </nav>
@@ -49,18 +49,18 @@
                                         <aside class="plant-level"></aside>
                                         <p class="item-name"
                                             style="font-family: 'Josefin Sans', sans-serif; font-weight:bold;">
-                                            {{
-                                            plant.name }}</p>
+                                            {{ plant.name }}</p>
                                     </article>
                                     <article class="item-price-info" id="ipi-{{ plant.plant_id }}">
                                         <section class="item-return">
                                             <p>+</p>
                                             <p style="font-weight:bold;">{{ plant.base_return }}</p>
-                                            <p>£ps</p>
+                                            <p>LPS</p>
                                         </section>
                                         <section class="item-price">
-                                            <p>-£</p>
+                                            <p>-</p>
                                             <p style="font-weight:bold;">{{ plant.price }}</p>
+                                            <p>L</p>
                                         </section>
                                     </article>
                                 </span>
@@ -83,8 +83,9 @@
                                             <p class="upgrade-description">{{ upgrade.description }}</p>
                                         </section>
                                         <section class="item-price">
-                                            <p>-£</p>
+                                            <p>-</p>
                                             <p style="font-weight:bold;">{{ upgrade.price }}</p>
+                                            <p>L</p>
                                         </section>
                                     </article>
                                 </span>
