@@ -1,3 +1,5 @@
+
+
 """  ####   CRUD Funcitons   ####"""
 
 from model import db, User, Save, Plant, Upgrade, connect_to_db
@@ -35,7 +37,6 @@ def get_users():
 
 
 def get_user_by_id(user_id):
-    print(f"\n\n\n\n\n\nthis is my user id {User.query.all()}")
     return User.query.get(user_id)
 
 
@@ -45,29 +46,21 @@ def get_user_by_email(email):
 
 def get_user_by_username(username):
     return User.query.filter(User.username == username).first()
-
-
-def get_user_save_JSON(user_id):
-    user_save = Save.query.filter(Save.user_id == user_id).first()
-    if user_save:
-        user_save_dict = {
-            "map_id": user_save.map_id,
-            "user_id": user_save.user_id,
-            "map_level": user_save.map_level,
-            "current_currency": user_save.current_currency,
-            "leaves_per_second": user_save.leaves_per_second,
-            "map_data": user_save.map_data,
-            "upgrades": user_save.upgrades,
-            "last_login": str(user_save.last_login),
-            "total_leaves_earned": user_save.total_leaves_earned,
-        }
-
-        user_save_JSON = json.dumps([user_save_dict])
-        return user_save_JSON
-
-    else:
-        return None
-
+    
+def delete_account_by_id(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        flash('User ID not found!', 'danger')
+        return redirect(url_for('view_settings'))
+    
+    saves = Save.query.filter(Save.user_id == user_id).all()
+    for save in saves:
+        db.session.delete(save)
+    db.session.delete(user)
+    db.session.commit()
+    flash('User account deleted successfully!', 'success')
+    print("Redirecting to login page...")
+    return redirect(url_for('homepage'))
 
 # plants
 def new_game_plant(name, price, base_return, color, stage):
@@ -153,6 +146,28 @@ def create_save(user_id):
     db.session.add(save)
     db.session.commit()
     return save
+
+
+def get_user_save_JSON(user_id):
+    user_save = Save.query.filter(Save.user_id == user_id).first()
+    if user_save:
+        user_save_dict = {
+            "map_id": user_save.map_id,
+            "user_id": user_save.user_id,
+            "map_level": user_save.map_level,
+            "current_currency": user_save.current_currency,
+            "leaves_per_second": user_save.leaves_per_second,
+            "map_data": user_save.map_data,
+            "upgrades": user_save.upgrades,
+            "last_login": str(user_save.last_login),
+            "total_leaves_earned": user_save.total_leaves_earned,
+        }
+
+        user_save_JSON = json.dumps([user_save_dict])
+        return user_save_JSON
+
+    else:
+        return None
 
 
 def get_save_by_map_id(map_id):

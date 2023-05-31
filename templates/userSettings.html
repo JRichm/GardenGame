@@ -7,8 +7,7 @@
 <main>
     <aside>
         <article id="user-card">
-            <img id="user-img" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png"
-                style="background-color:#{{ user.color }}">
+            <img id="user-img" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" style="background-color:#{{ user.color }}">
             <hr style="border-top:3px solid #aaaaaa; width:100%;">
             <section class="uc-username">
                 <p style="color:#{{ user.color }}">{{ user.username }}</p>
@@ -16,13 +15,11 @@
             </section>
             <section class="uc-info">
                 <span class="uc-info-span">
-                    <p style="
-                    font-family: 'Josefin Sans', sans-serif;">Total Leaves</p>
+                    <p style="font-family: 'Josefin Sans', sans-serif;">Total Leaves</p>
                     <p style="font-family: 'Courier Prime', monospace;">{{ user.total_leaves_earned }}</p>
                 </span>
                 <span class="uc-info-span">
-                    <p style="`
-                    font-family: 'Josefin Sans', sans-serif;">Gems</p>
+                    <p style="font-family: 'Josefin Sans', sans-serif;">Gems</p>
                     <p style="font-family: 'Courier Prime', monospace;">{{ user.gems }}</p>
                 </span>
             </section>
@@ -40,10 +37,55 @@
                 <p>{{ user.email }}</p>
             </span>
         </div>
+        <div id="form-area">
+            <!-- change username -->
+
+            <!-- change email -->
+
+            <!-- change password -->
+
+            <!-- change user color -->
+
+            <!-- delete account -->
+            <form id="deleteAccount" class="hidden" action="/userSettings" method="POST">
+                <p>{{ deleteForm.email.label }}{{ deleteForm.email }}</p>
+                <p>{{ deleteForm.password.label }}{{ deleteForm.password }}</p>
+                {{ deleteForm.csrf_token }}
+                <input type="submit">
+            </form>
+        </div>
         <div id="button-area">
-            <button class="btn btn-primary">Change Password</button>
-            <button class="btn btn-danger">Delete Account</button>
+            <button id="changePassword-button" class="btn btn-primary">Change Password</button>
+            <button id="deleteAccount-button" class="btn btn-danger">Delete Account</button>
         </div>
     </section>
+    <script>
+        let formArea = document.getElementById('form-area');
+        let passwordButton = document.getElementById('changePassword-button');
+        //let emailButton = document.getAnimations();
+        //let usernameButton = document.getElementById();
+        //let colorButton = document.getElementById();
+
+        // get button elements
+        let buttons = [document.getElementById('deleteAccount-button')];
+
+        // get form elements
+        let forms = [document.getElementById('deleteAccount')];
+
+        // add event listeners to each button
+        buttons.forEach(button => button.addEventListener('click', e => {
+
+            e.preventDefault()
+
+            // hide all forms for empty menu
+            forms.forEach(form => form.classList.add('hidden'));
+
+            // get target form from button id and show the selected menu
+            let buttonClass = e.target.id.split('-')[0];
+            console.log(buttonClass)
+            document.getElementById(buttonClass).classList.remove('hidden');
+        }))
+
+    </script>
 </main>
 {% endblock %}

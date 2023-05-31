@@ -54,9 +54,16 @@ def view_user(user_id):
 
 
 ##  """  View User Settings  """ ##
-@app.route("/userSettings")
+@app.route("/userSettings", methods=['GET', 'POST'])
 def view_settings():
-    return render_template("userSettings.html", user=check_login())
+    user=check_login()
+    if not user:
+        return redirect(url_for('login'))
+    
+    deleteForm = forms.DeleteAccountForm(request.form)
+    if request.method == "POST" and deleteForm.validate():
+        deleteForm.deleteAccount()
+    return render_template("userSettings.html", user=user, deleteForm=deleteForm)
     
 
 
