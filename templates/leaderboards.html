@@ -10,7 +10,7 @@
     {% set last_login = save.last_login %}
     {% set time_difference = current_time - last_login %}
     {% set time_since_login = time_difference | format_timedelta %}
-    <article>
+    <article id="saves-list">
         <span class="save-span">
             <section class="save-details">
                 <div class="lb-user-title">

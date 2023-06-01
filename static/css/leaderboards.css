@@ -6,6 +6,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 847px;
 }
 
 main article {
@@ -17,6 +18,12 @@ main article {
 main span {
     display: flex;
     flex-direction: row;
+}
+
+saves-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .save-span {
