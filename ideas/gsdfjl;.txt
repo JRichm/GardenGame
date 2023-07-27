@@ -1,0 +1,35 @@
+GardenGame - https://tinyurl.com/gardenGameDemo
+• Designed and developed a virtual gardening game called GardenGame, using Flask and SQLAlchemy to build a
+solid backend, ensuring seamless functionality and efficient data management
+
+• Created interactive HTML templates using Jinja2 and JavaScript to craft dynamic and engaging user interfaces.
+
+• Implemented features such as individual gardens, a competitive leaderboard, user profiles, and account management functionalities 
+
+
+MidiFret - https://tinyurl.com/midiFretDemo
+• Developed and deployed MidiFret.com, a web application that enables users to upload MIDI files and convert
+them into guitar tablature
+
+• Built a robust backend using Express and Axios that allowed for seamless file uploads
+
+• Integrated bit.io to create custom, multi-table database that stores information about tabs, users, and artists
+
+• Implemented tab editor that allows for tab manipulation after converting midi-file
+
+*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*
+
+• Leveraged GADD software to pull reports and optimize store layouts, resulting in a 20% increase in space efficiency
+and improved direct flow.
+
+• Utilized Sales Location Management (SLM) software to perform advanced item searches, analyze sales and
+forecasting data, and optimize inventory management
+
+• Used Remote Data Terminals (RDT's) to manage inventory, adjust sales locations, transfer items, and fulfill orders
+
+• Trained new team members on the use of SLM software and RDT's, contributing to the development of a more
+tech-savvy workforce
+
+*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*
+
+Software Engineering,Python,Github,Flask,Sqlalchemy,Postgres,Jinja2,Efficient,Data Management,Templates,Javascript,Node.js,AWS,Midi,SDLC,Unity,C#,Scripts,Visual Studio,Command Line,Bootstrap,Pycharm,Blender,Adobe

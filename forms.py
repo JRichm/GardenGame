@@ -111,29 +111,24 @@ class DeleteAccountForm(FlaskForm):
         
         # get user by email that user entered
         inputUser = crud.get_user_by_email(email)
-        print('\n\n\n\n\n\n\n' + email)
         
         if not inputUser:
             flash('Input email does not exist!', 'danger')
-            print('\n\n\n\n\n\n\n\nEmails do not match! Try Again!')
             return redirect(url_for('view_settings'))
         
         # check if user ID's match
         if sessionUser.user_id != inputUser.user_id:
             flash('Input email does not match current user!', 'danger')
-            print('\n\n\n\n\n\n\n\nEmails do not match! Try Again!')
             return redirect(url_for('view_settings'))
         
         # check if session user matches user under the input email
         if email != sessionUser.email:
             flash('Emails do not match! Try Again!', 'danger')
-            print('\n\n\n\n\n\n\n\nEmails do not match! Try Again!')
             return redirect(url_for('view_settings'))
         
         # check if password matches user info
         if password != sessionUser.password:
             flash('Passwords do not match! Try Again!', 'danger')
-            print('\n\n\n\n\n\n\n\nPasswords do not match! Try Again!')
             return redirect(url_for('view_settings'))
         
         crud.delete_account_by_id(sessionUser.user_id)
